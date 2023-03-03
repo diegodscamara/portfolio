@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Logo } from 'public/logo';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 
 const Header = () => {
@@ -14,17 +15,20 @@ const Header = () => {
   };
 
   const NavLink = ({ href, children, onClick }: NavLinkProps) => {
+    const router = useRouter();
+    const sectionId = href.slice(1);
+    const isActive = router.asPath.includes(sectionId);
+    const className = `text-card font-bold font-sans mx-4 hover:text-primary ${isActive ? 'text-primary' : ''}`;
+
     return (
-      <Link href={href}
-        onClick={onClick}
-        className="text-card font-bold font-sans mx-4 hover:text-primary active:text-primary">
+      <Link href={href} onClick={onClick} className={className}>
         {children}
       </Link>
     );
   };
 
   return (
-    <header className="bg-gray-900 text-white fixed w-full bg-black shadow-light-gray">
+    <header className="bg-gray-900 text-white fixed w-full bg-black shadow-light-gray z-10">
       <nav className="container mx-auto px-4 py-2 flex justify-between items-center">
         <Link href="/"><Logo /></Link>
         <div className="hidden md:block">
