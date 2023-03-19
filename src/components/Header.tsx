@@ -3,48 +3,54 @@ import { Logo } from 'public/logo';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 
+type NavLinkProps = {
+  href: string;
+  children: React.ReactNode;
+  onClick?: () => void;
+};
+
+const NavLink = ({ href, children, onClick }: NavLinkProps) => {
+  const router = useRouter();
+  const sectionId = href.slice(1);
+  const isActive = router.asPath.includes(sectionId);
+  const className = `text-card font-bold font-sans mx-4 hover:text-primary ${isActive ? 'text-primary' : ''}`;
+  return (
+    <Link href={href} onClick={onClick} className={className} title={`${children} section`} aria-label={`${children} section`}>
+      {children}
+    </Link>
+  );
+};
+
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
-  type NavLinkProps = {
-    href: string;
-    children: React.ReactNode;
-    onClick?: () => void;
-  };
-
-  const NavLink = ({ href, children, onClick }: NavLinkProps) => {
-    const router = useRouter();
-    const sectionId = href.slice(1);
-    const isActive = router.asPath.includes(sectionId);
-    const className = `text-card font-bold font-sans mx-4 hover:text-primary ${isActive ? 'text-primary' : ''}`;
-
-    return (
-      <Link href={href} onClick={onClick} className={className}>
-        {children}
-      </Link>
-    );
-  };
+  const navLinks = [
+    { href: "#Home", label: "Home" },
+    { href: "#About", label: "About" },
+    { href: "#Expertise", label: "Expertise" },
+    { href: "#Work", label: "Work" },
+    { href: "#Experience", label: "Experience" },
+    { href: "#Skills", label: "Skills" },
+    { href: "#Contact", label: "Contact" }
+  ];
 
   return (
     <header className="bg-gray-900 text-white fixed w-full bg-black shadow-light-gray z-10">
       <nav className="container mx-auto px-4 py-2 flex justify-between items-center">
         <Link href="/"><Logo /></Link>
         <div className="hidden md:block">
-          <NavLink href="#Home">Home</NavLink>
-          <NavLink href="#Work">Work</NavLink>
-          <NavLink href="#Projects">Projects</NavLink>
-          <NavLink href="#Skills">Skills</NavLink>
-          <NavLink href="#Services">Services</NavLink>
-          <NavLink href="#About">About</NavLink>
-          <NavLink href="#Contact">Contact</NavLink>
+          {navLinks.map(({ href, label }) => (
+            <NavLink key={href} href={href}>{label}</NavLink>
+          ))}
         </div>
         <div className="md:hidden">
           <button
             className="p-2 focus:outline-none"
             onClick={toggleMenu}
             aria-label="Toggle menu"
+            aria-expanded={isOpen}
           >
             {isOpen ? (
               <svg
@@ -84,13 +90,9 @@ const Header = () => {
             }`}
         >
           <div className="flex flex-col items-center gap-4">
-            <NavLink href="#Home" onClick={toggleMenu}>Home</NavLink>
-            <NavLink href="#Work" onClick={toggleMenu}>Work</NavLink>
-            <NavLink href="#Projects" onClick={toggleMenu}>Projects</NavLink>
-            <NavLink href="#Skills" onClick={toggleMenu}>Skills</NavLink>
-            <NavLink href="#Services" onClick={toggleMenu}>Services</NavLink>
-            <NavLink href="#About" onClick={toggleMenu}>About</NavLink>
-            <NavLink href="#Contact" onClick={toggleMenu}>Contact</NavLink>
+            {navLinks.map(({ href, label }) => (
+              <NavLink key={href} href={href} onClick={toggleMenu}>{label}</NavLink>
+            ))}
           </div>
         </div>
       </nav>
