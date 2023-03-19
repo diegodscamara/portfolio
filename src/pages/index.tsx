@@ -1,9 +1,10 @@
-import About from '@/components/About';
+import About from '@/components/About/About';
 import Contact from '@/components/Contact';
-import Footer from '@/components/Footer';
+import Expertise from '@/components/Expertise';
+import Footer from '@/components/Header/Footer';
 import Head from 'next/head';
 import Header from '@/components/Header';
-import Hero from '@/components/Hero';
+import Hero from '@/components/Hero/Hero';
 import Projects from '@/components/Projects';
 import React from 'react';
 import Services from '@/components/Services';
@@ -18,11 +19,12 @@ const Home = () => {
       <Header />
       <main>
         <Hero />
+        <About />
+        <Expertise />
         <Work />
         <Projects />
         <Skills />
         <Services />
-        <About />
         <Contact />
         <Footer />
       </main>
