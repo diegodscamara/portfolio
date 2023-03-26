@@ -12,46 +12,42 @@ const ButtonStyles = styled.button<ButtonStylesProps>`
   padding: 16px 32px;
   gap: 16px;
   height: 45px;
-  border-radius: 4px;
+  border-radius: var(--border-radius-sm);
   flex: none;
   order: 0;
   flex-grow: 0;
-  font-family: 'Arial';
-  font-style: normal;
   font-weight: 700;
-  font-size: 13.33px;
-  line-height: 15px;
   transition: all 0.3s ease-in-out;
 
     ${({ variant }) => variant === 'filled' ? `
-      background: #00E7F9;
-      color: #000000;
-      border: 1px solid #00E7F9;
+      background: var(--primary-color);
+      color: var(--black);
+      border: 1px solid var(--primary-color);
 
       svg path {
           transition: all 0.3s ease-in-out;
-          fill: #000000;
+          fill: var(--black);
         }
 
       &:hover {
-        color: #00E7F9;
+        color: var(--primary-color);
         background-color: transparent;
         
         svg path {
-          fill: #00E7F9;
+          fill: var(--primary-color);
         }
       }
       ` : `
-      color: #00E7F9;
-      border: 1px solid #00E7F9;
+      color: var(--primary-color);
+      border: 1px solid var(--primary-color);
       background-color: transparent;
 
       &:hover {
-        background-color: #00E7F9;
-        color: #000000;
+        background-color: var(--primary-color);
+        color: var(--black);
 
         svg path {
-          fill: #000000;
+          fill: var(--black);
         }
       }
       `}
