@@ -1,6 +1,7 @@
 import { ButtonProps } from './types';
 import ButtonStyles from './styles';
 import Link from 'next/link';
+import { Url } from "url";
 
 const Button = ({ attributes, variant, children }: ButtonProps) => {
   const handleClick = async () => {
@@ -11,7 +12,7 @@ const Button = ({ attributes, variant, children }: ButtonProps) => {
 
   return (
     <Link
-      href={attributes.link}
+      href={attributes.link as Url}
       target={attributes.target}
       rel={attributes.rel}
       title={attributes.title}
