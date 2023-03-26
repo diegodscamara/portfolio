@@ -1,6 +1,6 @@
 import { fireEvent, render, waitFor } from '@testing-library/react';
 
-import About from './About';
+import About from './about';
 import React from 'react';
 
 describe('About component', () => {
