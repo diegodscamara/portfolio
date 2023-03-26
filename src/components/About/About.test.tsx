@@ -1,4 +1,4 @@
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent, render, waitFor } from '@testing-library/react';
 
 import About from './About';
 import React from 'react';
@@ -11,8 +11,10 @@ describe('About component', () => {
     const copyButton = getByRole('button', { name: 'Copy email address' });
     fireEvent.click(copyButton);
 
-    // Verify that the tooltip appears
+    // Wait for the tooltip to appear
     const tooltip = await waitFor(() => getByText('E-mail copied to clipboard!'));
+
+    // Verify that the tooltip appears
     expect(tooltip).toBeVisible();
   });
 });
