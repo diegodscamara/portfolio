@@ -1,6 +1,7 @@
+import Button from '../button';
+import { DownloadIcon } from 'public/download';
 import Link from 'next/link';
 import { Logo } from 'public/logo';
-import { useRouter } from 'next/router';
 import { useState } from 'react';
 
 type NavLinkProps = {
@@ -10,12 +11,8 @@ type NavLinkProps = {
 };
 
 const NavLink = ({ href, children, onClick }: NavLinkProps) => {
-  const router = useRouter();
-  const sectionId = href.slice(1);
-  const isActive = router.asPath.includes(sectionId);
-  const className = `text-card font-bold font-sans mx-4 hover:text-primary ${isActive ? 'text-primary' : ''}`;
   return (
-    <Link href={href} onClick={onClick} className={className} title={`${children} section`} aria-label={`${children} section`}>
+    <Link href={href} onClick={onClick} className={'text-card font-bold font-sans mx-4 hover:text-primary'} title={`${children} section`} aria-label={`${children} section`}>
       {children}
     </Link>
   );
@@ -40,12 +37,24 @@ const Header = () => {
     <header className="bg-gray-900 text-white fixed w-full bg-black shadow-light-gray z-10">
       <nav className="container mx-auto px-4 py-2 flex justify-between items-center">
         <Link href="/"><Logo /></Link>
-        <div className="hidden md:block">
+        <div className="hidden xl:flex gap-2 items-center justify-between">
           {navLinks.map(({ href, label }) => (
-            <NavLink key={href} href={href}>{label}</NavLink>
+            <NavLink key={label} href={href}>{label}</NavLink>
           ))}
+            <Button
+            attributes={{
+              link: 'Resume - Diego Câmara.pdf',
+              target: '_blank',
+              rel: 'noopener noreferrer',
+              title: 'Open resume in new tab'
+            }}
+            variant='outlined'
+          >
+            Download resume
+            <DownloadIcon />
+          </Button>
         </div>
-        <div className="md:hidden">
+        <div className="xl:hidden">
           <button
             className="p-2 focus:outline-none"
             onClick={toggleMenu}
@@ -86,13 +95,25 @@ const Header = () => {
           </button>
         </div>
         <div
-          className={`md:hidden top-0 left-0 w-full h-full flex justify-center items-center bg-dark-gray fixed transition-all duration-500 ease-in-out ${isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+          className={`xl:hidden top-0 left-0 w-full h-full flex justify-center items-center bg-dark-gray fixed transition-all duration-500 ease-in-out ${isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
             }`}
         >
           <div className="flex flex-col items-center gap-4">
             {navLinks.map(({ href, label }) => (
               <NavLink key={href} href={href} onClick={toggleMenu}>{label}</NavLink>
             ))}
+            <Button
+            attributes={{
+              link: 'Resume - Diego Câmara.pdf',
+              target: '_blank',
+              rel: 'noopener noreferrer',
+              title: 'Open resume in new tab'
+            }}
+            variant='outlined'
+          >
+            Download resume
+            <DownloadIcon />
+          </Button>
           </div>
         </div>
       </nav>
