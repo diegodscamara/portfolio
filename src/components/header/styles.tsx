@@ -9,24 +9,23 @@ export const HeaderContainer = styled.header`
   gap: 10px;
   height: 56px;
   width: 100%;
-  background: #0D0D0D;
+  background: var(--dark-gray);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   position: fixed;
 `;
 
-export const NavContainer = styled.nav`
+export const NavContainer = styled.section`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   padding: 0px;
-  max-width: 1440px;
   width: 100%;
   height: 100%;
   position: relative;
 `;
 
-export const NavLinks = styled.div`
+export const NavLinks = styled.nav`
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -40,15 +39,9 @@ export const NavLinks = styled.div`
 `;
 
 export const LinkStyles = styled(Link)`
-  font-family: 'Arial';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 19.2px;
-  line-height: 22px;
   display: flex;
   align-items: center;
   text-align: right;
-  color: #FAFAFA;
 
   &:hover {
     color: #38b2ac;
@@ -58,8 +51,6 @@ export const LinkStyles = styled(Link)`
 export const MenuButton = styled.button`
   padding: 0.5rem;
   background-color: transparent;
-  border: none;
-  cursor: pointer;
   display: none;
 
   @media only screen and  (max-width: 1200px) {
@@ -79,14 +70,14 @@ export const MobileMenuNav = styled.nav<{ isOpen: boolean }>`
   align-items: center;
   gap: 24px;
   padding: 16px;
-  background: #0d0d0d;
+  background: var(--dark-gray);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   position: absolute;
   top: 56px;
   right: 0;
   opacity: 1;
   transition: all 0.5s ease-in-out;
-  border-radius: 4px;
+  border-radius: var(--border-radius-sm);
 
   @media only screen and  (min-width: 1200px) {
     display: none;

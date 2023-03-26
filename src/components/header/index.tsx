@@ -37,7 +37,7 @@ const Header = () => {
   return (
     <HeaderContainer>
       <NavContainer>
-        <Link href="/"><Logo /></Link>
+        <Link href="/" title='Go to homepage' arial-label="Go to homepage"><Logo /></Link>
         <NavLinks>
           {navLinks.map(({ href, label }) => (
             <NavLink key={label} href={href}>{label}</NavLink>
