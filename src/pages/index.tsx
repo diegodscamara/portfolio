@@ -1,10 +1,10 @@
-import About from '@/components/about/about';
+import About from '@/components/about';
 import Contact from '@/components/Contact';
 import Expertise from '@/components/expertise';
 import Footer from '@/components/Footer';
 import Head from 'next/head';
 import Header from '@/components/header';
-import Hero from '@/components/hero/hero';
+import Hero from '@/components/hero';
 import Projects from '@/components/Projects';
 import React from 'react';
 import Services from '@/components/Services';
@@ -33,3 +33,4 @@ const Home = () => {
   );
 };
 export default Home;
+ 
