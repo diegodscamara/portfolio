@@ -1,6 +1,8 @@
+import { Url } from "url";
+
 export type ButtonProps = {
   attributes: {
-    link?: string;
+    link?: Url | string;
     target?: string;
     rel?: string;
     title?: string;
