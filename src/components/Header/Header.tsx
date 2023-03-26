@@ -1,3 +1,5 @@
+import { HeaderContainer, LinkStyles, MenuButton, MobileMenuNav, NavContainer, NavLinks } from './styles';
+
 import Button from '../button';
 import { DownloadIcon } from 'public/download';
 import Link from 'next/link';
@@ -12,9 +14,13 @@ type NavLinkProps = {
 
 const NavLink = ({ href, children, onClick }: NavLinkProps) => {
   return (
-    <Link href={href} onClick={onClick} className={'text-card font-bold font-sans mx-4 hover:text-primary'} title={`${children} section`} aria-label={`${children} section`}>
+    <LinkStyles
+      href={href}
+      onClick={onClick}
+      title={`${children} section`}
+      aria-label={`${children} section`}>
       {children}
-    </Link>
+    </LinkStyles>
   );
 };
 
@@ -34,14 +40,14 @@ const Header = () => {
   ];
 
   return (
-    <header className="bg-gray-900 text-white fixed w-full bg-black shadow-light-gray z-10">
-      <nav className="container mx-auto px-4 py-2 flex justify-between items-center">
+    <HeaderContainer>
+      <NavContainer>
         <Link href="/"><Logo /></Link>
-        <div className="hidden xl:flex gap-2 items-center justify-between">
+        <NavLinks>
           {navLinks.map(({ href, label }) => (
             <NavLink key={label} href={href}>{label}</NavLink>
           ))}
-            <Button
+          <Button
             attributes={{
               link: 'Resume - Diego Câmara.pdf',
               target: '_blank',
@@ -53,10 +59,8 @@ const Header = () => {
             Download resume
             <DownloadIcon />
           </Button>
-        </div>
-        <div className="xl:hidden">
-          <button
-            className="p-2 focus:outline-none"
+        </NavLinks>
+          <MenuButton
             onClick={toggleMenu}
             aria-label="Toggle menu"
             aria-expanded={isOpen}
@@ -92,32 +96,26 @@ const Header = () => {
                 />
               </svg>
             )}
-          </button>
-        </div>
-        <div
-          className={`xl:hidden top-0 left-0 w-full h-full flex justify-center items-center bg-dark-gray fixed transition-all duration-500 ease-in-out ${isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
-            }`}
-        >
-          <div className="flex flex-col items-center gap-4">
+          </MenuButton>
+          <MobileMenuNav isOpen={isOpen}>
             {navLinks.map(({ href, label }) => (
               <NavLink key={href} href={href} onClick={toggleMenu}>{label}</NavLink>
             ))}
             <Button
-            attributes={{
-              link: 'Resume - Diego Câmara.pdf',
-              target: '_blank',
-              rel: 'noopener noreferrer',
-              title: 'Open resume in new tab'
-            }}
-            variant='outlined'
-          >
-            Download resume
-            <DownloadIcon />
-          </Button>
-          </div>
-        </div>
-      </nav>
-    </header>
+              attributes={{
+                link: 'Resume - Diego Câmara.pdf',
+                target: '_blank',
+                rel: 'noopener noreferrer',
+                title: 'Open resume in new tab'
+              }}
+              variant='outlined'
+            >
+              Download resume
+              <DownloadIcon />
+            </Button>
+          </MobileMenuNav>
+      </NavContainer>
+    </HeaderContainer>
   );
 };
 
