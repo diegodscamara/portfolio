@@ -26,7 +26,6 @@ export const NavContainer = styled.nav`
   position: relative;
 `;
 
-
 export const NavLinks = styled.div`
   display: flex;
   flex-direction: row;

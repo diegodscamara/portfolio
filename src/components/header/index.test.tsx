@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 
-import Header from './header';
+import Header from '.';
 
 describe('Header component', () => {
   test('renders all nav links', () => {
