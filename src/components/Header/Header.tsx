@@ -1,6 +1,9 @@
+import { HeaderContainer, LinkStyles, MenuButton, MobileMenuNav, NavContainer, NavLinks } from './styles';
+
+import Button from '../button';
+import { DownloadIcon } from 'public/download';
 import Link from 'next/link';
 import { Logo } from 'public/logo';
-import { useRouter } from 'next/router';
 import { useState } from 'react';
 
 type NavLinkProps = {
@@ -10,14 +13,14 @@ type NavLinkProps = {
 };
 
 const NavLink = ({ href, children, onClick }: NavLinkProps) => {
-  const router = useRouter();
-  const sectionId = href.slice(1);
-  const isActive = router.asPath.includes(sectionId);
-  const className = `text-card font-bold font-sans mx-4 hover:text-primary ${isActive ? 'text-primary' : ''}`;
   return (
-    <Link href={href} onClick={onClick} className={className} title={`${children} section`} aria-label={`${children} section`}>
+    <LinkStyles
+      href={href}
+      onClick={onClick}
+      title={`${children} section`}
+      aria-label={`${children} section`}>
       {children}
-    </Link>
+    </LinkStyles>
   );
 };
 
@@ -37,17 +40,27 @@ const Header = () => {
   ];
 
   return (
-    <header className="bg-gray-900 text-white fixed w-full bg-black shadow-light-gray z-10">
-      <nav className="container mx-auto px-4 py-2 flex justify-between items-center">
+    <HeaderContainer>
+      <NavContainer>
         <Link href="/"><Logo /></Link>
-        <div className="hidden md:block">
+        <NavLinks>
           {navLinks.map(({ href, label }) => (
-            <NavLink key={href} href={href}>{label}</NavLink>
+            <NavLink key={label} href={href}>{label}</NavLink>
           ))}
-        </div>
-        <div className="md:hidden">
-          <button
-            className="p-2 focus:outline-none"
+          <Button
+            attributes={{
+              link: 'Resume - Diego Câmara.pdf',
+              target: '_blank',
+              rel: 'noopener noreferrer',
+              title: 'Open resume in new tab'
+            }}
+            variant='outlined'
+          >
+            Download resume
+            <DownloadIcon />
+          </Button>
+        </NavLinks>
+          <MenuButton
             onClick={toggleMenu}
             aria-label="Toggle menu"
             aria-expanded={isOpen}
@@ -83,20 +96,26 @@ const Header = () => {
                 />
               </svg>
             )}
-          </button>
-        </div>
-        <div
-          className={`md:hidden top-0 left-0 w-full h-full flex justify-center items-center bg-dark-gray fixed transition-all duration-500 ease-in-out ${isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
-            }`}
-        >
-          <div className="flex flex-col items-center gap-4">
+          </MenuButton>
+          <MobileMenuNav isOpen={isOpen}>
             {navLinks.map(({ href, label }) => (
               <NavLink key={href} href={href} onClick={toggleMenu}>{label}</NavLink>
             ))}
-          </div>
-        </div>
-      </nav>
-    </header>
+            <Button
+              attributes={{
+                link: 'Resume - Diego Câmara.pdf',
+                target: '_blank',
+                rel: 'noopener noreferrer',
+                title: 'Open resume in new tab'
+              }}
+              variant='outlined'
+            >
+              Download resume
+              <DownloadIcon />
+            </Button>
+          </MobileMenuNav>
+      </NavContainer>
+    </HeaderContainer>
   );
 };
 
