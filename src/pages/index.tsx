@@ -4,7 +4,7 @@ import Expertise from '@/components/expertise';
 import Footer from '@/components/Footer';
 import Head from 'next/head';
 import Header from '@/components/header';
-import Hero from '@/components/hero/hero';
+import Hero from '@/components/hero';
 import Projects from '@/components/Projects';
 import React from 'react';
 import Services from '@/components/Services';
