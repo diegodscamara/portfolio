@@ -4,7 +4,7 @@ const Projects = () => {
   return (
     <div>
       <section className="container mx-auto px-8 py-36" id='Projects'>
-        <h1 className="text-4xl font-bold mb-4">Projects</h1>
+        <h3 className="text-4xl font-bold mb-4">Projects</h3>
         <ul>
           <li className="text-lg mb-4">
             <h4>Tambasa - E-commerce</h4>
