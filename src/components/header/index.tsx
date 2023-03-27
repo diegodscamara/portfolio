@@ -13,7 +13,8 @@ const NavLink = ({ href, children, onClick }: NavLinkProps) => {
       href={href}
       onClick={onClick}
       title={`${children} section`}
-      aria-label={`${children} section`}>
+      aria-label={`${children} section`}
+      className={`${children} section`}>
       {children}
     </LinkStyles>
   );
