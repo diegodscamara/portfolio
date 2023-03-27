@@ -24,7 +24,7 @@ export const Description = styled.span`
   margin-bottom: 1rem;
 `;
 
-export const ScrollLink = styled.a`
+export const ScrollLink = styled.div`
   display: block;
   margin-top: 3rem;
   animation: bounce 1s infinite;

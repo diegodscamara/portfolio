@@ -3,7 +3,7 @@ import React from 'react';
 const Work = () => {
   return (
     <section className="container mx-auto px-8 py-36" id='Work'>
-      <h2 className="text-4xl font-bold mb-4">Work experience</h2>
+      <h3 className="text-4xl font-bold mb-4">Work experience</h3>
       <ul>
         <li className="text-lg mb-4">
           <h4>Tambasa - E-commerce</h4>
