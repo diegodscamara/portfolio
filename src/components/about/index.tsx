@@ -1,4 +1,4 @@
-import { AboutButtons, AboutContainer, AboutDescription, AboutFlexContainer, AboutSectionTitle, IllustrationContainer, Content, ToolTip, Header } from './styles';
+import { AboutButtons, AboutContainer, AboutDescription, AboutFlexContainer, AboutSectionTitle, Content, Header, IllustrationContainer, ToolTip } from './styles';
 
 import { AboutIllustration } from 'public/about';
 import { ArrowRightIcon } from 'public/arrow-right';
