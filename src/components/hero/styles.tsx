@@ -1,22 +1,15 @@
 import styled from 'styled-components';
 
 export const Container = styled.section`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   height: 100vh;
-  margin: 0 auto;
-  padding: 0 2rem;
-  text-align: center;
 `;
 
-export const Title = styled.h2`
+export const Title = styled.h1`
   margin-bottom: 1rem;
   color: var(--primary-color);
 `;
 
-export const Subtitle = styled.h1`
+export const Subtitle = styled.h2`
   margin-bottom: 1rem;
 `;
 
