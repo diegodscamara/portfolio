@@ -59,11 +59,15 @@ const GlobalStyle = createGlobalStyle`
 
     section {
       max-width: 1600px;
-      padding: 0 32px;
+      padding: 147px 32px;
       margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
 
       @media screen only and (max-width: 600px) {
-        padding: 0 16px;
+        padding: 147px 16px;
       }
     }
     
@@ -99,6 +103,16 @@ const GlobalStyle = createGlobalStyle`
 
       @media screen only and (max-width: 600px) {
         font-size: var(--font-size-md);
+      }
+    }
+
+    h4 {
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-semibold);
+      line-height: 22px;
+
+      @media screen only and (max-width: 600px) {
+        font-size: var(--font-size-xs);
       }
     }
 
