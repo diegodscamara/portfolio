@@ -11,7 +11,6 @@ export const HeaderContainer = styled.header`
   width: 100%;
   background: var(--dark-gray);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  position: fixed;
 `;
 
 export const NavContainer = styled.section`

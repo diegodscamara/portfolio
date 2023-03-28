@@ -1,10 +1,6 @@
 import styled from 'styled-components';
 
-export const AboutContainer = styled.section`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
+export const AboutContainer = styled.section``;
 
 export const AboutFlexContainer = styled.div`
   display: flex;
