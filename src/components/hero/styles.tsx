@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.section`
-  height: 100vh;
+  text-align: center;
 `;
 
 export const Title = styled.h1`
