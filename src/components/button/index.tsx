@@ -10,19 +10,29 @@ const Button = ({ attributes, variant, children }: ButtonProps) => {
     }
   };
 
-  return (
-    <Link
-      href={attributes.link as Url}
-      target={attributes.target}
-      rel={attributes.rel}
-      title={attributes.title}
-      aria-label={attributes.title}
-    >
-      <ButtonStyles variant={variant} onClick={handleClick}>
+  if (!attributes.type) {
+    return (
+      <Link
+        href={attributes.link as Url}
+        target={attributes.target}
+        rel={attributes.rel}
+        title={attributes.title}
+        aria-label={attributes.title}
+      >
+        <ButtonStyles variant={variant}>{children}</ButtonStyles>
+      </Link>
+    );
+  } else {
+    return (
+      <ButtonStyles
+        variant={variant}
+        onClick={handleClick}
+        type={attributes.type}
+      >
         {children}
       </ButtonStyles>
-    </Link>
-  );
+    );
+  };
 };
 
 export default Button;
