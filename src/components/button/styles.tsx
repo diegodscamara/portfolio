@@ -9,7 +9,7 @@ const ButtonStyles = styled.button<ButtonStylesProps>`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 16px 32px;
+  padding: 16px;
   gap: 16px;
   height: 45px;
   border-radius: var(--border-radius-sm);

@@ -65,9 +65,10 @@ const GlobalStyle = createGlobalStyle`
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      gap: 32px;
 
       @media screen only and (max-width: 600px) {
-        padding: 147px 16px;
+        padding: 70px 16px;
       }
     }
     

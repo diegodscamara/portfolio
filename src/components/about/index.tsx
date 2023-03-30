@@ -1,9 +1,9 @@
 import { AboutButtons, AboutContainer, AboutDescription, AboutFlexContainer, AboutSectionTitle, Content, Header, IllustrationContainer, ToolTip } from './styles';
 
-import { AboutIllustration } from 'public/about';
-import { ArrowRightIcon } from 'public/arrow-right';
+import { AboutIllustration } from 'public/images/about';
+import { ArrowRightIcon } from 'public/icons/arrow-right';
 import Button from '../button';
-import { DownloadIcon } from 'public/download';
+import { DownloadIcon } from 'public/icons/download';
 import { useState } from 'react';
 
 const About = () => {
@@ -35,7 +35,7 @@ const About = () => {
           <AboutButtons>
             <Button
               attributes={{
-                link: 'Resume - Diego Câmara.pdf',
+                link: 'documents/resume.pdf',
                 target: '_blank',
                 rel: 'noopener noreferrer',
                 title: 'Open resume in new tab'
@@ -50,7 +50,8 @@ const About = () => {
               attributes={{
                 link: '#About',
                 title: 'Copy e-mail to clipboard',
-                onClick: copyEmailToClipboard
+                onClick: copyEmailToClipboard,
+                type: 'button'
               }}
               variant='outlined'
             >
