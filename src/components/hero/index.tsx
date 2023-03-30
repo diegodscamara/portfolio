@@ -3,7 +3,7 @@ import {Container, Description, ScrollLink, Subtitle, Title} from './styles';
 import Button from '../button';
 import Link from 'next/link';
 import React from 'react';
-import { ScrollDownIcon } from 'public/scroll-down-icon';
+import { ScrollDownIcon } from 'public/icons/scroll-down-icon';
 
 const Hero = () => {
   return (
