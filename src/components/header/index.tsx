@@ -1,9 +1,9 @@
 import { HeaderContainer, LinkStyles, MenuButton, MobileMenuNav, NavContainer, NavLinks } from './styles';
 
 import Button from '../button';
-import { DownloadIcon } from 'public/download';
+import { DownloadIcon } from 'public/icons/download';
 import Link from 'next/link';
-import { Logo } from 'public/logo';
+import { Logo } from 'public/images/logo';
 import { NavLinkProps } from './types';
 import { useState } from 'react';
 
@@ -45,7 +45,7 @@ const Header = () => {
           ))}
           <Button
             attributes={{
-              link: 'Resume - Diego Câmara.pdf',
+              link: 'documents/resume.pdf',
               target: '_blank',
               rel: 'noopener noreferrer',
               title: 'Open resume in new tab'
