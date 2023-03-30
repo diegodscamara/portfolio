@@ -9,7 +9,7 @@ import Projects from '@/components/Projects';
 import React from 'react';
 import Services from '@/components/Services';
 import Skills from '@/components/Skills';
-import Work from '@/components/Work';
+import Work from '@/components/work';
 const Home = () => {
   return (
     <>
