@@ -10,6 +10,6 @@ export type ButtonProps<T extends keyof JSX.IntrinsicElements = 'button'> = {
     onClick?: () => Promise<void>;
     type?: T extends 'button' ? ButtonHTMLAttributes<HTMLButtonElement>['type'] : 'link';
   };
-  variant: 'filled' | 'outlined';
+  variant: 'filled' | 'outlined' | 'skill';
   children: React.ReactNode;
 };
