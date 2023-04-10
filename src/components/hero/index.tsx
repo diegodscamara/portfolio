@@ -1,4 +1,4 @@
-import {Container, Description, ScrollLink, Subtitle, Title} from './styles';
+import {Container, Description, Intro, ScrollLink, Subtitle, Title} from './styles';
 
 import Button from '../button';
 import Link from 'next/link';
@@ -8,6 +8,7 @@ import { ScrollDownIcon } from 'public/icons/scroll-down-icon';
 const Hero = () => {
   return (
     <Container id='Home'>
+      <Intro>Hi, my name is</Intro>
       <Title>Diego Câmara</Title>
       <Subtitle>Front End Developer</Subtitle>
       <Description>
@@ -18,7 +19,7 @@ const Hero = () => {
           link: '#Contact',
           title: 'Get in touch',
         }}
-        variant={'filled'}
+        variant={'outlined'}
       >
         Get in touch
       </Button>
