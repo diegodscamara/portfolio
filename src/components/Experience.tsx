@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import React from 'react';
-const Projects = () => {
+const Experience = () => {
   return (
     <div>
-      <section className="container mx-auto px-8 py-36" id='Projects'>
-        <h3 className="text-4xl font-bold mb-4">Projects</h3>
+      <section className="container mx-auto px-8 py-36" id='Experience'>
+        <h3 className="text-4xl font-bold mb-4">Experience</h3>
         <ul>
           <li className="text-lg mb-4">
             <h4>Tambasa - E-commerce</h4>
@@ -15,7 +15,7 @@ const Projects = () => {
           </li>
           <li className="text-lg mb-4">
             <a href="#">Project 2 - Portfolio Website</a>
-            <span>This is a personal portfolio website built using React, Next.js, and TailwindCSS. The website showcases my skills and projects, and provides a way for potential clients to contact me.</span>
+            <span>This is a personal portfolio website built using React, Next.js, and TailwindCSS. The website showcases my skills and Experience, and provides a way for potential clients to contact me.</span>
           </li>
           <li className="text-lg mb-4">
             <a href="#">Project 3 - Dashboard Application</a>
@@ -26,4 +26,4 @@ const Projects = () => {
     </div>
   );
 };
-export default Projects;
+export default Experience;

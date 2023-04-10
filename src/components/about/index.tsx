@@ -1,4 +1,4 @@
-import { AboutButtons, AboutContainer, AboutDescription, AboutFlexContainer, AboutSectionTitle, Content, Header, IllustrationContainer, ToolTip } from './styles';
+import { AboutButtons, AboutContainer, AboutDescription, AboutFlexContainer, AboutSectionTitle, Content, Header, IllustrationContainer } from './styles';
 
 import { AboutIllustration } from 'public/images/about';
 import { ArrowRightIcon } from 'public/icons/arrow-right';
@@ -55,13 +55,8 @@ const About = () => {
               }}
               variant='outlined'
             >
-              Copy e-mail to clipboard
+              {showTooltip ? 'E-mail copied to clipboard! 😎' : 'Copy e-mail to clipboard'}
             </Button>
-            {showTooltip && (
-              <ToolTip>
-                E-mail copied to clipboard!
-              </ToolTip>
-            )}
           </AboutButtons>
         </Content>
       </AboutFlexContainer>

@@ -4,17 +4,24 @@ export const Container = styled.section`
   text-align: center;
 `;
 
+export const Intro = styled.span`
+  color: var(--primary-color);
+  font-family: monospace;
+`;
+
 export const Title = styled.h1`
   margin-bottom: 1rem;
-  color: var(--primary-color);
+  color: var(--white);
 `;
 
 export const Subtitle = styled.h2`
   margin-bottom: 1rem;
+  color: var(--light-gray);
 `;
 
 export const Description = styled.span`
   margin-bottom: 1rem;
+  color: var(--light-gray);
 `;
 
 export const ScrollLink = styled.div`

@@ -62,13 +62,13 @@ const cards = [
   // Add more cards here as needed
 ];
 
-const Work = () => {
+const Projects = () => {
   const [showMore, setShowMore] = useState < boolean > (false);
   const visibleCards = showMore ? cards : cards.slice(0, 3);
 
   return (
-    <Wrapper id="Work">
-      <Title>Work</Title>
+    <Wrapper id="Projects">
+      <Title>Projects</Title>
       <Container>
         {visibleCards.map((card, index) => (
           <Card
@@ -96,4 +96,4 @@ const Work = () => {
   );
 };
 
-export default Work;
+export default Projects;
