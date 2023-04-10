@@ -26,12 +26,10 @@ const Header = () => {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   const navLinks = [
-    { href: "#Home", label: "Home" },
     { href: "#About", label: "About" },
-    { href: "#Expertise", label: "Expertise" },
-    { href: "#Work", label: "Work" },
-    { href: "#Experience", label: "Experience" },
     { href: "#Skills", label: "Skills" },
+    { href: "#Experience", label: "Experience" },
+    { href: "#Projects", label: "Projects" },
     { href: "#Contact", label: "Contact" }
   ];
 
