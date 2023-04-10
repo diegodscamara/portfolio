@@ -1,15 +1,13 @@
 import About from '@/components/about';
 import Contact from '@/components/Contact';
-import Expertise from '@/components/expertise';
+import Experience from '@/components/Experience';
 import Footer from '@/components/Footer';
 import Head from 'next/head';
 import Header from '@/components/header';
 import Hero from '@/components/hero';
-import Projects from '@/components/Projects';
+import Projects from '@/components/projects';
 import React from 'react';
-import Services from '@/components/Services';
-import Skills from '@/components/Skills';
-import Work from '@/components/work';
+import Skills from '@/components/skills';
 const Home = () => {
   return (
     <>
@@ -21,11 +19,9 @@ const Home = () => {
       <main>
         <Hero />
         <About />
-        <Expertise />
-        <Work />
-        <Projects />
         <Skills />
-        <Services />
+        <Experience />
+        <Projects />
         <Contact />
         <Footer />
       </main>
