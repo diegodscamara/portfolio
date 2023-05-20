@@ -1,4 +1,4 @@
-import { Container, Site, Thumbnail, Title, Wrapper } from './styles';
+import { Container, Thumbnail, Title, Wrapper } from './styles';
 import React, { useState } from 'react';
 
 import ArmazemParaiba from 'public/images/Armazem Paraiba.png';
@@ -9,21 +9,10 @@ import Rider from 'public/images/Rider.png';
 import Sinsa from 'public/images/Sinsa.png';
 import Tambasa from 'public/images/Tambasa.png';
 
-const Card = ({ image, alt, link }: CardProps) => {
+const Card = ({ image, alt }: CardProps) => {
   return (
     <div className="thumbnail-wrapper">
       <Thumbnail src={image} alt={alt} width={500} height={250} />
-      <Site
-        attributes={{
-          link: link,
-          target: '_blank',
-          rel: 'noopener noreferrer',
-          title: alt,
-        }}
-        variant="filled"
-      >
-        Visit site
-      </Site>
     </div>
   );
 };
@@ -79,19 +68,6 @@ const Projects = () => {
           />
         ))}
       </Container>
-      {cards.length > 3 && (
-        <Site
-          attributes={{
-            link: '#Work',
-            title: showMore ? 'Show less' : 'Show more',
-            onClick: () => Promise.resolve(setShowMore(!showMore)),
-            type: 'button'
-          }}
-          variant="outlined"
-        >
-          {showMore ? 'Show less' : 'Show more'}
-        </Site>
-      )}
     </Wrapper>
   );
 };

@@ -1,4 +1,3 @@
-import Button from "../button";
 import Image from "next/image";
 import styled from 'styled-components';
 
@@ -77,8 +76,6 @@ export const Thumbnail = styled(Image)`
     width: 100%;
   }
 `;
-
-export const Site = styled(Button)``;
 
 export const Wrapper = styled.section``;
 
