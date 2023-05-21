@@ -1,11 +1,11 @@
 import { HeaderContainer, LinkStyles, MenuButton, MobileMenuNav, NavContainer, NavLinks } from './styles';
+import { useEffect, useState } from 'react';
 
 import Button from '../button';
 import { DownloadIcon } from 'public/icons/download';
 import Link from 'next/link';
 import { Logo } from 'public/images/logo';
 import { NavLinkProps } from './types';
-import { useState } from 'react';
 
 const NavLink = ({ href, children, onClick }: NavLinkProps) => {
   return (
@@ -22,8 +22,19 @@ const NavLink = ({ href, children, onClick }: NavLinkProps) => {
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-
   const toggleMenu = () => setIsOpen(!isOpen);
+
+  useEffect(() => {
+    const handleOutsideClick = (event: MouseEvent) => {
+      const target = event.target as HTMLElement; // force cast to HTMLElement
+      if (!target.closest('[data-popover]')) {
+        setIsOpen(false);
+      }
+    };
+  
+    document.addEventListener('click', handleOutsideClick);
+    return () => document.removeEventListener('click', handleOutsideClick);
+  }, []);
 
   const navLinks = [
     { href: "#About", label: "About" },
@@ -41,7 +52,7 @@ const Header = () => {
           {navLinks.map(({ href, label }) => (
             <NavLink key={label} href={href}>{label}</NavLink>
           ))}
-          <Button variant='filled'>
+          <Button variant='outlined'>
             <Link href={'documents/resume.pdf'} target='_blank' rel='noopener noreferrer' title='Open resume in new tab'>
               Download resume
               <DownloadIcon />
@@ -52,6 +63,7 @@ const Header = () => {
           onClick={toggleMenu}
           aria-label="Toggle menu"
           aria-expanded={isOpen}
+          data-popover
         >
           {isOpen ? (
             <svg
@@ -85,11 +97,11 @@ const Header = () => {
             </svg>
           )}
         </MenuButton>
-        <MobileMenuNav isOpen={isOpen}>
+        <MobileMenuNav isOpen={isOpen} data-popover>
           {navLinks.map(({ href, label }) => (
             <NavLink key={href} href={href} onClick={toggleMenu}>{label}</NavLink>
           ))}
-          <Button variant='filled'>
+          <Button variant='outlined'>
             <Link href={'documents/resume.pdf'} target='_blank' rel='noopener noreferrer' title='Open resume in new tab'>
               Download resume
               <DownloadIcon />

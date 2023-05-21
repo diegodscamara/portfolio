@@ -25,8 +25,8 @@ const GlobalStyle = createGlobalStyle`
       --white: #FAFAFA;
       --red: #FF4D4D;
       /*Box shadow */
-      --shadow-10: box-shadow: 0px 26px 10px rgba(0, 0, 0, 0.01), 0px 15px 9px rgba(0, 0, 0, 0.05), 0px 7px 7px rgba(0, 0, 0, 0.08), 0px 2px 4px rgba(0, 0, 0, 0.09), 0px 0px 0px rgba(0, 0, 0, 0.1);
-      --shadow-20: box-shadow: 0px 66px 26px rgba(0, 0, 0, 0.03), 0px 37px 22px rgba(0, 0, 0, 0.1), 0px 16px 16px rgba(0, 0, 0, 0.17), 0px 4px 9px rgba(0, 0, 0, 0.2), 0px 0px 0px rgba(0, 0, 0, 0.2);
+      --shadow-10: 0px 26px 10px rgba(0, 0, 0, 0.01), 0px 15px 9px rgba(0, 0, 0, 0.05), 0px 7px 7px rgba(0, 0, 0, 0.08), 0px 2px 4px rgba(0, 0, 0, 0.09), 0px 0px 0px rgba(0, 0, 0, 0.1);
+      --shadow-20: 0px 66px 26px rgba(0, 0, 0, 0.03), 0px 37px 22px rgba(0, 0, 0, 0.1), 0px 16px 16px rgba(0, 0, 0, 0.17), 0px 4px 9px rgba(0, 0, 0, 0.2), 0px 0px 0px rgba(0, 0, 0, 0.2);
       --background-blur: blur(21px); // background: #D9D9D9; and backdrop-filter: blur(21px);
       /* Border radius */
       --border-radius-sm: 4px;
@@ -45,6 +45,7 @@ const GlobalStyle = createGlobalStyle`
       --space-xxs: 4px;
       --space-xs: 8px;
       --space-sm: 16px;
+      --space-xmd: 24px;
       --space-md: 32px;
       --space-lg: 64px;
       --space-xl: 128px;
