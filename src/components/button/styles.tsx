@@ -40,10 +40,17 @@ const variants = {
     }
   `,
   skill: css`
-    border: 1px solid var(--light-gray);
-    color: var(--light-gray);
+    border: 1px solid var(--gray-200);
+    color: var(--gray-200);
     background-color: transparent;
+    box-shadow: var(--shadow-10);
     cursor: default;
+
+    &:hover {
+      box-shadow: var(--shadow-20);
+      background: rgba(119, 245, 255, 0.3);
+      border: 1px solid var(--primary-variant-color);
+    }
   `
 };
 
