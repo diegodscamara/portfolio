@@ -120,7 +120,6 @@ const Skills = () => {
       <Container>
         {stack.map((item, index) => (
           <Button
-            attributes={{ type: 'button' }}
             variant="skill"
             key={index}
           >

@@ -41,17 +41,11 @@ const Header = () => {
           {navLinks.map(({ href, label }) => (
             <NavLink key={label} href={href}>{label}</NavLink>
           ))}
-          <Button
-            attributes={{
-              link: 'documents/resume.pdf',
-              target: '_blank',
-              rel: 'noopener noreferrer',
-              title: 'Open resume in new tab'
-            }}
-            variant='outlined'
-          >
-            Download resume
-            <DownloadIcon />
+          <Button variant='filled'>
+            <Link href={'documents/resume.pdf'} target='_blank' rel='noopener noreferrer' title='Open resume in new tab'>
+              Download resume
+              <DownloadIcon />
+            </Link>
           </Button>
         </NavLinks>
         <MenuButton
@@ -95,17 +89,11 @@ const Header = () => {
           {navLinks.map(({ href, label }) => (
             <NavLink key={href} href={href} onClick={toggleMenu}>{label}</NavLink>
           ))}
-          <Button
-            attributes={{
-              link: 'Resume - Diego Câmara.pdf',
-              target: '_blank',
-              rel: 'noopener noreferrer',
-              title: 'Open resume in new tab'
-            }}
-            variant='outlined'
-          >
-            Download resume
-            <DownloadIcon />
+          <Button variant='filled'>
+            <Link href={'documents/resume.pdf'} target='_blank' rel='noopener noreferrer' title='Open resume in new tab'>
+              Download resume
+              <DownloadIcon />
+            </Link>
           </Button>
         </MobileMenuNav>
       </NavContainer>

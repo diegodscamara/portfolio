@@ -4,19 +4,9 @@ import { AboutIllustration } from 'public/images/about';
 import { ArrowRightIcon } from 'public/icons/arrow-right';
 import Button from '../button';
 import { DownloadIcon } from 'public/icons/download';
-import { useState } from 'react';
+import Link from 'next/link';
 
 const About = () => {
-  const [showTooltip, setShowTooltip] = useState(false);
-
-  const copyEmailToClipboard = async () => {
-    await navigator.clipboard.writeText('diegodscamara@gmail.com');
-    setShowTooltip(true);
-    setTimeout(() => {
-      setShowTooltip(false);
-    }, 2000);
-  };
-
   return (
     <AboutContainer id='About'>
       <AboutFlexContainer>
@@ -33,29 +23,11 @@ const About = () => {
             Additionally, I am proactive, skilled in conflict resolution, possess strong analytical and problem-solving skills, and have excellent communication skills that ensure project success. I work collaboratively as part of a team and mentor junior developers, while also dedicating myself to continuous improvement and making web applications more efficient as I&apos;m always exploring new technologies to stay ahead of the curve.
           </AboutDescription>
           <AboutButtons>
-            <Button
-              attributes={{
-                link: 'documents/resume.pdf',
-                target: '_blank',
-                rel: 'noopener noreferrer',
-                title: 'Open resume in new tab'
-              }}
-              variant='filled'
-            >
-              Download resume
-              <DownloadIcon />
-            </Button>
-
-            <Button
-              attributes={{
-                link: '#About',
-                title: 'Copy e-mail to clipboard',
-                onClick: copyEmailToClipboard,
-                type: 'button'
-              }}
-              variant='outlined'
-            >
-              {showTooltip ? 'E-mail copied to clipboard! 😎' : 'Copy e-mail to clipboard'}
+            <Button variant='filled'>
+              <Link href={'documents/resume.pdf'} target='_blank' rel='noopener noreferrer' title='Open resume in new tab'>
+                Download resume
+                <DownloadIcon />
+              </Link>
             </Button>
           </AboutButtons>
         </Content>

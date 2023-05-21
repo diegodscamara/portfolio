@@ -1,24 +1,22 @@
 import styled, { css } from 'styled-components';
 
 interface ButtonProps {
-  variant?: 'filled' | 'outlined' | 'skill';
+  variant: 'filled' | 'outlined' | 'inline' | 'skill';
 };
 
 const variants = {
   filled: css`
     background: var(--primary-color);
-    color: var(--black);
-    border: 1px solid var(--primary-color);
+    color: var(--gray-900);
 
     svg path {
         transition: all 0.3s ease-in-out;
-        fill: var(--black);
+        fill: var(--gray-900);
       }
 
     &:hover {
-      color: var(--black);
-      background-color: #16b4c1;
-      border: 1px solid #16b4c1;
+      background-color: var(--primary-variant-color);
+      box-shadow: var(--shadow-20);
     }
   `,
   outlined: css`
@@ -27,7 +25,18 @@ const variants = {
     background-color: transparent;
 
     &:hover {
-      background-color: #043b3f;
+      background: rgba(119, 245, 255, 0.3);
+    }
+  `,
+  inline: css`
+    border: none;
+    background-color: transparent;
+    color: var(--gray-50);
+    cursor: default;
+    padding: var(--space-xs) 0;
+
+    &:hover {
+      color: var(--primary-color);
     }
   `,
   skill: css`
@@ -43,15 +52,21 @@ const ButtonStyles = styled.button < ButtonProps > `
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 8px 16px;
-  gap: 8px;
+  gap: var(--space-xs);
+  padding: var(--space-xs) var(--space-md);
+  box-shadow: var(--shadow-10);
   border-radius: var(--border-radius-sm);
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
   transition: all 0.3s ease-in-out;
-  ${props => variants[props.variant || 'skill']}    
+
+  a {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-xs);
+  }
+  ${props => variants[props.variant || 'filled']}    
 `;
 
 export default ButtonStyles;
