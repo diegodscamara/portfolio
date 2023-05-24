@@ -34,7 +34,7 @@ export const ExpertiseCardWrapper = styled.div`
   flex-direction: row;
   gap: 16px;
 
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 1024px) {
     flex-direction: column;
   }
 `;

@@ -78,10 +78,6 @@ const GlobalStyle = createGlobalStyle`
         text-decoration: none;
         list-style-type: none;
         text-wrap: balance;
-
-        @media screen only and (max-width: 600px) {
-          font-size: var(--font-size-xxs);
-        }
     }
 
     section {
@@ -93,50 +89,26 @@ const GlobalStyle = createGlobalStyle`
       justify-content: center;
       align-items: center;
       gap: var(--space-md);
-
-      @media screen only and (max-width: 600px) {
-        padding: var(--space-lg) var(--space-sm);
-      }
     }
     
     h1, h2, h3, h4, h5, h6 {
-      font-family: 'Syne', sans-serif;
-      font-weight: var(--font-weight-bold);
-      font-style: normal;
-      line-height: 77px;
-      letter-spacing: 0.01em;
+      font: normal normal var(--font-weight-bold) var(--font-size-md)/normal 'Syne', sans-serif;
     }
 
     h1 {
       font-size: var(--font-size-xxl);
-
-      @media screen only and (max-width: 600px) {
-        font-size: var(--font-size-xl);
-      }
     }
 
     h2 {
       font-size: var(--font-size-xl);
-
-      @media screen only and (max-width: 600px) {
-        font-size: var(--font-size-lg);
-      }
     }
 
     h3 {
       font-size: var(--font-size-lg);
-
-      @media screen only and (max-width: 600px) {
-        font-size: var(--font-size-md);
-      }
     }
 
     h4 {
-      font-size: var(--font-size-sm);
-
-      @media screen only and (max-width: 600px) {
-        font-size: var(--font-size-xs);
-      }
+      font-size: var(--font-size-md);
     }
 
     button, a {
@@ -150,6 +122,42 @@ const GlobalStyle = createGlobalStyle`
       color: inherit;
       text-decoration: none;
     }
-`
+
+    @media only screen and (max-width: 1024px) {
+      body, input, button, a, li, ul, span, p {
+          font-size: var(--font-size-xxs);
+      }
+
+      section {
+        padding: var(--space-lg) var(--space-sm);
+      }
+
+      h1 {
+        font-size: var(--font-size-xl);
+      }
+
+      h2 {
+        font-size: var(--font-size-lg);
+      }
+
+      h3 {
+        font-size: var(--font-size-md);
+      }
+    }
+
+    @media only screen and (max-width: 600px) {
+      h1 {
+        font-size: var(--font-size-md);
+      }
+
+      h2, h3 {
+        font-size: var(--font-size-md);
+      }
+
+      h4 {
+        font-size: var(--font-size-sm);
+      }
+    }
+`;
 
 export default GlobalStyle;
