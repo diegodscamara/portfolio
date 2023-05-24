@@ -35,7 +35,7 @@ const stack = [
     icon: JavaScript
   },
   {
-    name: 'TypeScript',
+    name: 'Typescript',
     icon: TypeScript
   },
   {

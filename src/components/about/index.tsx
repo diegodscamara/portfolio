@@ -22,7 +22,7 @@ const About = () => {
           <br />
           Additionally, I am proactive, skilled in conflict resolution, possess strong analytical and problem-solving skills, and have excellent communication skills that ensure project success. I work collaboratively as part of a team and mentor junior developers, while also dedicating myself to continuous improvement and making web applications more efficient as I&apos;m always exploring new technologies to stay ahead of the curve.
         </Description>
-        <Button variant='filled'>
+        <Button variant='outlined'>
           <Link href={'documents/resume.pdf'} target='_blank' rel='noopener noreferrer' title='Open resume in new tab'>
             Download resume
             <DownloadIcon />
