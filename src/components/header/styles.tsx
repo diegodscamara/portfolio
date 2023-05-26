@@ -12,6 +12,10 @@ export const HeaderContainer = styled.header`
   background-color: var(--gray-900);
   box-shadow: var(--shadow-20);
   z-index: 1;
+
+  @media screen and (max-width: 1024px) {
+    padding: 0px var(--space-sm);
+  }
 `;
 
 export const NavContainer = styled.section`

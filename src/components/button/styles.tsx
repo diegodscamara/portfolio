@@ -61,6 +61,7 @@ const ButtonStyles = styled.button < ButtonProps > `
   align-items: center;
   gap: var(--space-xs);
   padding: var(--space-xs) var(--space-md);
+  width: fit-content;
   box-shadow: var(--shadow-10);
   border-radius: var(--border-radius-sm);
   font-weight: var(--font-weight-bold);

@@ -11,7 +11,7 @@ export const Container = styled.figure`
   max-width: 100%;
   position: relative;
 
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 1024px) {
     grid-template-columns: 1fr;
     grid-template-rows: repeat(auto-fit, 1fr);
   }
@@ -72,7 +72,7 @@ export const Thumbnail = styled(Image)`
     width: 270px;
   }
 
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 1024px) {
     width: 100%;
   }
 `;

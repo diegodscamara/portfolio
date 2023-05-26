@@ -1,6 +1,6 @@
 import About from '@/components/about';
 import Contact from '@/components/Contact';
-import Experience from '@/components/Experience';
+import Experience from '@/components/experience';
 import Footer from '@/components/Footer';
 import Head from 'next/head';
 import Header from '@/components/header';
