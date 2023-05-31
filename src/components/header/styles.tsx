@@ -24,7 +24,6 @@ export const NavContainer = styled.section`
   justify-content: space-between;
   align-items: center;
   padding: 0px;
-  width: 100%;
   height: 100%;
   position: relative;
 `;
