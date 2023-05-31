@@ -1,4 +1,10 @@
 import styled from 'styled-components';
+interface AccordionProps {
+  open: boolean;
+}
+interface HeaderProps {
+  open: boolean;
+}
 
 export const Section = styled.section``;
 
@@ -23,7 +29,7 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const Accordion = styled.div < props > `
+export const Accordion = styled.div < AccordionProps > `
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -33,7 +39,7 @@ export const Accordion = styled.div < props > `
   padding-bottom: ${(props) => props.open ? 'var(--space-xmd)' : '0'};
 `;
 
-export const Header = styled.header < props > `
+export const Header = styled.header < HeaderProps > `
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -43,11 +49,11 @@ export const Header = styled.header < props > `
   width: 100%;
   cursor: pointer;
 
-  [alt="Toggle icon"] {
+  svg[alt="Toggle icon"] {
     transition: var(--transition-03);
   }
 
-  [alt="Toggle icon"] {
+  svg[alt="Toggle icon"] {
     transform: ${(props) => props.open ? 'rotate(-180deg)' : 'unset'}
   }
 `;
@@ -71,7 +77,11 @@ export const Details = styled.span`
   color: var(--gray-200);
 `;
 
-export const Content = styled.div < props > `
+interface ContentProps {
+  open: boolean;
+}
+
+export const Content = styled.div < ContentProps > `
   display: flex;
   height: ${(props) => props.open ? 'auto' : '0'};
   overflow: hidden;
