@@ -4,8 +4,6 @@ const GlobalStyle = createGlobalStyle`
     :root {      
       --primary-color: #03DAC5;
       --primary-variant-color: #41FFFF;
-      --primary-glass: radial-gradient(57.71% 57.14% at 50% 50%, #222222 0%, rgba(34, 34, 34, 0) 100%), radial-gradient(59.7% 58.86% at 50% 50%, #03DAC5 0%, rgba(65, 255, 255, 0) 100%), radial-gradient(66.08% 64.7% at 50% 50%, #E1E1E1 0%, rgba(240, 240, 240, 0) 100%);
-      --primary-glass-variant: radial-gradient(59.03% 58.72% at 50% 50%, #222222 0%, rgba(34, 34, 34, 0) 100%), radial-gradient(77.09% 64.29% at 50% 50%, #03DAC5 0%, rgba(65, 255, 255, 0) 100%), radial-gradient(63.88% 62.02% at 50% 50%, #E1E1E1 0%, rgba(240, 240, 240, 0) 100%);
       --secondary-color: #BB86FC;
       --secondary-variant-color: #D49FFF;
       --gray-900: #222222;
@@ -30,6 +28,8 @@ const GlobalStyle = createGlobalStyle`
       --background-blur: blur(21px); // background: #D9D9D9; and backdrop-filter: blur(21px);
       /* Border radius */
       --border-radius-sm: 4px;
+      /* Transitions */
+      --transition-03: all 0.3s ease-in-out;
       /* Font sizes */
       --font-size-xxl: 64px;
       --font-size-xl: 48px;
@@ -82,6 +82,7 @@ const GlobalStyle = createGlobalStyle`
 
     section {
       max-width: 1440px;
+      width: 100%;
       padding: var(--space-xl) var(--space-md);
       margin: 0 auto;
       display: flex;
@@ -109,6 +110,10 @@ const GlobalStyle = createGlobalStyle`
 
     h4 {
       font-size: var(--font-size-md);
+    }
+
+    h5 {
+      font-size: var(--font-size-sm);
     }
 
     button, a {
