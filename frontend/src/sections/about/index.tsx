@@ -1,9 +1,9 @@
 import { Content, Description, Header, Title, Wrapper } from './styles';
 
 import AboutImage from 'public/images/about.svg'
-import { ArrowRightIcon } from 'public/icons/arrow-right';
-import Button from '../button';
+import Button from '../../components/button';
 import { DownloadIcon } from 'public/icons/download';
+import { FastArrowRightIcon } from 'public/icons/fast-arrow-right';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -13,7 +13,7 @@ const About = () => {
       <Image src={AboutImage} alt={'Front End Developer'} width={600} height={600}></Image>
       <Content>
         <Header>
-          <ArrowRightIcon />
+          <FastArrowRightIcon />
           <Title>About Me</Title>
         </Header>
         <Description>

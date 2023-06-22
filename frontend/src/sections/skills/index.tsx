@@ -2,7 +2,7 @@ import { Container, Section, Title } from './styles';
 
 import Azure from 'public/images/stack/azure.png';
 import Bootstrap from 'public/images/stack/bootstrap.png';
-import Button from '../button';
+import Button from '@/components/button';
 import CSS3 from 'public/images/stack/css3.png';
 import CSharp from 'public/images/stack/csharp.png';
 import Figma from 'public/images/stack/figma.png';

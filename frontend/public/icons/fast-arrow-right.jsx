@@ -1,4 +1,4 @@
-export const ArrowRightIcon = (className) => {
+export const FastArrowRightIcon = (className) => {
   return (
     <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
       <rect x="0.527771" y="0.802612" width="20" height="20" fill="url(#pattern0)" />

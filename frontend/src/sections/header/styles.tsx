@@ -46,6 +46,13 @@ export const LinkStyles = styled(Link)`
   align-items: center;
   text-align: right;
   position: relative;
+  transition: var(--transition-03);
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: var(--primary-color);
+  }
 
   &::before {
     content: "";
@@ -60,7 +67,9 @@ export const LinkStyles = styled(Link)`
     transition: width 0.3s ease-in-out;
   }
 
-  &:hover::before {
+  &:hover::before,
+  &:focus::before,
+  &:active::before {
     width: 100%;
   }
 `;

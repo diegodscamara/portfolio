@@ -1,7 +1,7 @@
 import { Column, Container, ScrollLink, Subtitle, Title, Wrapper } from './styles';
 
 import Avatar from 'public/images/avatar.svg';
-import Button from '../button';
+import Button from '@/components/button';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';

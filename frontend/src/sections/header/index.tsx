@@ -1,7 +1,7 @@
 import { HeaderContainer, LinkStyles, MenuButton, MobileMenuNav, NavContainer, NavLinks } from './styles';
 import { useEffect, useState } from 'react';
 
-import Button from '../button';
+import Button from '@/components/button';
 import { DownloadIcon } from 'public/icons/download';
 import Link from 'next/link';
 import { Logo } from 'public/images/logo';

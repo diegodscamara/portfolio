@@ -1,13 +1,13 @@
-import About from '@/components/about';
-import Contact from '@/components/Contact';
-import Experience from '@/components/experience';
-import Footer from '@/components/Footer';
+import About from '@/sections/about';
+import Contact from '@/sections/Contact';
+import Experience from '@/sections/experience';
+import Footer from '@/sections/Footer';
 import Head from 'next/head';
-import Header from '@/components/header';
-import Hero from '@/components/hero';
-import Projects from '@/components/projects';
+import Header from '@/sections/header';
+import Hero from '@/sections/hero';
+import Projects from '@/sections/projects';
 import React from 'react';
-import Skills from '@/components/skills';
+import Skills from '@/sections/skills';
 const Home = () => {
   return (
     <>

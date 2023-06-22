@@ -8,6 +8,7 @@ const variants = {
   filled: css`
     background: var(--primary-color);
     color: var(--gray-900);
+    box-shadow: var(--shadow-10);
 
     svg path {
         transition: all 0.3s ease-in-out;
@@ -62,7 +63,6 @@ const ButtonStyles = styled.button < ButtonProps > `
   gap: var(--space-xs);
   padding: var(--space-xs) var(--space-md);
   width: fit-content;
-  box-shadow: var(--shadow-10);
   border-radius: var(--border-radius-sm);
   font-weight: var(--font-weight-bold);
   transition: all 0.3s ease-in-out;

@@ -51,9 +51,6 @@ export const Header = styled.header < HeaderProps > `
 
   svg[alt="Toggle icon"] {
     transition: var(--transition-03);
-  }
-
-  svg[alt="Toggle icon"] {
     transform: ${(props) => props.open ? 'rotate(-180deg)' : 'unset'}
   }
 `;
