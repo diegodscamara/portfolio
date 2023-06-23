@@ -5,8 +5,8 @@ export const HeaderContainer = styled.header`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 0px var(--space-md);
-  height: var(--space-lg);
+  padding: 0px var(--spacing-m-500);
+  height: var(--spacing-m-600);
   position: fixed;
   width: 100%;
   background-color: var(--gray-900);
@@ -14,7 +14,7 @@ export const HeaderContainer = styled.header`
   z-index: 1;
 
   @media screen and (max-width: 1024px) {
-    padding: 0px var(--space-sm);
+    padding: 0px var(--spacing-s-300);
   }
 `;
 
@@ -34,7 +34,7 @@ export const NavLinks = styled.nav`
   justify-content: flex-end;
   align-items: center;
   padding: 0px;
-  gap: var(--space-xmd);
+  gap: var(--spacing-m-400);
 
   @media only screen and  (max-width: 1200px) {
     display: none;
@@ -101,10 +101,10 @@ export const MobileMenuNav = styled.nav < { isOpen: boolean } > `
   justify-content: center;
   justify-content: flex-start;
   align-items: center;
-  gap: var(--space-xmd);
-  padding: var(--space-lg) var(--space-sm);
+  gap: var(--spacing-m-400);
+  padding: var(--spacing-m-600) var(--spacing-s-300);
   position: fixed;
-  top: var(--space-lg);
+  top: var(--spacing-m-600);
   right: 0;
   height: 100vh;
   border-radius: var(--border-radius-sm);

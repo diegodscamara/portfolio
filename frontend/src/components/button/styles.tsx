@@ -34,7 +34,7 @@ const variants = {
     background-color: transparent;
     color: var(--gray-50);
     cursor: default;
-    padding: var(--space-xs) 0;
+    padding: var(--spacing-s-200) 0;
 
     &:hover {
       color: var(--primary-color);
@@ -60,8 +60,8 @@ const ButtonStyles = styled.button < ButtonProps > `
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: var(--space-xs);
-  padding: var(--space-xs) var(--space-md);
+  gap: var(--spacing-s-200);
+  padding: var(--spacing-s-200) var(--spacing-m-500);
   width: fit-content;
   border-radius: var(--border-radius-sm);
   font-weight: var(--font-weight-bold);
@@ -72,7 +72,7 @@ const ButtonStyles = styled.button < ButtonProps > `
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: var(--space-xs);
+    gap: var(--spacing-s-200);
   }
   ${props => variants[props.variant || 'filled']}    
 `;

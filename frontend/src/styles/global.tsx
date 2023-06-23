@@ -31,25 +31,25 @@ const GlobalStyle = createGlobalStyle`
       /* Transitions */
       --transition-03: all 0.3s ease-in-out;
       /* Font sizes */
-      --font-size-xxl: 64px;
-      --font-size-xl: 48px;
-      --font-size-lg: 32px;
-      --font-size-md: 28px;
-      --font-size-sm: 18px;
-      --font-size-xs: 15px;
-      --font-size-xxs: 14px;
+      --font-s-100: 1.4rem;
+      --font-s-200: 1.5rem;
+      --font-s-300: 1.8rem;
+      --font-m-400: 2.8rem;
+      --font-m-500: 3.2rem;
+      --font-l-600: 4.8rem;
+      --font-l-700: 6.4rem;
       /* Font weights */
       --font-weight-regular: 400;
       --font-weight-bold: 700;
       /* Spacing */
-      --space-xxs: 4px;
-      --space-xs: 8px;
-      --space-sm: 16px;
-      --space-xmd: 24px;
-      --space-md: 32px;
-      --space-lg: 64px;
-      --space-xl: 128px;
-      --space-xxl: 256px;
+      --spacing-s-100: 4px;
+      --spacing-s-200: 8px;
+      --spacing-s-300: 16px;
+      --spacing-m-400: 24px;
+      --spacing-m-500: 32px;
+      --spacing-m-600: 64px;
+      --spacing-l-700: 128px;
+      --spacing-l-800: 256px;
     }
 
     * {
@@ -67,10 +67,11 @@ const GlobalStyle = createGlobalStyle`
       background-color: var(--gray-900);
       max-width: 100vw;
       overflow-x: hidden;
+      font-size: 62.5%;
     }
 
     body, input, button, a, li, ul, span, p {
-        font-size: var(--font-size-xs);
+        font-size: var(--font-s-200);
         font-weight: var(--font-weight-regular);
         font-style: normal;
         color: var(--gray-50);
@@ -83,37 +84,37 @@ const GlobalStyle = createGlobalStyle`
     section {
       max-width: 1440px;
       width: 100%;
-      padding: var(--space-xl) var(--space-md);
+      padding: var(--spacing-l-700) var(--spacing-m-500);
       margin: 0 auto;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      gap: var(--space-md);
+      gap: var(--spacing-m-500);
     }
     
     h1, h2, h3, h4, h5, h6 {
-      font: normal normal var(--font-weight-bold) var(--font-size-md)/normal 'Syne', sans-serif;
+      font: normal normal var(--font-weight-bold) var(--font-m-400)/normal 'Syne', sans-serif;
     }
 
     h1 {
-      font-size: var(--font-size-xxl);
+      font-size: var(--font-l-700);
     }
 
     h2 {
-      font-size: var(--font-size-xl);
+      font-size: var(--font-l-600);
     }
 
     h3 {
-      font-size: var(--font-size-lg);
+      font-size: var(--font-m-500);
     }
 
     h4 {
-      font-size: var(--font-size-md);
+      font-size: var(--font-m-400);
     }
 
     h5 {
-      font-size: var(--font-size-sm);
+      font-size: var(--font-s-300);
     }
 
     button, a {
@@ -130,37 +131,37 @@ const GlobalStyle = createGlobalStyle`
 
     @media only screen and (max-width: 1024px) {
       body, input, button, a, li, ul, span, p {
-          font-size: var(--font-size-xxs);
+          font-size: var(--font-s-100);
       }
 
       section {
-        padding: var(--space-lg) var(--space-sm);
+        padding: var(--spacing-m-600) var(--spacing-s-300);
       }
 
       h1 {
-        font-size: var(--font-size-xl);
+        font-size: var(--font-l-600);
       }
 
       h2 {
-        font-size: var(--font-size-lg);
+        font-size: var(--font-m-500);
       }
 
       h3 {
-        font-size: var(--font-size-md);
+        font-size: var(--font-m-400);
       }
     }
 
     @media only screen and (max-width: 600px) {
       h1 {
-        font-size: var(--font-size-md);
+        font-size: var(--font-m-400);
       }
 
       h2, h3 {
-        font-size: var(--font-size-md);
+        font-size: var(--font-m-400);
       }
 
       h4 {
-        font-size: var(--font-size-sm);
+        font-size: var(--font-s-300);
       }
     }
 `;

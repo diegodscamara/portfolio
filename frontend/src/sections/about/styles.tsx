@@ -39,7 +39,7 @@ export const Title = styled.h3`
   display: flex;
   align-items: center;
   gap: 1rem;
-  font-size: var(--font-size-md);
+  font-size: var(--font-m-400);
   color: var(--button-color);
 `;
 

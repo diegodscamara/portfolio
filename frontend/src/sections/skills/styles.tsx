@@ -9,11 +9,11 @@ export const Container = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: var(--space-sm);
+  gap: var(--spacing-s-300);
   
   & > * {
     width: 12.5%;
-    padding: var(--space-xs) var(--space-sm);
+    padding: var(--spacing-s-200) var(--spacing-s-300);
   }
 
   @media only screen and (max-width: 1440px) {

@@ -3,17 +3,17 @@ import styled from 'styled-components';
 export const Wrapper = styled.section`
   display: flex;
   text-align: left;
-  padding: calc(var(--space-xl) + var(--space-lg)) var(--space-md) var(--space-xl) var(--space-md);
+  padding: calc(var(--spacing-l-700) + var(--spacing-m-600)) var(--spacing-m-500) var(--spacing-l-700) var(--spacing-m-500);
 
   @media only screen and (max-width: 1024px) {
-  padding: var(--space-xl) var(--space-sm) var(--space-lg) var(--space-sm);
+  padding: var(--spacing-l-700) var(--spacing-s-300) var(--spacing-m-600) var(--spacing-s-300);
   }
 `;
 
 export const Container = styled.div`
   display: flex;
   flex-direction: row;
-  gap: var(--space-md);
+  gap: var(--spacing-m-500);
   width: 100%;
 
   @media only screen and (max-width: 1024px) {
@@ -26,7 +26,7 @@ export const Column = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--space-md);
+  gap: var(--spacing-m-500);
   width: 70%;
 
   &:last-child {
@@ -58,12 +58,12 @@ export const Subtitle = styled.h4`
 
 export const ScrollLink = styled.div`
   display: block;
-  margin-top: var(--space-md);
+  margin-top: var(--spacing-m-500);
   animation: bounce 1s infinite;
 
   svg {
-    width: var(--space-md);
-    height: var(--space-md);
+    width: var(--spacing-m-500);
+    height: var(--spacing-m-500);
 
     &:hover {
       transform: scale(1.1);

@@ -14,8 +14,8 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: var(--space-xmd);
-  gap: var(--space-sm);
+  padding: var(--spacing-m-400);
+  gap: var(--spacing-s-300);
   width: 100%;
   height: 100%;
   background: linear-gradient(55.27deg, rgba(240, 240, 240, 0.04) 0%, rgba(240, 240, 240, 0) 100%);
@@ -34,9 +34,9 @@ export const Accordion = styled.div < AccordionProps > `
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
-  gap: var(--space-xmd);
+  gap: var(--spacing-m-400);
   border-bottom: 1px solid var(--gray-800);
-  padding-bottom: ${(props) => props.open ? 'var(--space-xmd)' : '0'};
+  padding-bottom: ${(props) => props.open ? 'var(--spacing-m-400)' : '0'};
 `;
 
 export const Header = styled.header < HeaderProps > `
@@ -45,7 +45,7 @@ export const Header = styled.header < HeaderProps > `
   align-items: center;
   justify-content: space-between;
   padding: 0px;
-  gap: var(--space-xs);
+  gap: var(--spacing-s-200);
   width: 100%;
   cursor: pointer;
 
@@ -61,7 +61,7 @@ export const Container = styled.div`
   align-items: center;
   flex-wrap: wrap;
   padding: 0px;
-  gap: var(--space-sm);
+  gap: var(--spacing-s-300);
   min-height: auto;
 `;
 
@@ -70,7 +70,7 @@ export const Details = styled.span`
   height: 100%;
   font-style: normal;
   font-weight: var(--font-weight-regular);
-  font-size: var(--font-size-xxs);
+  font-size: var(--font-s-100);
   color: var(--gray-200);
 `;
 
@@ -84,7 +84,7 @@ export const Content = styled.div < ContentProps > `
   overflow: hidden;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--space-sm);
+  gap: var(--spacing-s-300);
   transition: var(--transition-03);
 `;
 
