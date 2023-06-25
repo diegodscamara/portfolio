@@ -66,7 +66,8 @@ const ButtonStyles = styled.button < ButtonProps > `
   border-radius: var(--border-radius-sm);
   font-weight: var(--font-weight-bold);
   transition: all 0.3s ease-in-out;
-
+  cursor: pointer;
+  
   a {
     display: flex;
     flex-direction: row;

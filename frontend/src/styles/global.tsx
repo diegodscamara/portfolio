@@ -16,12 +16,9 @@ const GlobalStyle = createGlobalStyle`
       --gray-200: #CFCFCF;
       --gray-100: #E1E1E1;
       --gray-50: #F0F0F0;
-      --black: #000000;
-      --dark-gray: #0D0D0D;
-      --gray: #494949;
-      --light-gray: #B5B5B5;
-      --white: #FAFAFA;
       --red: #FF4D4D;
+      --gray-50-linear-10: linear-gradient(45deg, rgba(240, 240, 240, 0.04) 0%, rgba(240, 240, 240, 0.00) 100%);
+      --gray-50-linear-15: linear-gradient(45deg, rgba(240, 240, 240, 0.06) 0%, rgba(240, 240, 240, 0.00) 100%);
       /*Box shadow */
       --shadow-10: 0px 26px 10px rgba(0, 0, 0, 0.01), 0px 15px 9px rgba(0, 0, 0, 0.05), 0px 7px 7px rgba(0, 0, 0, 0.08), 0px 2px 4px rgba(0, 0, 0, 0.09), 0px 0px 0px rgba(0, 0, 0, 0.1);
       --shadow-20: 0px 66px 26px rgba(0, 0, 0, 0.03), 0px 37px 22px rgba(0, 0, 0, 0.1), 0px 16px 16px rgba(0, 0, 0, 0.17), 0px 4px 9px rgba(0, 0, 0, 0.2), 0px 0px 0px rgba(0, 0, 0, 0.2);
@@ -42,14 +39,14 @@ const GlobalStyle = createGlobalStyle`
       --font-weight-regular: 400;
       --font-weight-bold: 700;
       /* Spacing */
-      --spacing-s-100: 4px;
-      --spacing-s-200: 8px;
-      --spacing-s-300: 16px;
-      --spacing-m-400: 24px;
-      --spacing-m-500: 32px;
-      --spacing-m-600: 64px;
-      --spacing-l-700: 128px;
-      --spacing-l-800: 256px;
+      --spacing-s-100: 0.4rem;
+      --spacing-s-200: 0.8rem;
+      --spacing-s-300: 1.6rem;
+      --spacing-m-400: 2.4rem;
+      --spacing-m-500: 3.2rem;
+      --spacing-m-600: 6.4rem;
+      --spacing-l-700: 12.8rem;
+      --spacing-l-800: 25.6rem;
     }
 
     * {
@@ -162,6 +159,44 @@ const GlobalStyle = createGlobalStyle`
 
       h4 {
         font-size: var(--font-s-300);
+      }
+    }
+    .swiper, swiper-container{
+      z-index: 0;
+      padding: 3.2rem 0;
+    }
+
+    .swiper-pagination-bullets {
+      top: 0 !important;
+      right: 32px;
+      width: auto !important;
+      left: unset !important;
+      .swiper-pagination-bullet {
+        background: var(--gray-200);
+      }
+    }
+    .swiper-button-prev,
+    .swiper-button-next {
+      color: var(--primary-color);
+      transition: var(--transition-03);
+
+      &:hover {
+        color: var(--primary-variant-color);
+      }
+    }
+    .swiper-button-prev {
+      right: 150px;
+      top: 13px;
+      left: unset;
+      &::after {
+        font-size: 16px;
+      }
+    }
+    .swiper-button-next {
+      top: 13px;
+      right: 0;
+      &::after {
+        font-size: 16px;
       }
     }
 `;
