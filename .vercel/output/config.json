@@ -1,0 +1,166 @@
+{
+  "version": 3,
+  "routes": [
+    {
+      "src": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$",
+      "headers": {
+        "Location": "/$1"
+      },
+      "status": 308,
+      "continue": true
+    },
+    {
+      "src": "/_next/__private/trace",
+      "dest": "/404",
+      "status": 404,
+      "continue": true
+    },
+    {
+      "src": "/frontend/404/?",
+      "status": 404,
+      "continue": true,
+      "missing": [
+        {
+          "type": "header",
+          "key": "x-prerender-revalidate"
+        }
+      ]
+    },
+    {
+      "src": "/frontend/500",
+      "status": 500,
+      "continue": true
+    },
+    {
+      "src": "^/frontend/$",
+      "headers": {
+        "Location": "/frontend"
+      },
+      "status": 308
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/frontend/_next/image/?",
+      "dest": "/_next/image",
+      "check": true
+    },
+    {
+      "src": "/frontend/_next/data/(.*)",
+      "dest": "/frontend/_next/data/$1",
+      "check": true
+    },
+    {
+      "handle": "resource"
+    },
+    {
+      "src": "/frontend/.*",
+      "status": 404
+    },
+    {
+      "handle": "miss"
+    },
+    {
+      "src": "/frontend/_next/static/(?:[^/]+/pages|pages|chunks|runtime|css|image|media)/.+",
+      "status": 404,
+      "check": true,
+      "dest": "$0"
+    },
+    {
+      "handle": "rewrite"
+    },
+    {
+      "src": "/frontend/_next/data/(.*)",
+      "dest": "/frontend/404",
+      "status": 404
+    },
+    {
+      "handle": "hit"
+    },
+    {
+      "src": "/frontend/_next/static/(?:[^/]+/pages|pages|chunks|runtime|css|image|media|uvni1wvgYxlYpD8HhRx2j)/.+",
+      "headers": {
+        "cache-control": "public,max-age=31536000,immutable"
+      },
+      "continue": true,
+      "important": true
+    },
+    {
+      "src": "/frontend/index",
+      "headers": {
+        "x-matched-path": "/"
+      },
+      "continue": true,
+      "important": true
+    },
+    {
+      "src": "/frontend/((?!index$).*)",
+      "headers": {
+        "x-matched-path": "/$1"
+      },
+      "continue": true,
+      "important": true
+    },
+    {
+      "handle": "error"
+    },
+    {
+      "src": "/frontend/.*",
+      "dest": "/frontend/404",
+      "status": 404
+    },
+    {
+      "src": "/frontend/.*",
+      "dest": "/frontend/500",
+      "status": 500
+    }
+  ],
+  "images": {
+    "domains": [],
+    "sizes": [
+      640,
+      750,
+      828,
+      1080,
+      1200,
+      1920,
+      2048,
+      3840,
+      16,
+      32,
+      48,
+      64,
+      96,
+      128,
+      256,
+      384
+    ],
+    "remotePatterns": [],
+    "minimumCacheTTL": 60,
+    "formats": [
+      "image/webp"
+    ],
+    "dangerouslyAllowSVG": false,
+    "contentSecurityPolicy": "script-src 'none'; frame-src 'none'; sandbox;",
+    "contentDispositionType": "inline"
+  },
+  "overrides": {
+    "frontend/404.html": {
+      "path": "frontend/404",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "frontend/500.html": {
+      "path": "frontend/500",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "frontend/index.html": {
+      "path": "frontend/index",
+      "contentType": "text/html; charset=utf-8"
+    }
+  },
+  "framework": {
+    "version": "13.2.0"
+  },
+  "crons": []
+}

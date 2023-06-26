@@ -1,7 +1,5 @@
 const nextConfig = {
-  reactStrictMode: true,
-  basePath: '/frontend',
-  assetPrefix: '/frontend/'
+  reactStrictMode: true
 };
 
 module.exports = nextConfig;
