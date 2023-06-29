@@ -78,7 +78,7 @@ const GlobalStyle = createGlobalStyle`
         text-wrap: balance;
     }
 
-    section, footer {
+    section {
       max-width: 1440px;
       width: 100%;
       padding: var(--spacing-l-700) var(--spacing-m-500);

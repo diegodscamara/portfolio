@@ -1,41 +1,35 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 export const Section = styled.footer`
   display: flex;
-  height: 4.375rem;
-  padding: 1.1875rem var(--spacing-m-500);
+  padding: var(--spacing-s-300) var(--spacing-m-500);
   justify-content: space-between;
   flex-direction: row;
   align-items: center;
   flex-wrap: wrap;
   align-self: stretch;
   border-top: 1px solid var(--gray-500);
-`;
 
-export const textStyles = css`
-  font-size: 1.3rem;
-  font-family: DM Sans;
-  font-style: normal;
-  font-weight: var(--font-weight-regular);
-  line-height: 1.5rem;
+  @media (max-width: 1024px) {
+    padding: var(--spacing-s-300) var(--spacing-s-300);
+  }
 `;
-
 
 export const Content = styled.span`
   color: var(--gray-500);
-  ${textStyles}
+  font-size: 1.3rem;
 `;
 
 export const Name = styled.span`
   color: var(--gray-200);
-  ${textStyles}
+  font-size: 1.3rem;
 `;
 
 export const Icons = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
+  gap: var(--spacing-s-300);
 
   img {
     width: var(--spacing-s-300);
