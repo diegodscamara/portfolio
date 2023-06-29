@@ -24,6 +24,15 @@ export const inputStyles = css`
   border-radius: var(--spacing-s-100);
   border: 1px solid var(--gray-200);
   color: var(--gray-200);
+  transition: var(--transition-03);
+
+  &:hover {
+    border: 1px solid var(--primary-variant-color);
+  }
+
+  &:focus {
+    border: 1px solid var(--primary-color);
+  }
 `;
 
 export const Input = styled.input`

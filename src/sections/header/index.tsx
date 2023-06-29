@@ -6,8 +6,9 @@ import { DownloadIcon } from 'public/icons/download';
 import Link from 'next/link';
 import { Logo } from 'public/images/logo';
 import { NavLinkProps } from './types';
+import React from 'react';
 
-const NavLink = ({ href, children, onClick }: NavLinkProps) => {
+const NavLink = React.memo(({ href, children, onClick }: NavLinkProps) => {
   return (
     <LinkStyles
       href={href}
@@ -18,7 +19,7 @@ const NavLink = ({ href, children, onClick }: NavLinkProps) => {
       {children}
     </LinkStyles>
   );
-};
+});
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);

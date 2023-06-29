@@ -7,6 +7,7 @@ export const Wrapper = styled.section`
   justify-content: space-between;
   gap: 32px;
   width: 100%;
+  min-height: 100vh;
 
   img {
     width: 100%;

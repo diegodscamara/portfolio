@@ -5,8 +5,7 @@ export const HeaderContainer = styled.header`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 0px var(--spacing-m-500);
-  height: var(--spacing-m-600);
+  padding: var(--spacing-s-300) var(--spacing-m-500);
   position: fixed;
   width: 100%;
   background-color: var(--gray-900);
@@ -14,7 +13,7 @@ export const HeaderContainer = styled.header`
   z-index: 1;
 
   @media screen and (max-width: 1024px) {
-    padding: 0px var(--spacing-s-300);
+    padding: var(--spacing-s-300) var(--spacing-s-300);
   }
 `;
 
@@ -83,12 +82,12 @@ export const MenuButton = styled.button`
   }
 
   svg {
-    height: 1.5rem;
-    width: 1.5rem;
+    height: var(--spacing-m-500);
+    width: var(--spacing-m-500);
     
     &:hover {
       path {
-        transition: all 0.3s ease-in-out;
+        transition: var(--transition-03);
         color: var(--primary-color);
       }
     }
@@ -104,7 +103,7 @@ export const MobileMenuNav = styled.nav < { isOpen: boolean } > `
   gap: var(--spacing-m-400);
   padding: var(--spacing-m-600) var(--spacing-s-300);
   position: fixed;
-  top: var(--spacing-m-600);
+  top: 7.7rem;
   right: 0;
   height: 100vh;
   border-radius: var(--border-radius-sm);

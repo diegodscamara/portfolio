@@ -1,5 +1,10 @@
 import { Head, Html, Main, NextScript } from 'next/document'
 
+/**
+ * Render function for the Document component.
+ *
+ * @return {JSX.Element} The JSX element representing the rendered output.
+ */
 export default function Document() {
   return (
     <Html lang="en">

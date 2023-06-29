@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
-export const Section = styled.section``;
+export const Section = styled.section`
+  min-height: 100vh;
+`;
 
 export const Title = styled.h3``;
 
