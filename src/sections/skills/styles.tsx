@@ -1,8 +1,10 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
-export const Section = styled.section``;
+export const Section = styled.section`
+  min-height: 100vh;
+`
 
-export const Title = styled.h3``;
+export const Title = styled.h3``
 
 export const Container = styled.div`
   display: flex;
@@ -10,7 +12,7 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   gap: var(--spacing-s-300);
-  
+
   & > * {
     width: 12.5%;
     padding: var(--spacing-s-200) var(--spacing-s-300);
@@ -51,4 +53,4 @@ export const Container = styled.div`
       flex-basis: 100%;
     }
   }
-`;
+`

@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from 'react'
+import styled from 'styled-components'
 
 export const Container = React.memo(styled.div`
   display: flex;
@@ -33,7 +33,7 @@ export const Container = React.memo(styled.div`
     border-top-right-radius: var(--spacing-s-100);
     transition: transform var(--transition-03);
   }
-`);
+`)
 
 export const Tag = React.memo(styled.div`
   padding: var(--spacing-s-100) var(--spacing-s-300);
@@ -52,7 +52,7 @@ export const Tag = React.memo(styled.div`
     background: var(--primary-variant-color);
     box-shadow: var(--shadow-20);
   }
-`);
+`)
 
 export const Content = React.memo(styled.div`
   display: flex;
@@ -67,7 +67,7 @@ export const Content = React.memo(styled.div`
     width: var(--spacing-s-300);
     height: var(--spacing-s-300);
   }
-`);
+`)
 
 export const Header = React.memo(styled.header`
   display: flex;
@@ -75,12 +75,12 @@ export const Header = React.memo(styled.header`
   align-items: flex-start;
   padding: 0px;
   gap: var(--spacing-s-300);
-`);
+`)
 
 export const Title = React.memo(styled.h4`
   color: var(--gray-50);
-`);
+`)
 
 export const Description = React.memo(styled.span`
   color: var(--gray-200);
-`);
+`)

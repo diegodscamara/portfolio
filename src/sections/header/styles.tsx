@@ -1,12 +1,11 @@
-import Link from 'next/link';
-import styled from 'styled-components';
+import Link from 'next/link'
+import styled from 'styled-components'
 
 export const HeaderContainer = styled.header`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 0px var(--spacing-m-500);
-  height: var(--spacing-m-600);
+  padding: var(--spacing-s-300) var(--spacing-m-500);
   position: fixed;
   width: 100%;
   background-color: var(--gray-900);
@@ -14,9 +13,9 @@ export const HeaderContainer = styled.header`
   z-index: 1;
 
   @media screen and (max-width: 1024px) {
-    padding: 0px var(--spacing-s-300);
+    padding: var(--spacing-s-300) var(--spacing-s-300);
   }
-`;
+`
 
 export const NavContainer = styled.section`
   display: flex;
@@ -26,7 +25,7 @@ export const NavContainer = styled.section`
   padding: 0px;
   height: 100%;
   position: relative;
-`;
+`
 
 export const NavLinks = styled.nav`
   display: flex;
@@ -36,10 +35,10 @@ export const NavLinks = styled.nav`
   padding: 0px;
   gap: var(--spacing-m-400);
 
-  @media only screen and  (max-width: 1200px) {
+  @media only screen and (max-width: 1200px) {
     display: none;
   }
-`;
+`
 
 export const LinkStyles = styled(Link)`
   display: flex;
@@ -55,7 +54,7 @@ export const LinkStyles = styled(Link)`
   }
 
   &::before {
-    content: "";
+    content: '';
     display: block;
     position: absolute;
     bottom: 0;
@@ -72,30 +71,30 @@ export const LinkStyles = styled(Link)`
   &:active::before {
     width: 100%;
   }
-`;
+`
 
 export const MenuButton = styled.button`
   background-color: transparent;
   display: none;
 
-  @media only screen and  (max-width: 1200px) {
+  @media only screen and (max-width: 1200px) {
     display: flex;
   }
 
   svg {
-    height: 1.5rem;
-    width: 1.5rem;
-    
+    height: var(--spacing-m-500);
+    width: var(--spacing-m-500);
+
     &:hover {
       path {
-        transition: all 0.3s ease-in-out;
+        transition: var(--transition-03);
         color: var(--primary-color);
       }
     }
   }
-`;
+`
 
-export const MobileMenuNav = styled.nav < { isOpen: boolean } > `
+export const MobileMenuNav = styled.nav<{ isOpen: boolean }>`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -104,13 +103,14 @@ export const MobileMenuNav = styled.nav < { isOpen: boolean } > `
   gap: var(--spacing-m-400);
   padding: var(--spacing-m-600) var(--spacing-s-300);
   position: fixed;
-  top: var(--spacing-m-600);
+  top: 7.7rem;
   right: 0;
   height: 100vh;
   border-radius: var(--border-radius-sm);
   backdrop-filter: var(--background-blur);
   box-shadow: var(--shadow-10);
-  transform: ${(props) => (props.isOpen ? "translateX(0)" : "translateX(100%)")};
+  transform: ${(props) =>
+    props.isOpen ? 'translateX(0)' : 'translateX(100%)'};
   transition: transform 0.5s ease-in-out;
 
   &:hover {
@@ -125,4 +125,4 @@ export const MobileMenuNav = styled.nav < { isOpen: boolean } > `
   @media only screen and (min-width: 1200px) {
     display: none;
   }
-`;
+`

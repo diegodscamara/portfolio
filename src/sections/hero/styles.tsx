@@ -1,14 +1,17 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Wrapper = styled.section`
   display: flex;
   text-align: left;
-  padding: calc(var(--spacing-l-700) + var(--spacing-m-600)) var(--spacing-m-500) var(--spacing-l-700) var(--spacing-m-500);
+  min-height: 100vh;
+  padding: calc(var(--spacing-l-700) + var(--spacing-m-600))
+    var(--spacing-m-500) var(--spacing-l-700) var(--spacing-m-500);
 
   @media only screen and (max-width: 1024px) {
-  padding: var(--spacing-l-700) var(--spacing-s-300) var(--spacing-m-600) var(--spacing-s-300);
+    padding: var(--spacing-l-700) var(--spacing-s-300) var(--spacing-m-600)
+      var(--spacing-s-300);
   }
-`;
+`
 
 export const Container = styled.div`
   display: flex;
@@ -20,7 +23,7 @@ export const Container = styled.div`
     flex-direction: column-reverse;
     align-items: center;
   }
-`;
+`
 
 export const Column = styled.div`
   display: flex;
@@ -44,17 +47,17 @@ export const Column = styled.div`
     align-items: center;
     text-align: center;
   }
-`;
+`
 
 export const Title = styled.h1`
   width: 100%;
-`;
+`
 
 export const Subtitle = styled.h4`
   color: var(--gray-100);
   font-weight: var(--font-weight-regular);
   width: 100%;
-`;
+`
 
 export const ScrollLink = styled.div`
   display: block;
@@ -81,4 +84,4 @@ export const ScrollLink = styled.div`
       transform: translateY(0);
     }
   }
-`;
+`

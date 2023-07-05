@@ -199,6 +199,6 @@ const GlobalStyle = createGlobalStyle`
         font-size: 16px;
       }
     }
-`;
+`
 
-export default GlobalStyle;
+export default GlobalStyle
