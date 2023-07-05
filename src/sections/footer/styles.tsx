@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Section = styled.footer`
   display: flex;
@@ -13,17 +13,17 @@ export const Section = styled.footer`
   @media (max-width: 1024px) {
     padding: var(--spacing-s-300) var(--spacing-s-300);
   }
-`;
+`
 
 export const Content = styled.span`
   color: var(--gray-500);
   font-size: 1.3rem;
-`;
+`
 
 export const Name = styled.span`
   color: var(--gray-200);
   font-size: 1.3rem;
-`;
+`
 
 export const Icons = styled.div`
   display: flex;
@@ -46,4 +46,4 @@ export const Icons = styled.div`
       transform: translateY(-5px);
     }
   }
-`;
+`

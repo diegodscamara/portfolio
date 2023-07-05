@@ -1,13 +1,21 @@
-import { ErrorMessage, Form, Input, SucessMessage, TextArea, Title, Wrapper } from "./styles";
-import React, { ChangeEvent, FormEvent, useState } from "react";
+import {
+  ErrorMessage,
+  Form,
+  Input,
+  SucessMessage,
+  TextArea,
+  Title,
+  Wrapper,
+} from './styles'
+import React, { ChangeEvent, FormEvent, useState } from 'react'
 
-import Button from "@/components/button";
-import axios from "axios";
+import Button from '@/components/button'
+import axios from 'axios'
 
 interface Inputs {
-  email: string;
-  subject: string;
-  message: string;
+  email: string
+  subject: string
+  message: string
 }
 
 /**
@@ -15,49 +23,49 @@ interface Inputs {
  * @return {JSX.Element}
  */
 export default function Contact(): JSX.Element {
-  const [inputs, setInputs] = useState < Inputs > ({
-    email: "",
-    subject: "",
-    message: "",
-  });
+  const [inputs, setInputs] = useState<Inputs>({
+    email: '',
+    subject: '',
+    message: '',
+  })
 
-  const [isSubmitted, setIsSubmitted] = useState < boolean > (false);
-  const [errorMessage, setErrorMessage] = useState < string > ("");
+  const [isSubmitted, setIsSubmitted] = useState<boolean>(false)
+  const [errorMessage, setErrorMessage] = useState<string>('')
 
   const handleOnChange = (
-    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ): void => {
-    event.persist();
+    event.persist()
     setInputs((prev: Inputs) => ({
       ...prev,
       [event.target.id]: event.target.value,
-    }));
-  };
+    }))
+  }
 
   const validateForm = (): boolean => {
     if (!inputs.email || !inputs.subject || !inputs.message) {
-      setErrorMessage("Please fill in all fields");
-      return false;
+      setErrorMessage('Please fill in all fields')
+      return false
     }
-    return true;
-  };
+    return true
+  }
 
   const handleOnSubmit = (event: FormEvent<HTMLFormElement>): void => {
-    event.preventDefault();
+    event.preventDefault()
 
     if (validateForm()) {
       axios
-        .post("https://formbold.com/s/ozV0l", inputs)
+        .post('https://formbold.com/s/ozV0l', inputs)
         .then(() => {
-          setIsSubmitted(true);
-          setErrorMessage("");
+          setIsSubmitted(true)
+          setErrorMessage('')
         })
         .catch(() => {
-          setIsSubmitted(false);
-          setErrorMessage("An error occurred. Please try again.");
-        });
+          setIsSubmitted(false)
+          setErrorMessage('An error occurred. Please try again.')
+        })
     }
-  };
+  }
 
   return (
     <Wrapper id="Contact">
@@ -94,11 +102,13 @@ export default function Contact(): JSX.Element {
               rows={5}
               required
             />
-            <Button variant="filled" type="submit">Send Message</Button>
+            <Button variant="filled" type="submit">
+              Send Message
+            </Button>
             {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
           </>
         )}
       </Form>
     </Wrapper>
-  );
+  )
 }

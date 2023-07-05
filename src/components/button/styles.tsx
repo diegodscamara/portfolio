@@ -1,8 +1,8 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components'
 
 interface ButtonProps {
-  variant: 'filled' | 'outlined' | 'inline' | 'skill';
-};
+  variant: 'filled' | 'outlined' | 'inline' | 'skill'
+}
 
 const variants = {
   filled: css`
@@ -11,9 +11,9 @@ const variants = {
     box-shadow: var(--shadow-10);
 
     svg path {
-        transition: all 0.3s ease-in-out;
-        fill: var(--gray-900);
-      }
+      transition: all 0.3s ease-in-out;
+      fill: var(--gray-900);
+    }
 
     &:hover {
       background-color: var(--primary-variant-color);
@@ -52,10 +52,10 @@ const variants = {
       background: rgba(119, 245, 255, 0.3);
       border: 1px solid var(--primary-variant-color);
     }
-  `
-};
+  `,
+}
 
-const ButtonStyles = styled.button < ButtonProps > `
+const ButtonStyles = styled.button<ButtonProps>`
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -67,7 +67,7 @@ const ButtonStyles = styled.button < ButtonProps > `
   font-weight: var(--font-weight-bold);
   transition: all 0.3s ease-in-out;
   cursor: pointer;
-  
+
   a {
     display: flex;
     flex-direction: row;
@@ -75,7 +75,7 @@ const ButtonStyles = styled.button < ButtonProps > `
     align-items: center;
     gap: var(--spacing-s-200);
   }
-  ${props => variants[props.variant || 'filled']}    
-`;
+  ${(props) => variants[props.variant || 'filled']}
+`
 
-export default ButtonStyles;
+export default ButtonStyles

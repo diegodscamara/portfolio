@@ -1,28 +1,27 @@
 "use strict";
 (() => {
-var exports = {};
-exports.id = 888;
-exports.ids = [888];
-exports.modules = {
+  var exports = {};
+  exports.id = 888;
+  exports.ids = [888];
+  exports.modules = {
+    /***/ 8842: /***/ (
+      __unused_webpack_module,
+      __webpack_exports__,
+      __webpack_require__
+    ) => {
+      // ESM COMPAT FLAG
+      __webpack_require__.r(__webpack_exports__);
 
-/***/ 8842:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+      // EXPORTS
+      __webpack_require__.d(__webpack_exports__, {
+        default: () => /* binding */ App,
+      });
 
-// ESM COMPAT FLAG
-__webpack_require__.r(__webpack_exports__);
-
-// EXPORTS
-__webpack_require__.d(__webpack_exports__, {
-  "default": () => (/* binding */ App)
-});
-
-// EXTERNAL MODULE: external "react/jsx-runtime"
-var jsx_runtime_ = __webpack_require__(997);
-// EXTERNAL MODULE: external "styled-components"
-var external_styled_components_ = __webpack_require__(7518);
-;// CONCATENATED MODULE: ./src/styles/global.tsx
-
-const GlobalStyle = external_styled_components_.createGlobalStyle`
+      // EXTERNAL MODULE: external "react/jsx-runtime"
+      var jsx_runtime_ = __webpack_require__(997);
+      // EXTERNAL MODULE: external "styled-components"
+      var external_styled_components_ = __webpack_require__(7518); // CONCATENATED MODULE: ./src/styles/global.tsx
+      const GlobalStyle = external_styled_components_.createGlobalStyle`
     :root {      
       --primary-color: #03DAC5;
       --primary-variant-color: #41FFFF;
@@ -222,53 +221,46 @@ const GlobalStyle = external_styled_components_.createGlobalStyle`
       }
     }
 `;
-/* harmony default export */ const global = (GlobalStyle);
+      /* harmony default export */ const global = GlobalStyle; // CONCATENATED MODULE: external "next-google-fonts"
 
-;// CONCATENATED MODULE: external "next-google-fonts"
-const external_next_google_fonts_namespaceObject = require("next-google-fonts");
-;// CONCATENATED MODULE: ./src/pages/_app.tsx
-
-
-
-function App({ Component , pageProps  }) {
-    return /*#__PURE__*/ (0,jsx_runtime_.jsxs)(jsx_runtime_.Fragment, {
-        children: [
+      const external_next_google_fonts_namespaceObject = require("next-google-fonts"); // CONCATENATED MODULE: ./src/pages/_app.tsx
+      function App({ Component, pageProps }) {
+        return /*#__PURE__*/ (0, jsx_runtime_.jsxs)(jsx_runtime_.Fragment, {
+          children: [
             /*#__PURE__*/ jsx_runtime_.jsx(global, {}),
-            /*#__PURE__*/ jsx_runtime_.jsx(external_next_google_fonts_namespaceObject.GoogleFonts, {
-                href: "https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Syne:wght@400;700&display=swap"
-            }),
+            /*#__PURE__*/ jsx_runtime_.jsx(
+              external_next_google_fonts_namespaceObject.GoogleFonts,
+              {
+                href: "https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Syne:wght@400;700&display=swap",
+              }
+            ),
             /*#__PURE__*/ jsx_runtime_.jsx(Component, {
-                ...pageProps
-            })
-        ]
-    });
-}
+              ...pageProps,
+            }),
+          ],
+        });
+      }
 
+      /***/
+    },
 
-/***/ }),
+    /***/ 997: /***/ (module) => {
+      module.exports = require("react/jsx-runtime");
 
-/***/ 997:
-/***/ ((module) => {
+      /***/
+    },
 
-module.exports = require("react/jsx-runtime");
+    /***/ 7518: /***/ (module) => {
+      module.exports = require("styled-components");
 
-/***/ }),
-
-/***/ 7518:
-/***/ ((module) => {
-
-module.exports = require("styled-components");
-
-/***/ })
-
-};
-;
-
-// load runtime
-var __webpack_require__ = require("../webpack-runtime.js");
-__webpack_require__.C(exports);
-var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = (__webpack_exec__(8842));
-module.exports = __webpack_exports__;
-
+      /***/
+    },
+  };
+  // load runtime
+  var __webpack_require__ = require("../webpack-runtime.js");
+  __webpack_require__.C(exports);
+  var __webpack_exec__ = (moduleId) =>
+    __webpack_require__((__webpack_require__.s = moduleId));
+  var __webpack_exports__ = __webpack_exec__(8842);
+  module.exports = __webpack_exports__;
 })();

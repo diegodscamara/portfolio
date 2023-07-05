@@ -1,5 +1,5 @@
-import type { AppProps } from 'next/app'
-import GlobalStyle from '../styles/global'
+import type { AppProps } from "next/app";
+import GlobalStyle from "../styles/global";
 import { GoogleFonts } from "next-google-fonts";
 
 /**
@@ -17,4 +17,4 @@ export default function App({ Component, pageProps }: AppProps) {
       <Component {...pageProps} />
     </>
   );
-};
+}

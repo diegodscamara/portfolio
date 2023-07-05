@@ -1,12 +1,18 @@
-import { HeaderContainer, LinkStyles, MenuButton, MobileMenuNav, NavContainer, NavLinks } from './styles';
-import { useEffect, useState } from 'react';
+import {
+  HeaderContainer,
+  LinkStyles,
+  MenuButton,
+  MobileMenuNav,
+  NavContainer,
+  NavLinks,
+} from './styles'
+import React, { useEffect, useState } from 'react'
 
-import Button from '@/components/button';
-import { DownloadIcon } from 'public/icons/download';
-import Link from 'next/link';
-import { Logo } from 'public/images/logo';
-import { NavLinkProps } from './types';
-import React from 'react';
+import Button from '@/components/button'
+import { DownloadIcon } from 'public/icons/download'
+import Link from 'next/link'
+import { Logo } from 'public/images/logo'
+import { NavLinkProps } from './types'
 
 const NavLink = React.memo(({ href, children, onClick }: NavLinkProps) => {
   return (
@@ -15,46 +21,58 @@ const NavLink = React.memo(({ href, children, onClick }: NavLinkProps) => {
       onClick={onClick}
       title={`${children} section`}
       aria-label={`${children} section`}
-      className={`${children} section`}>
+      className={`${children} section`}
+    >
       {children}
     </LinkStyles>
-  );
-});
+  )
+})
+
+NavLink.displayName = 'NavLink'
 
 const Header = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const toggleMenu = () => setIsOpen(!isOpen);
+  const [isOpen, setIsOpen] = useState(false)
+  const toggleMenu = () => setIsOpen(!isOpen)
 
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
-      const target = event.target as HTMLElement; // force cast to HTMLElement
+      const target = event.target as HTMLElement // force cast to HTMLElement
       if (!target.closest('[data-popover]')) {
-        setIsOpen(false);
+        setIsOpen(false)
       }
-    };
-  
-    document.addEventListener('click', handleOutsideClick);
-    return () => document.removeEventListener('click', handleOutsideClick);
-  }, []);
+    }
+
+    document.addEventListener('click', handleOutsideClick)
+    return () => document.removeEventListener('click', handleOutsideClick)
+  }, [])
 
   const navLinks = [
-    { href: "#About", label: "About" },
-    { href: "#Skills", label: "Skills" },
-    { href: "#Experience", label: "Experience" },
-    { href: "#Projects", label: "Projects" },
-    { href: "#Contact", label: "Contact" }
-  ];
+    { href: '#About', label: 'About' },
+    { href: '#Skills', label: 'Skills' },
+    { href: '#Experience', label: 'Experience' },
+    { href: '#Projects', label: 'Projects' },
+    { href: '#Contact', label: 'Contact' },
+  ]
 
   return (
     <HeaderContainer>
       <NavContainer>
-        <Link href="/" title='Go to homepage' arial-label="Go to homepage"><Logo /></Link>
+        <Link href="/" title="Go to homepage" arial-label="Go to homepage">
+          <Logo />
+        </Link>
         <NavLinks>
           {navLinks.map(({ href, label }) => (
-            <NavLink key={label} href={href}>{label}</NavLink>
+            <NavLink key={label} href={href}>
+              {label}
+            </NavLink>
           ))}
-          <Button variant='outlined'>
-            <Link href={'documents/resume.pdf'} target='_blank' rel='noopener noreferrer' title='Open resume in new tab'>
+          <Button variant="outlined">
+            <Link
+              href={'documents/resume.pdf'}
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Open resume in new tab"
+            >
               Download resume
               <DownloadIcon />
             </Link>
@@ -69,7 +87,7 @@ const Header = () => {
           {isOpen ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 z-10 relative hover:text-primary"
+              className="hover:text-primary relative z-10 h-6 w-6"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -84,7 +102,7 @@ const Header = () => {
           ) : (
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 hover:text-primary"
+              className="hover:text-primary h-6 w-6"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -100,10 +118,17 @@ const Header = () => {
         </MenuButton>
         <MobileMenuNav isOpen={isOpen} data-popover>
           {navLinks.map(({ href, label }) => (
-            <NavLink key={href} href={href} onClick={toggleMenu}>{label}</NavLink>
+            <NavLink key={href} href={href} onClick={toggleMenu}>
+              {label}
+            </NavLink>
           ))}
-          <Button variant='outlined'>
-            <Link href={'documents/resume.pdf'} target='_blank' rel='noopener noreferrer' title='Open resume in new tab'>
+          <Button variant="outlined">
+            <Link
+              href={'documents/resume.pdf'}
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Open resume in new tab"
+            >
               Download resume
               <DownloadIcon />
             </Link>
@@ -111,7 +136,7 @@ const Header = () => {
         </MobileMenuNav>
       </NavContainer>
     </HeaderContainer>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

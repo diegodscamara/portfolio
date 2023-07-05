@@ -1,5 +1,5 @@
-import Link from 'next/link';
-import styled from 'styled-components';
+import Link from 'next/link'
+import styled from 'styled-components'
 
 export const HeaderContainer = styled.header`
   display: flex;
@@ -15,7 +15,7 @@ export const HeaderContainer = styled.header`
   @media screen and (max-width: 1024px) {
     padding: var(--spacing-s-300) var(--spacing-s-300);
   }
-`;
+`
 
 export const NavContainer = styled.section`
   display: flex;
@@ -25,7 +25,7 @@ export const NavContainer = styled.section`
   padding: 0px;
   height: 100%;
   position: relative;
-`;
+`
 
 export const NavLinks = styled.nav`
   display: flex;
@@ -35,10 +35,10 @@ export const NavLinks = styled.nav`
   padding: 0px;
   gap: var(--spacing-m-400);
 
-  @media only screen and  (max-width: 1200px) {
+  @media only screen and (max-width: 1200px) {
     display: none;
   }
-`;
+`
 
 export const LinkStyles = styled(Link)`
   display: flex;
@@ -54,7 +54,7 @@ export const LinkStyles = styled(Link)`
   }
 
   &::before {
-    content: "";
+    content: '';
     display: block;
     position: absolute;
     bottom: 0;
@@ -71,20 +71,20 @@ export const LinkStyles = styled(Link)`
   &:active::before {
     width: 100%;
   }
-`;
+`
 
 export const MenuButton = styled.button`
   background-color: transparent;
   display: none;
 
-  @media only screen and  (max-width: 1200px) {
+  @media only screen and (max-width: 1200px) {
     display: flex;
   }
 
   svg {
     height: var(--spacing-m-500);
     width: var(--spacing-m-500);
-    
+
     &:hover {
       path {
         transition: var(--transition-03);
@@ -92,9 +92,9 @@ export const MenuButton = styled.button`
       }
     }
   }
-`;
+`
 
-export const MobileMenuNav = styled.nav < { isOpen: boolean } > `
+export const MobileMenuNav = styled.nav<{ isOpen: boolean }>`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -109,7 +109,8 @@ export const MobileMenuNav = styled.nav < { isOpen: boolean } > `
   border-radius: var(--border-radius-sm);
   backdrop-filter: var(--background-blur);
   box-shadow: var(--shadow-10);
-  transform: ${(props) => (props.isOpen ? "translateX(0)" : "translateX(100%)")};
+  transform: ${(props) =>
+    props.isOpen ? 'translateX(0)' : 'translateX(100%)'};
   transition: transform 0.5s ease-in-out;
 
   &:hover {
@@ -124,4 +125,4 @@ export const MobileMenuNav = styled.nav < { isOpen: boolean } > `
   @media only screen and (min-width: 1200px) {
     display: none;
   }
-`;
+`

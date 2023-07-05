@@ -1,12 +1,8 @@
-import { ButtonProps } from './types';
-import ButtonStyles from './styles';
+import { ButtonProps } from './types'
+import ButtonStyles from './styles'
 
 const Button = ({ variant, children }: ButtonProps) => {
-  return (
-    <ButtonStyles variant={variant}>
-      {children}
-    </ButtonStyles>
-  );
-};
+  return <ButtonStyles variant={variant}>{children}</ButtonStyles>
+}
 
-export default Button;
+export default Button
