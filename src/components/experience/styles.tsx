@@ -74,6 +74,10 @@ export const Summary = styled.summary`
 	width: 100%;
 	cursor: pointer;
 	transition: var(--transition-03);
+
+	&::-webkit-details-marker {
+		display: none;
+	}
 `
 
 export const ArrowIcon = styled.img`

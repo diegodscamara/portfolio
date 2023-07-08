@@ -4,12 +4,11 @@ export const Wrapper = styled.section`
 	display: flex;
 	text-align: left;
 	min-height: 100vh;
-	padding: calc(var(--spacing-l-700) + var(--spacing-m-600))
-		var(--spacing-m-500) var(--spacing-l-700) var(--spacing-m-500);
+	padding: var(--spacing-l-700) var(--spacing-m-500) var(--spacing-l-700)
+		var(--spacing-m-500);
 
 	@media only screen and (max-width: 1024px) {
-		padding: var(--spacing-l-700) var(--spacing-s-300) var(--spacing-m-600)
-			var(--spacing-s-300);
+		padding: var(--spacing-l-700) var(--spacing-s-300);
 	}
 `
 
