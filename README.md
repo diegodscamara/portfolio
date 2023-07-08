@@ -14,14 +14,14 @@ This is my personal portfolio showcasing my projects and skills.
 
 ### Installation
 
-1. Clone the repository: `git clone [<repository-url>](https://github.com/diegodscamara/my-portfolio)`
+1. Clone the repository: `git clone https://github.com/diegodscamara/my-portfolio`
 2. Install dependencies: `npm install`
 
 ### Development
 
 To start the development server, run the following command:
 
-npm run dev
+`npm run dev`
 
 
 Open [http://localhost:3000](http://localhost:3000) in your browser to view the portfolio.
@@ -30,7 +30,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to view the 
 
 To build the production-ready version of the portfolio, run the following command:
 
-npm run build
+`npm run build`
 
 
 The build artifacts will be generated in the `dist` directory.
@@ -39,7 +39,7 @@ The build artifacts will be generated in the `dist` directory.
 
 To preview the built version of the portfolio locally, run the following command:
 
-npm run preview
+`npm run preview`
 
 
 Open [http://localhost:5000](http://localhost:5000) in your browser to preview the portfolio.
