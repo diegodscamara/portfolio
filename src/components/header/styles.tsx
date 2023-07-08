@@ -4,12 +4,12 @@ export const HeaderContainer = styled.header`
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
-	padding: var(--spacing-s-300) var(--spacing-m-500);
 	position: fixed;
+	padding: var(--spacing-s-300) var(--spacing-m-500);
 	width: 100%;
 	background-color: var(--gray-900);
 	box-shadow: var(--shadow-20);
-	z-index: 1;
+	z-index: 10;
 
 	@media screen and (max-width: 1024px) {
 		padding: var(--spacing-s-300) var(--spacing-s-300);
@@ -31,7 +31,7 @@ export const NavLinks = styled.nav`
 	flex-direction: row;
 	justify-content: flex-end;
 	align-items: center;
-	padding: 0px;
+	padding: 0;
 	gap: var(--spacing-m-400);
 
 	@media only screen and (max-width: 1200px) {
@@ -89,30 +89,19 @@ export const MenuButton = styled.button`
 export const MobileMenuNav = styled.nav<{ open: boolean }>`
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
 	justify-content: flex-start;
 	align-items: center;
 	gap: var(--spacing-m-400);
-	padding: var(--spacing-m-600) var(--spacing-s-300);
+	padding: var(--spacing-m-500);
 	position: fixed;
 	top: 6.7rem;
 	right: 0;
 	height: 100vh;
-	border-radius: var(--border-radius-sm);
-	backdrop-filter: var(--background-blur);
-	box-shadow: var(--shadow-10);
+	background-color: var(--gray-900);
+	box-shadow: var(--shadow-20);
 	transform: ${(props) => (props.open ? 'translateX(0)' : 'translateX(100%)')};
 	transition: transform 0.5s ease-in-out;
-
-	&:hover {
-		background: linear-gradient(
-			55.27deg,
-			rgba(240, 240, 240, 0.04) 0%,
-			rgba(240, 240, 240, 0) 100%
-		);
-		box-shadow: var(--shadow-20);
-	}
-
+	
 	@media only screen and (min-width: 1200px) {
 		display: none;
 	}
