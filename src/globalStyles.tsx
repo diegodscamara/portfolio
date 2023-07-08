@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 
-const GlobalStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`
     :root {      
       --primary-color: #03DAC5;
       --primary-variant-color: #41FFFF;
@@ -200,5 +200,3 @@ const GlobalStyle = createGlobalStyle`
       }
     }
 `
-
-export default GlobalStyle
