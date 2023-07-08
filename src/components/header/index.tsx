@@ -73,12 +73,12 @@ export function Header(): JSX.Element {
 					))}
 					<Button variant='outlined'>
 						<a
-							href='src/assets/documents/resume.pdf'
+							href='/documents/resume.pdf'
 							target='_blank'
 							rel='noopener noreferrer'
 							title='Open resume in new tab'>
 							Download resume
-							<img src='src/assets/icons/download.svg' />
+							<img src='/icons/download.svg' />
 						</a>
 					</Button>
 				</NavLinks>
@@ -88,17 +88,9 @@ export function Header(): JSX.Element {
 					aria-expanded={open}
 					data-popover>
 					{open ? (
-						<img
-							src='src/assets/icons/close.svg'
-							alt='Close menu'
-							title='Close menu'
-						/>
+						<img src='/icons/close.svg' alt='Close menu' title='Close menu' />
 					) : (
-						<img
-							src='src/assets/icons/menu.svg'
-							alt='Open menu'
-							title='Open menu'
-						/>
+						<img src='/icons/menu.svg' alt='Open menu' title='Open menu' />
 					)}
 				</MenuButton>
 				<MobileMenuNav open={open} data-popover>
@@ -109,12 +101,12 @@ export function Header(): JSX.Element {
 					))}
 					<Button variant='outlined'>
 						<a
-							href='src/assets/documents/resume.pdf'
+							href='/documents/resume.pdf'
 							target='_blank'
 							rel='noopener noreferrer'
 							title='Open resume in new tab'>
 							Download resume
-							<img src='src/assets/icons/download.svg' />
+							<img src='/icons/download.svg' />
 						</a>
 					</Button>
 				</MobileMenuNav>

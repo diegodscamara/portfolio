@@ -43,7 +43,7 @@ export function Card({ project }: CardProps) {
 						target='_blank'>
 						Visit site
 						<img
-							src='src/assets/icons/arrow-right.svg'
+							src='/icons/arrow-right.svg'
 							alt='Arrow right'
 							width={16}
 							height={16}

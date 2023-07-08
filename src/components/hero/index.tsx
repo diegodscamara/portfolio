@@ -42,7 +42,7 @@ export function Hero(): JSX.Element {
 
 				<Column>
 					<img
-						src='src/assets/images/avatar.svg'
+						src='/images/avatar.svg'
 						alt='Diego Câmara'
 						width={420}
 						height={420}></img>
@@ -51,7 +51,7 @@ export function Hero(): JSX.Element {
 
 			<a href='#About' title='Scroll down' aria-label='Scroll down'>
 				<ScrollLink>
-					<img src='src/assets/icons/scroll-down-icon.svg' />
+					<img src='/icons/scroll-down-icon.svg' />
 				</ScrollLink>
 			</a>
 		</Wrapper>

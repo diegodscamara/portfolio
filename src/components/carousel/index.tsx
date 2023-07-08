@@ -5,8 +5,6 @@ import 'swiper/css/navigation'
 import { Navigation, Pagination } from 'swiper/modules'
 import { Swiper as SwiperComponent, SwiperSlide } from 'swiper/react'
 
-import React from 'react'
-
 interface CarouselProps {
 	data: React.ReactNode[]
 }

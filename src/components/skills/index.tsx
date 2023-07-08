@@ -5,87 +5,87 @@ import { Button } from '../../components/button'
 const stack = [
 	{
 		name: 'HTML5',
-		icon: 'src/assets/images/stack/html5.png',
+		icon: '/images/stack/html5.png',
 	},
 	{
 		name: 'JavaScript',
-		icon: 'src/assets/images/stack/javascript.png',
+		icon: '/images/stack/javascript.png',
 	},
 	{
 		name: 'Typescript',
-		icon: 'src/assets/images/stack/typescript.png',
+		icon: '/images/stack/typescript.png',
 	},
 	{
 		name: 'ReactJS',
-		icon: 'src/assets/images/stack/reactjs.png',
+		icon: '/images/stack/reactjs.png',
 	},
 	{
 		name: 'NextJS',
-		icon: 'src/assets/images/stack/nextjs.png',
+		icon: '/images/stack/nextjs.png',
 	},
 	{
 		name: 'Knockout',
-		icon: 'src/assets/images/stack/knockout.png',
+		icon: '/images/stack/knockout.png',
 	},
 	{
 		name: 'NodeJS',
-		icon: 'src/assets/images/stack/nodejs.png',
+		icon: '/images/stack/nodejs.png',
 	},
 	{
 		name: 'C# (CSharp)',
-		icon: 'src/assets/images/stack/csharp.png',
+		icon: '/images/stack/csharp.png',
 	},
 	{
 		name: 'Figma',
-		icon: 'src/assets/images/stack/figma.png',
+		icon: '/images/stack/figma.png',
 	},
 	{
 		name: 'CSS3',
-		icon: 'src/assets/images/stack/css3.png',
+		icon: '/images/stack/css3.png',
 	},
 	{
 		name: 'Less.js',
-		icon: 'src/assets/images/stack/lessjs.png',
+		icon: '/images/stack/lessjs.png',
 	},
 	{
 		name: 'Sass',
-		icon: 'src/assets/images/stack/sass.png',
+		icon: '/images/stack/sass.png',
 	},
 	{
 		name: 'Bootstrap',
-		icon: 'src/assets/images/stack/bootstrap.png',
+		icon: '/images/stack/bootstrap.png',
 	},
 	{
 		name: 'Tailwind CSS',
-		icon: 'src/assets/images/stack/tailwindcss.png',
+		icon: '/images/stack/tailwindcss.png',
 	},
 	{
 		name: 'Material UI',
-		icon: 'src/assets/images/stack/materialui.png',
+		icon: '/images/stack/materialui.png',
 	},
 	{
 		name: 'GraphQL',
-		icon: 'src/assets/images/stack/graphql.png',
+		icon: '/images/stack/graphql.png',
 	},
 	{
 		name: 'Jest',
-		icon: 'src/assets/images/stack/jest.png',
+		icon: '/images/stack/jest.png',
 	},
 	{
 		name: 'GitHub',
-		icon: 'src/assets/images/stack/github.png',
+		icon: '/images/stack/github.png',
 	},
 	{
 		name: 'GitLab',
-		icon: 'src/assets/images/stack/gitlab.png',
+		icon: '/images/stack/gitlab.png',
 	},
 	{
 		name: 'Git',
-		icon: 'src/assets/images/stack/git.png',
+		icon: '/images/stack/git.png',
 	},
 	{
 		name: 'Azure DevOps',
-		icon: 'src/assets/images/stack/azure.png',
+		icon: '/images/stack/azure.png',
 	},
 	// Add more technologies here as needed
 ]

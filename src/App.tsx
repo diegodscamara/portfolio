@@ -1,13 +1,13 @@
-import { About } from './sections/about'
-import { Contact } from './sections/contact'
-import { Experience } from './sections/experience'
-import { Footer } from './sections/footer'
+import { About } from './components/about'
+import { Contact } from './components/contact'
+import { Experience } from './components/experience'
+import { Footer } from './components/footer'
 import { Fragment } from 'react'
 import GlobalStyle from './globalStyles'
-import { Header } from './sections/header'
-import { Hero } from './sections/hero'
-import { Projects } from './sections/projects'
-import { Skills } from './sections/skills'
+import { Header } from './components/header'
+import { Hero } from './components/hero'
+import { Projects } from './components/projects'
+import { Skills } from './components/skills'
 /**
  * Renders the App component.
  *

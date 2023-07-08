@@ -10,17 +10,17 @@ type IconsProps = {
 
 const icons: IconsProps[] = [
 	{
-		src: 'src/assets/icons/linkedin.svg',
+		src: '/icons/linkedin.svg',
 		alt: 'Linkedin',
 		link: 'https://www.linkedin.com/in/diegodscamara/',
 	},
 	{
-		src: 'src/assets/icons/github.svg',
+		src: '/icons/github.svg',
 		alt: 'GitHub',
 		link: 'https://github.com/diegodscamara',
 	},
 	{
-		src: 'src/assets/icons/email.svg',
+		src: '/icons/email.svg',
 		alt: 'Email',
 		link: 'mailto:diegodscamara@gmail.com',
 	},

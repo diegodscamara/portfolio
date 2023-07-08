@@ -1,7 +1,7 @@
 export function Experiences() {
 	return [
 		{
-			logo: 'src/assets/images/experiences/genetec.svg',
+			logo: '/images/experiences/genetec.svg',
 			company: 'Genetec',
 			details: 'Montreal, Canada - (Oct 2022 - Present)',
 			position: 'Front End Developer',
@@ -23,7 +23,7 @@ export function Experiences() {
 			],
 		},
 		{
-			logo: 'src/assets/images/experiences/emr.svg',
+			logo: '/images/experiences/emr.svg',
 			company: 'Eu Médico Residente',
 			details: 'Recife, Brazil – (Jun 2022 - Oct 2022)',
 			position: 'Front End Developer',
@@ -38,7 +38,7 @@ export function Experiences() {
 			],
 		},
 		{
-			logo: 'src/assets/images/experiences/nsh.svg',
+			logo: '/images/experiences/nsh.svg',
 			company: 'NSH Technologies',
 			details: 'São Paulo, Brazil – (Jul 2021 - Jun 2022)',
 			position: 'Front End Developer',

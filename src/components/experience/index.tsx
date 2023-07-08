@@ -52,7 +52,7 @@ export function Experience(): JSX.Element {
 								<Location>{experience.details}</Location>
 							</Container>
 							<ArrowIcon
-								src='src/assets/icons/arrow-up.svg'
+								src='/icons/arrow-up.svg'
 								alt='Toggle icon'
 								title='Toggle experience'
 								width={12}
