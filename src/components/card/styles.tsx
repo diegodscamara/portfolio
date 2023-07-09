@@ -5,18 +5,16 @@ export const Container = React.memo(styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
+	background: var(--gray-900);
 	isolation: isolate;
-	background: var(--gray-50-linear-10);
-	backdrop-filter: var(--background-blur);
 	border-radius: var(--spacing-s-100);
 	box-shadow: var(--shadow-10);
 	transition: var(--transition-03);
 	position: relative;
 	min-height: 580px;
+	border: 1px solid var(--gray-800);
 
 	&:hover {
-		background: var(--gray-50-linear-15);
-		box-shadow: var(--shadow-20);
 		transform: translateY(-5px);
 	}
 
@@ -44,13 +42,12 @@ export const Tag = React.memo(styled.div`
 	left: var(--spacing-s-300);
 	box-shadow: var(--shadow-10);
 	transition: var(--transition-03);
-	color: var(--gray-900);
+	color: #222222;
 	font-size: var(--font-s-100);
 	font-weight: var(--font-weight-bold);
 
 	&:hover {
-		background: var(--primary-variant-color);
-		box-shadow: var(--shadow-20);
+		opacity: 0.8;
 	}
 `)
 

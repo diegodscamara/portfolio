@@ -14,23 +14,10 @@ export const Accordion = styled.div`
 	gap: var(--spacing-s-300);
 	width: 100%;
 	height: 100%;
-	background: linear-gradient(
-		55.27deg,
-		rgba(240, 240, 240, 0.04) 0%,
-		rgba(240, 240, 240, 0) 100%
-	);
-	backdrop-filter: var(--background-blur);
+	background: var(--gray-900);
 	border-radius: var(--border-radius-sm);
+	border: 1px solid var(--gray-800);
 	box-shadow: var(--shadow-10);
-
-	&:hover {
-		background: linear-gradient(
-			55.27deg,
-			rgba(240, 240, 240, 0.06) 0%,
-			rgba(240, 240, 240, 0) 100%
-		);
-		box-shadow: var(--shadow-20);
-	}
 `
 
 export const Details = styled.details`
@@ -48,7 +35,7 @@ export const Details = styled.details`
 		}
 
 		summary ~ * {
-			animation: sweep 0.5s ease-in-out;
+			animation: sweep 0.3s ease-in-out;
 		}
 
 		@keyframes sweep {
@@ -92,6 +79,17 @@ export const Container = styled.div`
 	padding: 0px;
 	gap: var(--spacing-s-300);
 	min-height: auto;
+`
+
+export const CompanyLogo = styled.div`
+	width: 48px;
+	height: 48px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: var(--transition-03);
+	background-color: var(--gray-800);
 `
 
 export const Company = styled.h5``
