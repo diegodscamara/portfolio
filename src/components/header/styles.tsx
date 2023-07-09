@@ -95,7 +95,7 @@ export const MobileMenuNav = styled.nav<{ open: boolean }>`
 	gap: var(--spacing-m-400);
 	padding: var(--spacing-m-500);
 	position: fixed;
-	top: 6.85rem;
+	top: 6.7rem;
 	right: 0;
 	height: 100vh;
 	background-color: var(--gray-900);
