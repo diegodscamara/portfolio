@@ -52,10 +52,11 @@ export const Title = styled.h1`
 	width: 100%;
 `
 
-export const Subtitle = styled.h4`
+export const Subtitle = styled.h2`
 	color: var(--gray-100);
 	font-weight: var(--font-weight-regular);
 	width: 100%;
+	transition: var(--transition-03);
 `
 
 export const ScrollLink = styled.div`

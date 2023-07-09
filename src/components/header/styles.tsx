@@ -4,12 +4,13 @@ export const HeaderContainer = styled.header`
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
-	position: fixed;
+	position: sticky;
+	top: 0;
 	padding: var(--spacing-s-300) var(--spacing-m-500);
 	width: 100%;
 	background-color: var(--gray-900);
-	box-shadow: var(--shadow-20);
 	z-index: 10;
+	border-bottom: 1px solid var(--gray-800);
 
 	@media screen and (max-width: 1024px) {
 		padding: var(--spacing-s-300) var(--spacing-s-300);
@@ -62,7 +63,7 @@ export const LinkStyles = styled.a`
 		height: 2px;
 		border-radius: var(--border-radius-sm);
 		background-color: var(--primary-color);
-		transition: width 0.3s ease-in-out;
+		transition: var(--transition-03);
 	}
 
 	&:hover::before,
@@ -94,14 +95,14 @@ export const MobileMenuNav = styled.nav<{ open: boolean }>`
 	gap: var(--spacing-m-400);
 	padding: var(--spacing-m-500);
 	position: fixed;
-	top: 6.7rem;
+	top: 6.85rem;
 	right: 0;
 	height: 100vh;
 	background-color: var(--gray-900);
 	box-shadow: var(--shadow-20);
 	transform: ${(props) => (props.open ? 'translateX(0)' : 'translateX(100%)')};
-	transition: transform 0.5s ease-in-out;
-	
+	transition: var(--transition-03);
+
 	@media only screen and (min-width: 1200px) {
 		display: none;
 	}

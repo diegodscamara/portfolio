@@ -20,9 +20,9 @@ export const GlobalStyle = createGlobalStyle`
       --gray-50-linear-10: linear-gradient(45deg, rgba(240, 240, 240, 0.04) 0%, rgba(240, 240, 240, 0.00) 100%);
       --gray-50-linear-15: linear-gradient(45deg, rgba(240, 240, 240, 0.06) 0%, rgba(240, 240, 240, 0.00) 100%);
       /*Box shadow */
-      --shadow-10: 0px 26px 10px rgba(0, 0, 0, 0.01), 0px 15px 9px rgba(0, 0, 0, 0.05), 0px 7px 7px rgba(0, 0, 0, 0.08), 0px 2px 4px rgba(0, 0, 0, 0.09), 0px 0px 0px rgba(0, 0, 0, 0.1);
+      --shadow-10: 0px 0.8px 2px rgba(0,0,0,.032),0px 2.7px 6.7px rgba(0,0,0,.048),0px 12px 30px rgba(0,0,0,.08);
       --shadow-20: 0px 66px 26px rgba(0, 0, 0, 0.03), 0px 37px 22px rgba(0, 0, 0, 0.1), 0px 16px 16px rgba(0, 0, 0, 0.17), 0px 4px 9px rgba(0, 0, 0, 0.2), 0px 0px 0px rgba(0, 0, 0, 0.2);
-      --background-blur: blur(21px); // background: #D9D9D9; and backdrop-filter: blur(21px);
+      --background-blur: blur(21px);
       /* Border radius */
       --border-radius-sm: 4px;
       /* Transitions */
@@ -47,6 +47,15 @@ export const GlobalStyle = createGlobalStyle`
       --spacing-m-600: 6.4rem;
       --spacing-l-700: 12.8rem;
       --spacing-l-800: 25.6rem;
+
+      body.light {
+        --gray-900: #F0F0F0;
+        --gray-800: #E1E1E1;
+        --gray-700: #CFCFCF;
+        --gray-200: #515151;
+        --gray-100: #3B3B3B;
+        --gray-50: #222222;
+      }
     }
 
     * {
@@ -65,6 +74,7 @@ export const GlobalStyle = createGlobalStyle`
       max-width: 100vw;
       overflow-x: hidden;
       font-size: 62.5%;
+      transition: var(--transition-03);
     }
 
     body, input, button, a, li, ul, span, p {
@@ -76,6 +86,7 @@ export const GlobalStyle = createGlobalStyle`
         text-decoration: none;
         list-style-type: none;
         text-wrap: balance;
+	      transition: var(--transition-03);
     }
 
     section {
@@ -98,11 +109,7 @@ export const GlobalStyle = createGlobalStyle`
       font-size: var(--font-l-700);
     }
 
-    h2 {
-      font-size: var(--font-l-600);
-    }
-
-    h3 {
+    h2, h3 {
       font-size: var(--font-m-500);
     }
 
@@ -139,11 +146,7 @@ export const GlobalStyle = createGlobalStyle`
         font-size: var(--font-l-600);
       }
 
-      h2 {
-        font-size: var(--font-m-500);
-      }
-
-      h3 {
+      h2, h3 {
         font-size: var(--font-m-400);
       }
     }

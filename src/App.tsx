@@ -2,20 +2,24 @@ import { About } from './components/about'
 import { Contact } from './components/contact'
 import { Experience } from './components/experience'
 import { Footer } from './components/footer'
-import { Fragment } from 'react'
 import { GlobalStyle } from './globalStyles'
 import { Header } from './components/header'
 import { Hero } from './components/hero'
 import { Projects } from './components/projects'
 import { Skills } from './components/skills'
-/**
- * Renders the App component.
- *
- * @return {React.Element} The rendered React element.
- */
+import { ThemeProvider } from './ThemeContext'
+
 export function App(): JSX.Element {
 	return (
-		<Fragment>
+		<ThemeProvider>
+			<AppContent />
+		</ThemeProvider>
+	)
+}
+
+function AppContent(): JSX.Element {
+	return (
+		<>
 			<GlobalStyle />
 			<Header />
 			<Hero />
@@ -25,6 +29,6 @@ export function App(): JSX.Element {
 			<Projects />
 			<Contact />
 			<Footer />
-		</Fragment>
+		</>
 	)
 }

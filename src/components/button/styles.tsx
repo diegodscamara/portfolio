@@ -7,26 +7,15 @@ interface ButtonProps {
 const variants = {
 	filled: css`
 		background: var(--primary-color);
-		color: var(--gray-900);
-		box-shadow: var(--shadow-10);
-
-		svg path {
-			transition: all 0.3s ease-in-out;
-			fill: var(--gray-900);
-		}
-
-		&:hover {
-			background-color: var(--primary-variant-color);
-			box-shadow: var(--shadow-20);
-		}
+		color: #222222;
 	`,
 	outlined: css`
-		color: var(--primary-color);
-		border: 1px solid var(--primary-color);
+		color: var(--gray-50);
+		border: 1px solid var(--gray-700);
 		background-color: transparent;
 
 		&:hover {
-			background: rgba(119, 245, 255, 0.3);
+			background-color: var(--gray-700);
 		}
 	`,
 	inline: css`
@@ -41,17 +30,10 @@ const variants = {
 		}
 	`,
 	skill: css`
-		border: 1px solid var(--gray-200);
+		border: 1px solid var(--gray-700);
 		color: var(--gray-200);
-		background-color: transparent;
-		box-shadow: var(--shadow-10);
+		background-color: var(--gray-800);
 		cursor: default;
-
-		&:hover {
-			box-shadow: var(--shadow-20);
-			background: rgba(119, 245, 255, 0.3);
-			border: 1px solid var(--primary-variant-color);
-		}
 	`,
 }
 
@@ -67,6 +49,10 @@ export const ButtonStyles = styled.button<ButtonProps>`
 	font-weight: var(--font-weight-bold);
 	transition: all 0.3s ease-in-out;
 	cursor: pointer;
+
+	&:hover {
+		opacity: 0.8;
+	}
 
 	a {
 		display: flex;

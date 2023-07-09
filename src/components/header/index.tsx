@@ -7,9 +7,11 @@ import {
 	NavContainer,
 	NavLinks,
 } from './styles'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 
 import { Button } from '../../components/button'
+import { ThemeContext } from '../../ThemeContext'
+import { ThemeToggle } from '../theme-toggle'
 
 export type NavLinkProps = {
 	href: string
@@ -38,6 +40,7 @@ const NavLink = React.memo(({ href, children, onClick }: NavLinkProps) => {
 export function Header(): JSX.Element {
 	const [open, setOpen] = useState(false)
 	const toggleMenu = () => setOpen(!open)
+	const { theme } = useContext(ThemeContext)
 
 	useEffect(() => {
 		const handleOutsideClick = (event: MouseEvent) => {
@@ -63,7 +66,13 @@ export function Header(): JSX.Element {
 		<HeaderContainer>
 			<NavContainer>
 				<a href='/' title='Go to homepage' arial-label='Go to homepage'>
-					<img src='/favicon.svg' />
+					<img
+						src={
+							theme === 'light'
+								? '/icons/logo-dark.svg'
+								: '/icons/logo-light.svg'
+						}
+					/>
 				</a>
 				<NavLinks>
 					{navLinks.map(({ href, label }) => (
@@ -81,6 +90,7 @@ export function Header(): JSX.Element {
 							<img src='/icons/download.svg' />
 						</a>
 					</Button>
+					<ThemeToggle />
 				</NavLinks>
 				<MenuButton
 					onClick={toggleMenu}
@@ -94,6 +104,7 @@ export function Header(): JSX.Element {
 					)}
 				</MenuButton>
 				<MobileMenuNav open={open} data-popover>
+					<ThemeToggle />
 					{navLinks.map(({ href, label }) => (
 						<NavLink key={href} href={href} onClick={toggleMenu}>
 							{label}

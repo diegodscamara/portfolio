@@ -8,7 +8,7 @@ export const Section = styled.footer`
 	align-items: center;
 	flex-wrap: wrap;
 	align-self: stretch;
-	border-top: 1px solid var(--gray-500);
+	border-top: 1px solid var(--gray-800);
 
 	@media (max-width: 1024px) {
 		padding: var(--spacing-s-300) var(--spacing-s-300);
@@ -43,11 +43,9 @@ export const Icons = styled.div`
 		justify-content: center;
 		align-items: center;
 		border-radius: 0.25rem;
-		box-shadow: var(--shadow-10);
 		transition: var(--transition-03);
 
 		&:hover {
-			box-shadow: var(--shadow-20);
 			transform: translateY(-5px);
 		}
 	}

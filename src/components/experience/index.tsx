@@ -2,6 +2,7 @@ import {
 	Accordion,
 	ArrowIcon,
 	Company,
+	CompanyLogo,
 	Container,
 	Content,
 	Details,
@@ -42,12 +43,14 @@ export function Experience(): JSX.Element {
 						open={experience.company === 'Genetec'}>
 						<Summary>
 							<Container>
-								<img
-									src={experience.logo}
-									alt={experience.company}
-									width={24}
-									height={24}
-								/>
+								<CompanyLogo>
+									<img
+										src={experience.logo}
+										alt={experience.company}
+										width={24}
+										height={24}
+									/>
+								</CompanyLogo>
 								<Company>{experience.company}</Company>
 								<Location>{experience.details}</Location>
 							</Container>
