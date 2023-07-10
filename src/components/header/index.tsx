@@ -1,36 +1,10 @@
-/* eslint-disable @typescript-eslint/restrict-template-expressions */
-import {
-	HeaderContainer,
-	LinkStyles,
-	MenuButton,
-	MobileMenuNav,
-	NavContainer,
-	NavLinks,
-} from './styles'
-import React, { useContext, useEffect, useState } from 'react'
+import { HeaderContainer, NavContainer } from './styles'
+import { useContext, useEffect, useState } from 'react'
 
-import { Button } from '../../components/button'
+import { MenuButton } from './menu-button'
+import { MobileMenuNav } from './mobile-menu-nav'
+import { NavLinks } from './nav-links'
 import { ThemeContext } from '../../ThemeContext'
-import { ThemeToggle } from '../theme-toggle'
-
-export type NavLinkProps = {
-	href: string
-	children: React.ReactNode
-	onClick?: () => void
-}
-
-const NavLink = React.memo(({ href, children, onClick }: NavLinkProps) => {
-	return (
-		<LinkStyles
-			href={href}
-			onClick={onClick}
-			title={`${children} section`}
-			aria-label={`${children} section`}
-			className={`${children} section`}>
-			{children}
-		</LinkStyles>
-	)
-})
 
 /**
  * Renders the header component.
@@ -54,14 +28,6 @@ export function Header(): JSX.Element {
 		return () => document.removeEventListener('click', handleOutsideClick)
 	}, [])
 
-	const navLinks = [
-		{ href: '#About', label: 'About' },
-		{ href: '#Skills', label: 'Skills' },
-		{ href: '#Experience', label: 'Experience' },
-		{ href: '#Projects', label: 'Projects' },
-		{ href: '#Contact', label: 'Contact' },
-	]
-
 	return (
 		<HeaderContainer>
 			<NavContainer>
@@ -74,54 +40,10 @@ export function Header(): JSX.Element {
 						}
 					/>
 				</a>
-				<NavLinks>
-					{navLinks.map(({ href, label }) => (
-						<NavLink key={label} href={href}>
-							{label}
-						</NavLink>
-					))}
-					<Button variant='outlined'>
-						<a
-							href='/documents/resume.pdf'
-							target='_blank'
-							rel='noopener noreferrer'
-							title='Open resume in new tab'>
-							Download resume
-							<img src='/icons/download.svg' />
-						</a>
-					</Button>
-					<ThemeToggle />
-				</NavLinks>
-				<MenuButton
-					onClick={toggleMenu}
-					aria-label='Toggle menu'
-					aria-expanded={open}
-					data-popover>
-					{open ? (
-						<img src='/icons/close.svg' alt='Close menu' title='Close menu' />
-					) : (
-						<img src='/icons/menu.svg' alt='Open menu' title='Open menu' />
-					)}
-				</MenuButton>
-				<MobileMenuNav open={open} data-popover>
-					<ThemeToggle />
-					{navLinks.map(({ href, label }) => (
-						<NavLink key={href} href={href} onClick={toggleMenu}>
-							{label}
-						</NavLink>
-					))}
-					<Button variant='outlined'>
-						<a
-							href='/documents/resume.pdf'
-							target='_blank'
-							rel='noopener noreferrer'
-							title='Open resume in new tab'>
-							Download resume
-							<img src='/icons/download.svg' />
-						</a>
-					</Button>
-				</MobileMenuNav>
+				<NavLinks toggleMenu={toggleMenu} />
+				<MenuButton toggleMenu={toggleMenu} open={open} />
 			</NavContainer>
+			<MobileMenuNav open={open} toggleMenu={toggleMenu} />
 		</HeaderContainer>
 	)
 }
