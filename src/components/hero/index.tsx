@@ -51,7 +51,7 @@ export function Hero(): JSX.Element {
 
 			<a href='#About' title='Scroll down' aria-label='Scroll down'>
 				<ScrollLink>
-					<img src='/icons/scroll-down-icon.svg' />
+					<img src='/icons/scroll-down-icon.svg' alt='Scroll down' />
 				</ScrollLink>
 			</a>
 		</Wrapper>

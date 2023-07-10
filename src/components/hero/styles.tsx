@@ -8,7 +8,7 @@ export const Wrapper = styled.section`
 		var(--spacing-m-500);
 
 	@media only screen and (max-width: 1024px) {
-		padding: var(--spacing-l-700) var(--spacing-s-300);
+		padding: var(--spacing-m-600) var(--spacing-s-300);
 	}
 `
 

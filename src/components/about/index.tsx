@@ -41,7 +41,7 @@ export function About(): JSX.Element {
 						rel='noopener noreferrer'
 						title='Open resume in new tab'>
 						Download resume
-						<img src='/icons/download.svg' alt='Download' />
+						<img src='/icons/download.svg' alt='Download resume' />
 					</a>
 				</Button>
 			</Content>

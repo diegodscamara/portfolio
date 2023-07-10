@@ -19,12 +19,13 @@ export const Form = styled.form`
 
 export const inputStyles = css`
 	padding: var(--spacing-s-200) var(--spacing-m-400);
-	background-color: transparent;
+	background: var(--gray-900);
 	align-self: stretch;
 	border-radius: var(--spacing-s-100);
-	border: 1px solid var(--gray-200);
+	border: 1px solid var(--gray-800);
 	color: var(--gray-200);
 	transition: var(--transition-03);
+	box-shadow: var(--shadow-10);
 
 	&:hover {
 		border: 1px solid var(--primary-variant-color);

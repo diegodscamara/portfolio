@@ -47,7 +47,6 @@ export const ButtonStyles = styled.button<ButtonProps>`
 	width: fit-content;
 	border-radius: var(--border-radius-sm);
 	font-weight: var(--font-weight-bold);
-	transition: all 0.3s ease-in-out;
 	cursor: pointer;
 
 	&:hover {
