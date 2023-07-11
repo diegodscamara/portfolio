@@ -32,7 +32,12 @@ export function NavLinks({ toggleMenu, open }: NavLinksProps) {
 					rel='noopener noreferrer'
 					title='Open resume in new tab'>
 					Download resume
-					<img src='/icons/download.svg' alt='Download resume' />
+					<img
+						src='/icons/download.svg'
+						alt='Download resume'
+						width={16}
+						height={16}
+					/>
 				</a>
 			</Button>
 			<ThemeToggle />

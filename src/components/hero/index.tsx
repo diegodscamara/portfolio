@@ -48,23 +48,26 @@ export function Hero(): JSX.Element {
 				<Column>
 					<img
 						src='/images/avatar.svg'
-						alt='Diego Câmara'
+						alt='Diego Câmara - Front End Developer'
 						width={420}
-						height={420}></img>
+						height={420}
+					/>
 				</Column>
 			</Container>
 
-			<a
+			<ScrollLink
 				href='#About'
 				title='Scroll down'
-				aria-label='Scroll down'
 				onClick={() => {
 					audio === 'on' && PlayAudio({ file: '/sounds/click.wav' })
 				}}>
-				<ScrollLink>
-					<img src='/icons/scroll-down-icon.svg' alt='Scroll down' />
-				</ScrollLink>
-			</a>
+				<img
+					src='/icons/scroll-down-icon.svg'
+					alt='Scroll down'
+					width={24}
+					height={24}
+				/>
+			</ScrollLink>
 		</Wrapper>
 	)
 }

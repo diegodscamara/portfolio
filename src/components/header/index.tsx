@@ -51,6 +51,9 @@ export function Header(): JSX.Element {
 								? '/icons/logo-dark.svg'
 								: '/icons/logo-light.svg'
 						}
+						alt='Diego Câmara - Front End Developer'
+						width={110}
+						height={38}
 					/>
 				</a>
 				<NavLinks toggleMenu={toggleMenu} />

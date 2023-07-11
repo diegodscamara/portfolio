@@ -24,15 +24,15 @@ export function MenuButton({ open, toggleMenu }: MenuButtonProps): JSX.Element {
 				toggleMenu()
 				audio === 'on' && PlayAudio({ file: '/sounds/click.wav' })
 			}}
-			aria-label='Toggle menu'
-			title='Toggle menu'
 			aria-expanded={open}
 			data-popover>
-			{open ? (
-				<img src='/icons/close.svg' alt='Close menu' title='Close menu' />
-			) : (
-				<img src='/icons/menu.svg' alt='Open menu' title='Open menu' />
-			)}
+			<img
+				src={open ? '/icons/close.svg' : '/icons/menu.svg'}
+				alt={open ? 'Close menu' : 'Open menu'}
+				title={open ? 'Close menu' : 'Open menu'}
+				width={24}
+				height={24}
+			/>
 		</MenuButtonStyles>
 	)
 }

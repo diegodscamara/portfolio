@@ -10,7 +10,7 @@ export const Container = React.memo(styled.div`
 	isolation: isolate;
 	border-radius: var(--spacing-s-100);
 	box-shadow: var(--shadow-10);
-	transition: var(--transition-03);
+	transition: transform 0.3s ease-in-out;
 	position: relative;
 	min-height: 580px;
 	border: 1px solid var(--gray-800);
