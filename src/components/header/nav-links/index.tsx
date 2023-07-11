@@ -1,3 +1,4 @@
+import { AudioToggle } from '../../audio-toggle'
 import { Button } from '../../button'
 import { NavLink } from '../nav-link'
 import { NavLinksStyles } from './styles'
@@ -35,6 +36,7 @@ export function NavLinks({ toggleMenu, open }: NavLinksProps) {
 				</a>
 			</Button>
 			<ThemeToggle />
+			<AudioToggle />
 		</NavLinksStyles>
 	)
 }

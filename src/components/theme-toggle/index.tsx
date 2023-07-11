@@ -1,4 +1,4 @@
-import { ThemeContext } from '../../ThemeContext'
+import { ThemeContext } from '../../context/ThemeContext'
 import { ThemeIcon } from './styles'
 import { useContext } from 'react'
 
@@ -11,6 +11,7 @@ export function ThemeToggle() {
 				src={
 					theme === 'light' ? '/icons/dark-mode.svg' : '/icons/light-mode.svg'
 				}
+				title={theme === 'light' ? 'Dark mode' : 'Light mode'}
 			/>
 		</ThemeIcon>
 	)

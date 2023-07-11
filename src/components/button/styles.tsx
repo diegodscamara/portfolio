@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components'
 
 interface ButtonProps {
-	variant: 'filled' | 'outlined' | 'inline' | 'skill'
+	variant: 'filled' | 'outlined' | 'inline' | 'skill' | 'menu'
 }
 
 const variants = {
@@ -34,6 +34,39 @@ const variants = {
 		color: var(--gray-200);
 		background-color: var(--gray-800);
 		cursor: default;
+	`,
+	menu: css`
+		background-color: transparent;
+		display: flex;
+		align-items: center;
+		text-align: right;
+		position: relative;
+		padding: 0;
+
+		&:hover,
+		&:active,
+		&:focus {
+			color: var(--primary-color);
+		}
+
+		&::before {
+			content: '';
+			display: block;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 0;
+			height: 2px;
+			border-radius: var(--border-radius-sm);
+			background-color: var(--primary-color);
+			transition: var(--transition-03);
+		}
+
+		&:hover::before,
+		&:focus::before,
+		&:active::before {
+			width: 100%;
+		}
 	`,
 }
 

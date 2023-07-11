@@ -5,7 +5,7 @@ export function ProjectsData() {
 			name: 'Genetec Developer',
 			description:
 				'I collaborated on the Genetec™ Developer project, where we aimed to create a central hub for API and SDK documentation. My role involved optimizing site performance and scalability, utilizing Figma, JavaScript, HTML, and CSS. Through our efforts, we successfully enhanced the user experience, resulting in a successful launch and improved online presence.',
-			link: 'https://genetecmarkdown.fluidtopics.net/',
+			link: 'https://developer.genetec.com/',
 			work: 'Web Development + UI/UX',
 		},
 		{

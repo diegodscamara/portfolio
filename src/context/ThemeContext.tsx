@@ -1,4 +1,13 @@
-import React, { createContext, useEffect, useMemo, useState } from 'react'
+import React, {
+	createContext,
+	useContext,
+	useEffect,
+	useMemo,
+	useState,
+} from 'react'
+
+import { AudioContext } from '../context/AudioContext'
+import { PlayAudio } from '../components/play-audio'
 
 type Theme = 'light' | 'dark'
 
@@ -31,6 +40,8 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
 		}
 	})
 
+	const { audio } = useContext(AudioContext)
+
 	useEffect(() => {
 		localStorage.setItem('theme', theme)
 	}, [theme])
@@ -44,6 +55,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
 
 	const toggleTheme = () => {
 		setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'))
+		audio === 'on' && PlayAudio({ file: '/sounds/switch.wav' })
 	}
 
 	const contextValue = useMemo(() => ({ theme, toggleTheme }), [theme])

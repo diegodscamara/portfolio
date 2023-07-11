@@ -5,6 +5,7 @@ export const Container = React.memo(styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
+	flex-grow: 1;
 	background: var(--gray-900);
 	isolation: isolate;
 	border-radius: var(--spacing-s-100);
@@ -59,6 +60,7 @@ export const Content = React.memo(styled.div`
 	padding: var(--spacing-m-400);
 	gap: var(--spacing-m-400);
 	height: max-content;
+	flex-grow: 1;
 
 	img {
 		width: var(--spacing-s-300);
