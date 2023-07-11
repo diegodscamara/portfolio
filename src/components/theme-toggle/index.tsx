@@ -12,6 +12,9 @@ export function ThemeToggle() {
 					theme === 'light' ? '/icons/dark-mode.svg' : '/icons/light-mode.svg'
 				}
 				title={theme === 'light' ? 'Dark mode' : 'Light mode'}
+				alt={theme === 'light' ? 'Dark mode' : 'Light mode'}
+				width={24}
+				height={24}
 			/>
 		</ThemeIcon>
 	)

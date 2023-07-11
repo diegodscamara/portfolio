@@ -10,10 +10,20 @@ import { Button } from '../../components/button'
 export function About(): JSX.Element {
 	return (
 		<Wrapper id='About'>
-			<img src='/images/about.svg' alt='Front End Developer' />
+			<img
+				src='/images/about.svg'
+				alt='Front End Developer'
+				width={650}
+				height={400}
+			/>
 			<Content>
 				<Header>
-					<img src='/icons/fast-arrow-right.svg' alt='Fast arrow' />
+					<img
+						src='/icons/fast-arrow-right.svg'
+						alt='Fast arrow'
+						width={24}
+						height={24}
+					/>
 					<Title>About Me</Title>
 				</Header>
 				<Description>
@@ -41,7 +51,12 @@ export function About(): JSX.Element {
 						rel='noopener noreferrer'
 						title='Open resume in new tab'>
 						Download resume
-						<img src='/icons/download.svg' alt='Download resume' />
+						<img
+							src='/icons/download.svg'
+							alt='Download resume'
+							width={16}
+							height={16}
+						/>
 					</a>
 				</Button>
 			</Content>

@@ -40,6 +40,8 @@ export function ScrollToTop(): JSX.Element {
 				src='/icons/scroll-up.svg'
 				alt='Scroll to top'
 				title='Scroll to top'
+				width={24}
+				height={24}
 			/>
 		</ScrollToTopButton>
 	)

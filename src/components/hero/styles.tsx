@@ -58,7 +58,7 @@ export const Subtitle = styled.h2`
 	width: 100%;
 `
 
-export const ScrollLink = styled.div`
+export const ScrollLink = styled.a`
 	display: block;
 	margin-top: var(--spacing-m-500);
 	animation: bounce 1s infinite;

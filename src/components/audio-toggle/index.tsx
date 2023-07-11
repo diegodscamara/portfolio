@@ -9,7 +9,10 @@ export function AudioToggle() {
 		<AudioIcon onClick={toggleAudio}>
 			<img
 				src={audio === 'on' ? '/icons/audio-off.svg' : '/icons/audio-on.svg'}
+				alt={audio === 'on' ? 'Disable audio' : 'Enable audio'}
 				title={audio === 'on' ? 'Disable audio' : 'Enable audio'}
+				width={24}
+				height={24}
 			/>
 		</AudioIcon>
 	)

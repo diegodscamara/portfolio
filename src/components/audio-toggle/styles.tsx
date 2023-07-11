@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const AudioIcon = styled.div`
+export const AudioIcon = styled.button`
 	cursor: pointer;
 	width: 48px;
 	height: 48px;

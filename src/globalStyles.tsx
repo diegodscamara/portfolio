@@ -125,6 +125,7 @@ export const GlobalStyle = createGlobalStyle`
         border: none;
         font-weight: var(--font-weight-bold);
         line-height: 22px;
+        background-color: transparent;
     }
 
     a {

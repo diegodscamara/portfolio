@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const ThemeIcon = styled.div`
+export const ThemeIcon = styled.button`
 	cursor: pointer;
 	width: 48px;
 	height: 48px;
