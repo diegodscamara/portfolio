@@ -16,7 +16,7 @@ export const Section = styled.footer`
 `
 
 export const Content = styled.span`
-	color: var(--gray-500);
+	color: var(--gray-300);
 	font-size: 1.3rem;
 
 	@media (max-width: 600px) {
