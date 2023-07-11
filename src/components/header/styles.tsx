@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 
-export const HeaderContainer = styled.header<{ issticky: string }>`
+export const HeaderContainer = styled.header<{ isSticky: boolean }>`
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
-	position: ${(props) => (props.issticky ? 'sticky' : 'unset')};
+	position: ${(props) => (props.isSticky ? 'sticky' : 'unset')};
 	top: 0;
 	padding: var(--spacing-s-300) var(--spacing-m-500);
 	width: 100%;
@@ -12,8 +12,7 @@ export const HeaderContainer = styled.header<{ issticky: string }>`
 	z-index: 10;
 	border-bottom: 1px solid var(--gray-800);
 	box-shadow: ${(props) =>
-		props.issticky ? '0px 2px 4px rgba(0, 0, 0, 0.1)' : 'none'};
-	transition: var(--transition-03);
+		props.isSticky ? '0px 2px 4px rgba(0, 0, 0, 0.1)' : 'none'};
 
 	@media screen and (max-width: 1024px) {
 		padding: var(--spacing-s-300) var(--spacing-s-300);

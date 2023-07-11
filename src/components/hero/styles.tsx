@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const Wrapper = styled.section`
 	display: flex;
 	text-align: left;
-	min-height: 100vh;
+	min-height: 100dvh;
 	padding: var(--spacing-l-700) var(--spacing-m-500) var(--spacing-l-700)
 		var(--spacing-m-500);
 
@@ -56,7 +56,6 @@ export const Subtitle = styled.h2`
 	color: var(--gray-100);
 	font-weight: var(--font-weight-regular);
 	width: 100%;
-	transition: var(--transition-03);
 `
 
 export const ScrollLink = styled.div`

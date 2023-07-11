@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const ScrollToTopButton = styled.button<{ visible: string }>`
+export const ScrollToTopButton = styled.button<{ visible: boolean }>`
 	position: fixed;
 	bottom: var(--spacing-s-300);
 	right: var(--spacing-s-300);

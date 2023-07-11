@@ -11,7 +11,7 @@ import { useContext } from 'react'
  * @return {JSX.Element} The scroll-to-top button.
  */
 export function ScrollToTop(): JSX.Element {
-	const [isVisible, setIsVisible] = useState(false)
+	const [isVisible, setIsVisible] = useState<boolean>(false)
 	const { audio } = useContext(AudioContext)
 
 	const handleScroll = () => {
@@ -35,9 +35,7 @@ export function ScrollToTop(): JSX.Element {
 	}, [])
 
 	return (
-		<ScrollToTopButton
-			visible={isVisible ? 'true' : 'false'}
-			onClick={scrollToTop}>
+		<ScrollToTopButton visible={isVisible} onClick={scrollToTop}>
 			<img
 				src='/icons/scroll-up.svg'
 				alt='Scroll to top'

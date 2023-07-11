@@ -71,7 +71,6 @@ export const GlobalStyle = createGlobalStyle`
       scroll-behavior: smooth;
       max-width: 100vw;
       font-size: 62.5%;
-      transition: var(--transition-03);
     }
 
     body, input, button, a, li, ul, span, p {
@@ -83,10 +82,9 @@ export const GlobalStyle = createGlobalStyle`
         text-decoration: none;
         list-style-type: none;
         text-wrap: balance;
-	      transition: var(--transition-03);
-    }
-    
-    body {
+      }
+      
+      body {
       background-color: var(--gray-900);
     }
 
