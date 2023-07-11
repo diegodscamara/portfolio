@@ -1,4 +1,8 @@
+import { AudioContext } from '../../../context/AudioContext'
 import { MenuButtonStyles } from './styles'
+import { PlayAudio } from '../../play-audio'
+import { useContext } from 'react'
+
 interface MenuButtonProps {
 	open: boolean
 	toggleMenu: () => void
@@ -12,9 +16,14 @@ interface MenuButtonProps {
  * @return {JSX.Element} The menu button element.
  */
 export function MenuButton({ open, toggleMenu }: MenuButtonProps): JSX.Element {
+	const { audio } = useContext(AudioContext)
+
 	return (
 		<MenuButtonStyles
-			onClick={toggleMenu}
+			onClick={() => {
+				toggleMenu()
+				audio === 'on' && PlayAudio({ file: '/sounds/click.wav' })
+			}}
 			aria-label='Toggle menu'
 			title='Toggle menu'
 			aria-expanded={open}

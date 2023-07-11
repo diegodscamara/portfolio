@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from 'react'
 import { MenuButton } from './menu-button'
 import { MobileMenuNav } from './mobile-menu-nav'
 import { NavLinks } from './nav-links'
-import { ThemeContext } from '../../ThemeContext'
+import { ThemeContext } from '../../context/ThemeContext'
 
 /**
  * Renders the header component.
@@ -15,6 +15,7 @@ export function Header(): JSX.Element {
 	const [open, setOpen] = useState(false)
 	const toggleMenu = () => setOpen(!open)
 	const { theme } = useContext(ThemeContext)
+	const [isSticky, setIsSticky] = useState(false)
 
 	useEffect(() => {
 		const handleOutsideClick = (event: MouseEvent) => {
@@ -28,8 +29,20 @@ export function Header(): JSX.Element {
 		return () => document.removeEventListener('click', handleOutsideClick)
 	}, [])
 
+	useEffect(() => {
+		const handleScroll = () => {
+			const scrollTop = window.pageYOffset
+			setIsSticky(scrollTop > 0)
+		}
+
+		window.addEventListener('scroll', handleScroll)
+		return () => {
+			window.removeEventListener('scroll', handleScroll)
+		}
+	}, [])
+
 	return (
-		<HeaderContainer>
+		<HeaderContainer id='header' issticky={isSticky ? 'true' : 'false'}>
 			<NavContainer>
 				<a href='/' title='Go to homepage' arial-label='Go to homepage'>
 					<img

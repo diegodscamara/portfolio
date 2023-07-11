@@ -1,6 +1,6 @@
-import { LinkStyles } from './styles'
+import { Button } from '../../button'
 
-export type NavLinkProps = {
+interface NavLinkProps {
 	href: string
 	children: string
 	onClick?: () => void
@@ -21,13 +21,8 @@ export function NavLink({
 	onClick,
 }: NavLinkProps): JSX.Element {
 	return (
-		<LinkStyles
-			href={href}
-			onClick={onClick}
-			title={`${children} section`}
-			aria-label={`${children} section`}
-			className={`${children} section`}>
-			{children}
-		</LinkStyles>
+		<Button variant='menu' onClick={onClick}>
+			<a href={href}>{children}</a>
+		</Button>
 	)
 }
