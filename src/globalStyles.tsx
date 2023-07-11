@@ -68,11 +68,8 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     html, body, #root {
-      height: 100vh;
       scroll-behavior: smooth;
-      background-color: var(--gray-900);
       max-width: 100vw;
-      overflow-x: hidden;
       font-size: 62.5%;
       transition: var(--transition-03);
     }
@@ -87,6 +84,10 @@ export const GlobalStyle = createGlobalStyle`
         list-style-type: none;
         text-wrap: balance;
 	      transition: var(--transition-03);
+    }
+    
+    body {
+      background-color: var(--gray-900);
     }
 
     section {
