@@ -12,10 +12,10 @@ import { ThemeContext } from '../../context/ThemeContext'
  * @return {JSX.Element} The header component.
  */
 export function Header(): JSX.Element {
-	const [open, setOpen] = useState(false)
+	const [open, setOpen] = useState<boolean>(false)
 	const toggleMenu = () => setOpen(!open)
 	const { theme } = useContext(ThemeContext)
-	const [isSticky, setIsSticky] = useState(false)
+	const [isSticky, setIsSticky] = useState<boolean>(false)
 
 	useEffect(() => {
 		const handleOutsideClick = (event: MouseEvent) => {
@@ -32,7 +32,7 @@ export function Header(): JSX.Element {
 	useEffect(() => {
 		const handleScroll = () => {
 			const scrollTop = window.pageYOffset
-			setIsSticky(scrollTop > 0)
+			setIsSticky(scrollTop > 81)
 		}
 
 		window.addEventListener('scroll', handleScroll)
@@ -42,7 +42,7 @@ export function Header(): JSX.Element {
 	}, [])
 
 	return (
-		<HeaderContainer id='header' issticky={isSticky ? 'true' : 'false'}>
+		<HeaderContainer id='header' isSticky={isSticky}>
 			<NavContainer>
 				<a href='/' title='Go to homepage' arial-label='Go to homepage'>
 					<img

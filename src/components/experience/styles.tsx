@@ -60,7 +60,6 @@ export const Summary = styled.summary`
 	gap: var(--spacing-s-200);
 	width: 100%;
 	cursor: pointer;
-	transition: var(--transition-03);
 
 	&::-webkit-details-marker {
 		display: none;
@@ -88,7 +87,6 @@ export const CompanyLogo = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	transition: var(--transition-03);
 	background-color: var(--gray-800);
 `
 
