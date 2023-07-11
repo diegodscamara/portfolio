@@ -7,7 +7,10 @@ import {
 	Wrapper,
 } from './styles'
 
+import { AudioContext } from '../../context/AudioContext'
 import { Button } from '../../components/button'
+import { PlayAudio } from '../play-audio'
+import { useContext } from 'react'
 
 /**
  * Renders the Hero component.
@@ -15,6 +18,8 @@ import { Button } from '../../components/button'
  * @return {JSX.Element} The rendered Hero component.
  */
 export function Hero(): JSX.Element {
+	const { audio } = useContext(AudioContext)
+
 	return (
 		<Wrapper id='Home'>
 			<Container>
@@ -49,7 +54,13 @@ export function Hero(): JSX.Element {
 				</Column>
 			</Container>
 
-			<a href='#About' title='Scroll down' aria-label='Scroll down'>
+			<a
+				href='#About'
+				title='Scroll down'
+				aria-label='Scroll down'
+				onClick={() => {
+					audio === 'on' && PlayAudio({ file: '/sounds/click.wav' })
+				}}>
 				<ScrollLink>
 					<img src='/icons/scroll-down-icon.svg' alt='Scroll down' />
 				</ScrollLink>
