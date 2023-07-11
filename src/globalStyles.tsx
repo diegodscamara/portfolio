@@ -155,14 +155,6 @@ export const GlobalStyle = createGlobalStyle`
       h1 {
         font-size: var(--font-m-400);
       }
-
-      h2, h3 {
-        font-size: var(--font-m-400);
-      }
-
-      h4 {
-        font-size: var(--font-s-300);
-      }
     }
     .swiper, swiper-container{
       z-index: 0;

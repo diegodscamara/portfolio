@@ -90,7 +90,9 @@ export const CompanyLogo = styled.div`
 	background-color: var(--gray-800);
 `
 
-export const Company = styled.h5``
+export const Company = styled.h4`
+	font-size: var(--font-s-300);
+`
 export const Location = styled.span`
 	height: 100%;
 	font-style: normal;
@@ -110,8 +112,9 @@ export const Content = styled.div`
 	padding-top: var(--spacing-m-500);
 `
 
-export const Position = styled.h5`
+export const Position = styled.h4`
 	color: var(--gray-100);
+	font-size: var(--font-s-300);
 `
 
 export const Intro = styled.span`

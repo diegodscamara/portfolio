@@ -102,7 +102,7 @@ export function Skills(): JSX.Element {
 			<Container>
 				{stack.map((item, index) => (
 					<Button variant='skill' key={index}>
-						<img src={item.icon} width={24} height={24} alt={item.name} />
+						<img src={item.icon} width={25} height={22} alt={item.name} />
 						{item.name}
 					</Button>
 				))}
