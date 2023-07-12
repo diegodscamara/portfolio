@@ -15,6 +15,7 @@ export const MobileMenuNavStyles = styled.div<{ open: boolean }>`
 	box-shadow: var(--shadow-20);
 	transform: ${(props) => (props.open ? 'translateX(0)' : 'translateX(100%)')};
 	transition: var(--transition-03);
+	z-index: 1;
 
 	@media only screen and (min-width: 1200px) {
 		display: none;
