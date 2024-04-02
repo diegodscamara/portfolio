@@ -29,7 +29,7 @@ export function Hero(): JSX.Element {
             <br />
             A Front End Developer
             <br />
-            Based in Montreal
+            Based in Toronto
           </Title>
           <Subtitle>
             I help businesses and companies reach
