@@ -27,7 +27,7 @@ export function NavLinks({ toggleMenu, open }: NavLinksProps) {
 			))}
 			<Button variant='outlined'>
 				<a
-					href='/documents/resume.pdf'
+					href='/documents/resume.docx'
 					target='_blank'
 					rel='noopener noreferrer'
 					title='Open resume in new tab'>
