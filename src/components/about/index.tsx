@@ -1,6 +1,6 @@
-import { Content, Description, Header, Title, Wrapper } from './styles'
+import { Content, Description, Header, Title, Wrapper } from "./styles";
 
-import { Button } from '../../components/button'
+import { Button } from "../../components/button";
 
 /**
  * Renders the About component.
@@ -8,58 +8,50 @@ import { Button } from '../../components/button'
  * @return {JSX.Element} The rendered About component.
  */
 export function About(): JSX.Element {
-	return (
-		<Wrapper id='About'>
-			<img
-				src='/images/about.svg'
-				alt='Front End Developer'
-				width={650}
-				height={400}
-			/>
-			<Content>
-				<Header>
-					<img
-						src='/icons/fast-arrow-right.svg'
-						alt='Fast arrow'
-						width={24}
-						height={24}
-					/>
-					<Title>About Me</Title>
-				</Header>
-				<Description>
-					As a Front End Developer, I have a passion for creating user-friendly
-					interfaces using technologies such as ReactJS, NextJS, JavaScript,
-					TypeScript, HTML, CSS, and my design skills extend beyond coding, as
-					I&apos;m proficient in Figma to bring my visions to life. I integrate
-					frontend systems with content management systems and have experience
-					with both GraphQL and REST APIs. With expertise in Scrum, Kanban,
-					Agile, and code versioning tools.
-					<br />
-					<br />
-					Additionally, I am proactive, skilled in conflict resolution, possess
-					strong analytical and problem-solving skills, and have excellent
-					communication skills that ensure project success. I work
-					collaboratively as part of a team and mentor junior developers, while
-					also dedicating myself to continuous improvement and making web
-					applications more efficient as I&apos;m always exploring new
-					technologies to stay ahead of the curve.
-				</Description>
-				<Button variant='outlined'>
-					<a
-						href='/documents/resume.docx'
-						target='_blank'
-						rel='noopener noreferrer'
-						title='Open resume in new tab'>
-						Download resume
-						<img
-							src='/icons/download.svg'
-							alt='Download resume'
-							width={16}
-							height={16}
-						/>
-					</a>
-				</Button>
-			</Content>
-		</Wrapper>
-	)
+  return (
+    <Wrapper id="About">
+      <img
+        src="/images/about.svg"
+        alt="Front End Developer"
+        width={650}
+        height={400}
+      />
+      <Content>
+        <Header>
+          <img
+            src="/icons/fast-arrow-right.svg"
+            alt="Fast arrow"
+            width={24}
+            height={24}
+          />
+          <Title>About Me</Title>
+        </Header>
+        <Description>
+          Experienced Front End Developer skilled in Next.js, React, and
+          TypeScript. Spearheaded innovative projects at Genetec, including the
+          implementation of a cutting-edge AI-powered system and optimization of
+          CI/CD pipelines. Led the development of a Learning Management System
+          (LMS) for medical professionals and contributed to e-commerce platform
+          initiatives at NSH Technologies. Adept at translating design concepts
+          into seamless user interfaces and optimizing performance.
+        </Description>
+        <Button variant="outlined">
+          <a
+            href="/documents/resume.docx"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Open resume in new tab"
+          >
+            Download resume
+            <img
+              src="/icons/download.svg"
+              alt="Download resume"
+              width={16}
+              height={16}
+            />
+          </a>
+        </Button>
+      </Content>
+    </Wrapper>
+  );
 }
