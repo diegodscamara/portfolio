@@ -9,7 +9,7 @@ export const fr: Dictionary = {
   profile: {
     about: "À propos",
     summary:
-      "Je suis Diego Câmara (Diego Dos Santos Câmara), ingénieur logiciel full-stack basé à São Paulo, au Brésil, avec plus de 5 ans d\u2019expérience dans la création de produits en TypeScript, React, Next.js et Node.js. Je travaille à distance chez Luxor Technology (Luxor), une entreprise d\u2019infrastructure de minage de bitcoin, où je conçois l\u2019automatisation de flottes avec Temporal et des tableaux de bord en temps réel sur ClickHouse et PostgreSQL. Auparavant, j\u2019ai construit un assistant RAG sur Azure OpenAI chez Genetec, pour une documentation utilisée par plus de 53\u00a0000 personnes. À côté, je développe AdPilotPro, un SaaS d\u2019automatisation Amazon PPC. Je parle portugais, anglais, français et espagnol.",
+      "Je suis Diego Câmara (Diego Dos Santos Câmara), ingénieur logiciel full-stack basé à São Paulo, au Brésil, avec plus de 5 ans d\u2019expérience dans la création de produits en TypeScript, React, Next.js et Node.js. Je travaille à distance chez Luxor Technology (Luxor), une entreprise d\u2019infrastructure de minage de bitcoin, où je conçois l\u2019automatisation de flottes avec Temporal et des tableaux de bord en temps réel sur ClickHouse et PostgreSQL. Auparavant, j\u2019ai construit un assistant RAG sur Azure OpenAI chez Genetec, pour une documentation utilisée par plus de 53\u00a0000 personnes. À côté, je développe AdPilotPro, un SaaS d\u2019automatisation Amazon PPC. Je parle portugais (langue maternelle), anglais C1, français B2 et espagnol A2.",
     jobTitle: "Ingénieur logiciel full-stack",
   },
   nav: {
@@ -25,6 +25,7 @@ export const fr: Dictionary = {
     remote: "São Paulo, en télétravail",
     portrait: "Portrait de Diego Câmara",
     pitch: ["Je conçois des logiciels qui font ", "tourner de vraies opérations", "\u00a0: des flottes de minage de bitcoin chez Luxor et une documentation consultée par plus de 53\u00a0000 personnes chez Genetec."],
+    facts: "Ingénieur logiciel full-stack à São Paulo, au Brésil, avec plus de 5 ans en TypeScript, React, Next.js et Node.js.",
     email: "M'écrire",
     resume: "CV",
   },
@@ -40,7 +41,7 @@ export const fr: Dictionary = {
   },
   highlights: [
     { value: "Des centaines de mineurs", label: "gérés en une seule opération" },
-    { value: "53 000+", label: "utilisateurs de la documentation servis par mon assistant RAG" },
+    { value: "53 000+", label: "personnes utilisent la documentation qu\u2019interroge mon assistant RAG" },
     { value: "10+", label: "services dans un seul monorepo" },
     { value: "5+ ans", label: "de mises en production" },
   ],

@@ -2,14 +2,14 @@ import type { Dictionary } from "./en"
 
 export const pt: Dictionary = {
   meta: {
-    title: "Diego Câmara | Engenheiro de Software Full-Stack em São Paulo",
+    title: "Diego Câmara | Engenheiro de Software Full-Stack, São Paulo",
     description:
-      "Engenheiro de software full-stack com mais de 5 anos entregando produtos em TypeScript, React, Next.js e Node.js. Atualmente na Luxor.",
+      "Engenheiro de software full-stack em São Paulo com mais de 5 anos em TypeScript, React, Next.js e Node.js. Hoje constrói software para mineração na Luxor.",
   },
   profile: {
     about: "Sobre",
     summary:
-      "Sou Diego Câmara (Diego Dos Santos Câmara), engenheiro de software full-stack em São Paulo, Brasil, com mais de 5 anos de experiência construindo produtos em TypeScript, React, Next.js e Node.js. Trabalho remoto na Luxor Technology (Luxor), empresa de infraestrutura para mineração de bitcoin, onde construo automação de frotas com Temporal e dashboards em tempo real sobre ClickHouse e PostgreSQL. Antes disso, construí um assistente RAG com Azure OpenAI na Genetec, para uma documentação usada por mais de 53.000 pessoas. Por fora, estou construindo o AdPilotPro, um SaaS de automação de Amazon PPC. Falo português, inglês, francês e espanhol.",
+      "Sou Diego Câmara (Diego Dos Santos Câmara), engenheiro de software full-stack em São Paulo, Brasil, com mais de 5 anos de experiência construindo produtos em TypeScript, React, Next.js e Node.js. Trabalho remoto na Luxor Technology (Luxor), empresa de infraestrutura para mineração de bitcoin, onde construo automação de frotas com Temporal e dashboards em tempo real sobre ClickHouse e PostgreSQL. Antes disso, construí um assistente RAG com Azure OpenAI na Genetec, para uma documentação usada por mais de 53.000 pessoas. Por fora, estou construindo o AdPilotPro, um SaaS de automação de Amazon PPC. Falo português nativo, inglês C1, francês B2 e espanhol A2.",
     jobTitle: "Engenheiro de Software Full-Stack",
   },
   nav: {
@@ -25,6 +25,7 @@ export const pt: Dictionary = {
     remote: "São Paulo, trabalhando remoto",
     portrait: "Retrato de Diego Câmara",
     pitch: ["Construo software que mantém ", "operações reais funcionando", ": frotas de mineração de bitcoin na Luxor e documentação usada por mais de 53.000 pessoas na Genetec."],
+    facts: "Engenheiro de software full-stack em São Paulo, Brasil, com mais de 5 anos em TypeScript, React, Next.js e Node.js.",
     email: "Enviar e-mail",
     resume: "Currículo",
   },
@@ -40,7 +41,7 @@ export const pt: Dictionary = {
   },
   highlights: [
     { value: "Centenas de mineradoras", label: "gerenciadas em uma única operação" },
-    { value: "53.000+", label: "usuários da documentação atendidos pelo meu assistente RAG" },
+    { value: "53.000+", label: "pessoas usam a documentação que meu assistente RAG consulta" },
     { value: "10+", label: "serviços em um único monorepo" },
     { value: "5+ anos", label: "entregando em produção" },
   ],

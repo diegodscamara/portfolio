@@ -2,12 +2,12 @@ export const en = {
   meta: {
     title: "Diego Câmara | Full-Stack Software Engineer in São Paulo",
     description:
-      "Full-stack software engineer with 5+ years shipping TypeScript, React, Next.js and Node.js products. Currently at Luxor.",
+      "Full-stack software engineer in São Paulo with 5+ years shipping TypeScript, React, Next.js and Node.js. Building bitcoin mining fleet software at Luxor.",
   },
   profile: {
     about: "About",
     summary:
-      "I am Diego Câmara (Diego Dos Santos Câmara), a full-stack software engineer based in São Paulo, Brazil, with 5+ years of experience building TypeScript, React, Next.js and Node.js products. I work remotely at Luxor Technology (Luxor), a bitcoin mining infrastructure company, where I build fleet automation with Temporal and real-time dashboards on ClickHouse and PostgreSQL. Before that, I built a RAG documentation assistant on Azure OpenAI at Genetec, for documentation used by 53,000+ people. On the side, I am building AdPilotPro, an Amazon PPC automation SaaS. I speak Portuguese, English, French and Spanish.",
+      "I am Diego Câmara (Diego Dos Santos Câmara), a full-stack software engineer based in São Paulo, Brazil, with 5+ years of experience building TypeScript, React, Next.js and Node.js products. I work remotely at Luxor Technology (Luxor), a bitcoin mining infrastructure company, where I build fleet automation with Temporal and real-time dashboards on ClickHouse and PostgreSQL. Before that, I built a RAG documentation assistant on Azure OpenAI at Genetec, for documentation used by 53,000+ people. On the side, I am building AdPilotPro, an Amazon PPC automation SaaS. I speak native Portuguese, C1 English, B2 French and A2 Spanish.",
     jobTitle: "Full-Stack Software Engineer",
   },
   nav: {
@@ -23,6 +23,7 @@ export const en = {
     remote: "São Paulo, working remotely",
     portrait: "Portrait of Diego Câmara",
     pitch: ["I build software that keeps ", "real operations running", ": bitcoin mining fleets at Luxor, and documentation used by 53,000+ people at Genetec."],
+    facts: "Full-stack software engineer in São Paulo, Brazil, with 5+ years in TypeScript, React, Next.js and Node.js.",
     email: "Email me",
     resume: "Resume",
   },
@@ -38,7 +39,7 @@ export const en = {
   },
   highlights: [
     { value: "Hundreds of miners", label: "managed in a single operation" },
-    { value: "53,000+", label: "documentation users served by my RAG assistant" },
+    { value: "53,000+", label: "people use the documentation my RAG assistant answers from" },
     { value: "10+", label: "services in one monorepo" },
     { value: "5+ years", label: "shipping to production" },
   ],

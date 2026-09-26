@@ -18,6 +18,14 @@ const csp = [
 const nextConfig: NextConfig = {
   // One small stylesheet: inlining it removes the only render-blocking request.
   experimental: { inlineCss: true },
+  async redirects() {
+    // Old resume URLs (Vite site's .docx, the blog's /resume) point at the current PDF.
+    return ["/resume", "/documents/resume.docx", "/cv"].map((source) => ({
+      source,
+      destination: "/diego-camara-resume.pdf",
+      permanent: true,
+    }))
+  },
   async headers() {
     return [
       {

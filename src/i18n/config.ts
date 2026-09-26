@@ -27,11 +27,16 @@ export function pickLocale(header: string | null): Locale {
   return ranked.map((l) => l.lang).find(hasLocale) ?? defaultLocale
 }
 
-// "/" is negotiated per visitor (307 + Vary). Any other locale-less path is a leftover URL
-// (e.g. the old blog's /about, /posts/...), so it moves permanently to the profile.
+// Paths the old blog (Diego Câmara's Blog) served on this domain and search engines still list.
+const LEGACY = /^\/(about|projects|posts|blog|contact|tags)(\/.*)?$/
+
+// "/" is negotiated per visitor (307 + Vary). Known legacy paths move permanently to the profile.
+// Anything else locale-less falls through to a real 404 instead of a soft-404 redirect.
 export function redirectFor(pathname: string, acceptLanguage: string | null) {
   const first = pathname.split("/")[1] ?? ""
   if (hasLocale(first)) return null
   const to = `/${pickLocale(acceptLanguage)}`
-  return { to, status: pathname === "/" ? 307 : 308 } as const
+  if (pathname === "/") return { to, status: 307 } as const
+  if (LEGACY.test(pathname)) return { to, status: 308 } as const
+  return null
 }

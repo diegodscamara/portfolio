@@ -54,7 +54,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
           <SideProject t={t} />
           <Earlier items={earlier} t={t} />
         </section>
-        <Spec lang={lang} t={t} />
+        <Spec t={t} />
         <Contact t={t} />
       </main>
       <Footer t={t} />
@@ -172,11 +172,12 @@ function Hero({ t }: { t: Dictionary }) {
           >
             {site.name}
           </h1>
-          <p className="mt-6 max-w-[34ch] text-xl leading-snug text-muted-foreground md:text-2xl">
+          <p className="hero-lead mt-6 max-w-[34ch] text-xl leading-snug text-muted-foreground md:text-2xl">
             {before}
             <span className="text-foreground">{highlight}</span>
             {after}
           </p>
+          <p className="mt-4 max-w-[46ch] text-sm leading-relaxed text-muted-foreground">{t.hero.facts}</p>
           <div className="mt-9 flex flex-wrap gap-3">
             <a href={`mailto:${site.email}`} className={primaryPill}>
               <Mail className="size-4" />
@@ -421,7 +422,7 @@ function SpecRow({ id, label, children }: { id?: string; label: string; children
   )
 }
 
-function Spec({ lang, t }: { lang: Locale; t: Dictionary }) {
+function Spec({ t }: { t: Dictionary }) {
   const s = t.spec
   return (
     <section id="spec" className="bg-card/40">
@@ -449,11 +450,10 @@ function Spec({ lang, t }: { lang: Locale; t: Dictionary }) {
         <SpecRow label={s.languages}>
           <ul className="grid grid-cols-2 gap-6 sm:grid-cols-4">
             {languages.map((l) => (
-              <li key={l.code}>
-                <p className="font-mono text-3xl tracking-tight">{l.level ?? s.native}</p>
-                <p className="mt-1 text-sm text-muted-foreground" lang={lang}>
-                  {s.languageNames[l.code]}
-                </p>
+              <li key={l.code} className="flex flex-col">
+                <p className="mt-1 text-sm text-muted-foreground">{s.languageNames[l.code]}</p>
+                {/* Name first in the DOM so extracted text keeps "English C1"; the level reads first visually. */}
+                <p className="order-first font-mono text-3xl tracking-tight">{l.level ?? s.native}</p>
               </li>
             ))}
           </ul>

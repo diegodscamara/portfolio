@@ -53,7 +53,13 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
   const t = getDictionary(lang)
   const id = (frag: string) => `${site.url}/#${frag}`
   const org = (name: string, url?: string) => ({ "@type": "Organization", name, ...(url && { url }) })
-  const school = { "@type": "CollegeOrUniversity", name: t.spec.school, alternateName: "Universidade Cruzeiro do Sul" }
+  const schoolPt = "Universidade Cruzeiro do Sul"
+  const school = {
+    "@type": "CollegeOrUniversity",
+    name: t.spec.school,
+    alternateName: t.spec.school === schoolPt ? "Cruzeiro do Sul University" : schoolPt,
+  }
+  const luxor = { "@type": "Organization", "@id": "https://luxor.tech/#organization", name: "Luxor", alternateName: "Luxor Technology", url: "https://luxor.tech" }
   const graphLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -65,6 +71,7 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
         inLanguage: [...locales],
         publisher: { "@id": id("person") },
       },
+      luxor,
       {
         "@type": "ProfilePage",
         "@id": `${site.url}/${lang}#profilepage`,
@@ -74,6 +81,7 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
         isPartOf: { "@id": id("website") },
         dateModified: site.updated,
         mainEntity: { "@id": id("person") },
+        speakable: { "@type": "SpeakableSpecification", cssSelector: ["#top h1", "#top .hero-lead", "#about p"] },
       },
       {
         "@type": "Person",
@@ -84,8 +92,9 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
         familyName: "Câmara",
         jobTitle: t.profile.jobTitle,
         description: t.profile.summary,
-        url: `${site.url}/`,
-        image: { "@type": "ImageObject", url: `${site.url}/profile.jpeg`, caption: t.hero.portrait },
+        url: `${site.url}/${lang}`,
+        mainEntityOfPage: { "@id": `${site.url}/${lang}#profilepage` },
+        image: { "@type": "ImageObject", url: `${site.url}/profile.jpeg`, width: 267, height: 267, caption: t.hero.portrait },
         email: site.email,
         homeLocation: {
           "@type": "Place",
@@ -94,10 +103,25 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
         nationality: { "@type": "Country", name: "Brazil" },
         knowsLanguage: ["pt-BR", "en", "fr", "es"],
         knowsAbout: stack.flat(),
-        worksFor: { ...org("Luxor", "https://luxor.tech"), alternateName: "Luxor Technology" },
+        worksFor: { "@id": luxor["@id"] },
+        hasOccupation: {
+          "@type": "Occupation",
+          name: t.profile.jobTitle,
+          occupationLocation: { "@type": "City", name: "São Paulo" },
+          skills: stack.flat().join(", "),
+        },
+        // Past employers as dated roles, so they are not mistaken for schools.
         alumniOf: [
           school,
-          ...experience.filter((r) => r.end).map((r) => org(r.company, r.url)),
+          ...experience
+            .filter((r) => r.end)
+            .map((r) => ({
+              "@type": "OrganizationRole",
+              roleName: t.experience.jobTitle,
+              startDate: r.start,
+              endDate: r.end,
+              alumniOf: org(r.company, r.url),
+            })),
         ],
         hasCredential: [
           ...t.spec.degrees.map((name, i) => ({

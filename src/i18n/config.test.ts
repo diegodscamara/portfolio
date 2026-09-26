@@ -14,15 +14,22 @@ test("falls back to English for missing, unsupported or garbage headers", () => 
   expect(pickLocale(";;q=abc,,")).toBe("en")
 })
 
-test("routes: locale pages pass, root negotiates, legacy paths go home for good", () => {
+test("routes: locale pages pass, root negotiates, known legacy paths go home for good", () => {
   expect(redirectFor("/en", "fr")).toBeNull()
   expect(redirectFor("/pt/anything", null)).toBeNull()
   expect(redirectFor("/", "fr-CA,fr;q=0.9")).toEqual({ to: "/fr", status: 307 })
   expect(redirectFor("/", null)).toEqual({ to: "/en", status: 307 })
-  // Old blog URLs (/about, /projects, /posts/...) now live on this domain: send them to the profile permanently.
+  // Old blog URLs still indexed on this domain move permanently to the profile.
   expect(redirectFor("/about", "pt-BR")).toEqual({ to: "/pt", status: 308 })
-  expect(redirectFor("/posts/some-old-slug/", null)).toEqual({ to: "/en", status: 308 })
-  expect(redirectFor("/english", null)).toEqual({ to: "/en", status: 308 })
+  expect(redirectFor("/projects/", null)).toEqual({ to: "/en", status: 308 })
+  expect(redirectFor("/posts/some-old-slug", null)).toEqual({ to: "/en", status: 308 })
+  expect(redirectFor("/blog", "es")).toEqual({ to: "/es", status: 308 })
+})
+
+test("unknown locale-less paths are real 404s, not soft-404 redirects", () => {
+  expect(redirectFor("/foo", null)).toBeNull()
+  expect(redirectFor("/EN", null)).toBeNull()
+  expect(redirectFor("/aboutme", null)).toBeNull()
 })
 
 test("ignores languages the browser marked q=0", () => {
