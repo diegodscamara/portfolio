@@ -1,5 +1,5 @@
 import { expect, test } from "bun:test"
-import { pickLocale } from "./config"
+import { pickLocale, redirectFor } from "./config"
 
 test("picks the highest-weighted supported language", () => {
   expect(pickLocale("fr-CA,fr;q=0.9,en;q=0.8")).toBe("fr")
@@ -12,6 +12,17 @@ test("falls back to English for missing, unsupported or garbage headers", () => 
   expect(pickLocale("")).toBe("en")
   expect(pickLocale("de,ja;q=0.5")).toBe("en")
   expect(pickLocale(";;q=abc,,")).toBe("en")
+})
+
+test("routes: locale pages pass, root negotiates, legacy paths go home for good", () => {
+  expect(redirectFor("/en", "fr")).toBeNull()
+  expect(redirectFor("/pt/anything", null)).toBeNull()
+  expect(redirectFor("/", "fr-CA,fr;q=0.9")).toEqual({ to: "/fr", status: 307 })
+  expect(redirectFor("/", null)).toEqual({ to: "/en", status: 307 })
+  // Old blog URLs (/about, /projects, /posts/...) now live on this domain: send them to the profile permanently.
+  expect(redirectFor("/about", "pt-BR")).toEqual({ to: "/pt", status: 308 })
+  expect(redirectFor("/posts/some-old-slug/", null)).toEqual({ to: "/en", status: 308 })
+  expect(redirectFor("/english", null)).toEqual({ to: "/en", status: 308 })
 })
 
 test("ignores languages the browser marked q=0", () => {

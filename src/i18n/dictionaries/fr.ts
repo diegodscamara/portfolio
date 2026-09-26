@@ -2,14 +2,15 @@ import type { Dictionary } from "./en"
 
 export const fr: Dictionary = {
   meta: {
-    title: "Diego Câmara | Ingénieur logiciel full-stack",
+    title: "Diego Câmara | Ingénieur logiciel full-stack à São Paulo",
     description:
       "Ingénieur logiciel full-stack avec plus de 5 ans d'expérience à livrer des produits en TypeScript, React, Next.js et Node.js. Actuellement chez Luxor.",
   },
   profile: {
     about: "À propos",
     summary:
-      "Je suis Diego Câmara, ingénieur logiciel full-stack basé à São Paulo, au Brésil, avec plus de 5 ans d\u2019expérience dans la création de produits en TypeScript, React, Next.js et Node.js. Je travaille à distance chez Luxor, une entreprise d\u2019infrastructure de minage de bitcoin, où je conçois l\u2019automatisation de flottes avec Temporal et des tableaux de bord en temps réel sur ClickHouse et PostgreSQL. Auparavant, j\u2019ai construit un assistant RAG de documentation sur Azure OpenAI chez Genetec. Je parle portugais, anglais, français et espagnol.",
+      "Je suis Diego Câmara (Diego Dos Santos Câmara), ingénieur logiciel full-stack basé à São Paulo, au Brésil, avec plus de 5 ans d\u2019expérience dans la création de produits en TypeScript, React, Next.js et Node.js. Je travaille à distance chez Luxor Technology (Luxor), une entreprise d\u2019infrastructure de minage de bitcoin, où je conçois l\u2019automatisation de flottes avec Temporal et des tableaux de bord en temps réel sur ClickHouse et PostgreSQL. Auparavant, j\u2019ai construit un assistant RAG sur Azure OpenAI chez Genetec, pour une documentation utilisée par plus de 53\u00a0000 personnes. À côté, je développe AdPilotPro, un SaaS d\u2019automatisation Amazon PPC. Je parle portugais, anglais, français et espagnol.",
+    jobTitle: "Ingénieur logiciel full-stack",
   },
   nav: {
     experience: "Expérience",
@@ -23,11 +24,7 @@ export const fr: Dictionary = {
     roleAt: "Ingénieur logiciel chez",
     remote: "São Paulo, en télétravail",
     portrait: "Portrait de Diego Câmara",
-    pitch: [
-      "Je conçois des logiciels qui font ",
-      "tourner de vraies opérations",
-      ", des flottes de minage à une documentation consultée par des milliers de personnes.",
-    ],
+    pitch: ["Je conçois des logiciels qui font ", "tourner de vraies opérations", "\u00a0: des flottes de minage de bitcoin chez Luxor et une documentation consultée par plus de 53\u00a0000 personnes chez Genetec."],
     email: "M'écrire",
     resume: "CV",
   },
@@ -43,15 +40,15 @@ export const fr: Dictionary = {
   },
   highlights: [
     { value: "Des centaines de mineurs", label: "gérés en une seule opération" },
-    { value: "53 000+", label: "utilisateurs servis par un assistant RAG" },
+    { value: "53 000+", label: "utilisateurs de la documentation servis par mon assistant RAG" },
     { value: "10+", label: "services dans un seul monorepo" },
     { value: "5+ ans", label: "de mises en production" },
   ],
   experience: {
     title: "Expérience",
-    sub: "Quatre exécutions, dont une toujours en cours. Des équipes entièrement à distance, de Seattle à Montréal en passant par Recife.",
+    sub: "Quatre postes d\u2019ingénieur logiciel depuis juillet 2021, tous à distance\u00a0: Luxor (actuel), Genetec, Eu Médico Residente et NSH Technologies.",
     jobTitle: "Ingénieur logiciel",
-    team: "équipe de {hq}",
+    team: "à distance, équipe basée à {hq}",
     running: "En cours",
     completed: "Terminé",
     present: "Aujourd'hui",
@@ -93,9 +90,9 @@ export const fr: Dictionary = {
       techdoc: "Portail multilingue du contenu technique de Genetec, où vit l'assistant RAG.",
       medclub: "Plateforme d'apprentissage pour internes en médecine, avec vidéo adaptative.",
       tambasa: "Boutique en ligne B2B livrée avant l'échéance d'une introduction en bourse.",
-      armazem: "Boutique en ligne de distribution avec un paiement plus rapide.",
+      armazem: "Boutique en ligne d\u2019Armazém Paraíba, une enseigne de distribution brésilienne.",
       sinsa: "Boutique en ligne responsive pour un distributeur nicaraguayen.",
-      rider: "Boutique de chaussures en ligne avec un paiement simplifié.",
+      rider: "Boutique en ligne de Rider, une marque brésilienne de sandales.",
     },
     adpilot: {
       summary:
@@ -120,6 +117,7 @@ export const fr: Dictionary = {
     school: "Université Cruzeiro do Sul",
     degrees: ["Licence en génie logiciel", "Diplôme en analyse et développement de systèmes"],
   },
+  footer: { updated: "Dernière mise à jour" },
   contact: {
     title: "Vous construisez quelque chose qui doit fonctionner\u00a0?",
     titleMuted: "Parlons-en.",

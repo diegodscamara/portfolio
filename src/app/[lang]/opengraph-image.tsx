@@ -35,7 +35,7 @@ export default async function OG({ params }: { params: Promise<{ lang: string }>
               <div key={i} style={{ width: 7, height: 7, borderRadius: 1, background: i === 8 ? "#f08a3c" : "#4a4a52" }} />
             ))}
           </div>
-          {`${t.experience.jobTitle} · Luxor`}
+          {`${t.profile.jobTitle} · Luxor`}
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
           <div style={{ fontSize: 110, fontWeight: 700, letterSpacing: -5, lineHeight: 1 }}>{site.name}</div>

@@ -1,13 +1,14 @@
 export const en = {
   meta: {
-    title: "Diego Câmara | Full-Stack Software Engineer",
+    title: "Diego Câmara | Full-Stack Software Engineer in São Paulo",
     description:
       "Full-stack software engineer with 5+ years shipping TypeScript, React, Next.js and Node.js products. Currently at Luxor.",
   },
   profile: {
     about: "About",
     summary:
-      "I am Diego Câmara, a full-stack software engineer based in São Paulo, Brazil, with 5+ years of experience building TypeScript, React, Next.js and Node.js products. I work remotely at Luxor, a bitcoin mining infrastructure company, where I build fleet automation with Temporal and real-time dashboards on ClickHouse and PostgreSQL. Before that, I built a RAG documentation assistant on Azure OpenAI at Genetec. I speak Portuguese, English, French and Spanish.",
+      "I am Diego Câmara (Diego Dos Santos Câmara), a full-stack software engineer based in São Paulo, Brazil, with 5+ years of experience building TypeScript, React, Next.js and Node.js products. I work remotely at Luxor Technology (Luxor), a bitcoin mining infrastructure company, where I build fleet automation with Temporal and real-time dashboards on ClickHouse and PostgreSQL. Before that, I built a RAG documentation assistant on Azure OpenAI at Genetec, for documentation used by 53,000+ people. On the side, I am building AdPilotPro, an Amazon PPC automation SaaS. I speak Portuguese, English, French and Spanish.",
+    jobTitle: "Full-Stack Software Engineer",
   },
   nav: {
     experience: "Experience",
@@ -21,7 +22,7 @@ export const en = {
     roleAt: "Software Engineer at",
     remote: "São Paulo, working remotely",
     portrait: "Portrait of Diego Câmara",
-    pitch: ["I build software that keeps ", "real operations running", ", from mining fleets to documentation used by thousands."],
+    pitch: ["I build software that keeps ", "real operations running", ": bitcoin mining fleets at Luxor, and documentation used by 53,000+ people at Genetec."],
     email: "Email me",
     resume: "Resume",
   },
@@ -37,15 +38,15 @@ export const en = {
   },
   highlights: [
     { value: "Hundreds of miners", label: "managed in a single operation" },
-    { value: "53,000+", label: "users served by a RAG assistant" },
+    { value: "53,000+", label: "documentation users served by my RAG assistant" },
     { value: "10+", label: "services in one monorepo" },
     { value: "5+ years", label: "shipping to production" },
   ],
   experience: {
     title: "Experience",
-    sub: "Four runs, one still going. Every team remote, from Seattle to Montreal to Recife.",
+    sub: "Four software engineering roles since July 2021, all remote: Luxor (current), Genetec, Eu Médico Residente and NSH Technologies.",
     jobTitle: "Software Engineer",
-    team: "{hq} team",
+    team: "remote, {hq}-based team",
     running: "Running",
     completed: "Completed",
     present: "Present",
@@ -87,9 +88,9 @@ export const en = {
       techdoc: "Multilingual portal for Genetec technical content, home of the RAG assistant.",
       medclub: "Learning platform for medical residents with adaptive video.",
       tambasa: "B2B storefront shipped ahead of an IPO deadline.",
-      armazem: "Retail storefront with a faster checkout.",
+      armazem: "Retail storefront for Armazém Paraíba, a Brazilian retailer.",
       sinsa: "Responsive storefront for a Nicaraguan retailer.",
-      rider: "Footwear storefront with a streamlined checkout.",
+      rider: "Footwear storefront for Rider, a Brazilian sandal brand.",
     },
     adpilot: {
       summary:
@@ -114,6 +115,7 @@ export const en = {
     school: "Cruzeiro do Sul University",
     degrees: ["B.Sc. Software Engineering", "Associate, Systems Analysis and Development"],
   },
+  footer: { updated: "Last updated" },
   contact: {
     title: "Building something that has to work?",
     titleMuted: "Let's talk.",

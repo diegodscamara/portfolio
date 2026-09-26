@@ -8,15 +8,20 @@ export function llmsIndex(t: Dictionary) {
   return [
     `# ${site.name}`,
     `> ${t.profile.summary}`,
-    "## Pages",
-    ...locales.map((l) => `- [${localeNames[l]}](${site.url}/${l}): portfolio in ${localeNames[l]}`),
-    "## Details",
-    `- [Full profile as plain text](${site.url}/llms-full.txt): experience, projects, stack, languages and credentials`,
-    `- [Resume (PDF)](${site.url}${site.resume})`,
+    "## Profile",
+    `- [Full profile as plain text](${site.url}/llms-full.txt): every role with dates, projects, stack, languages, credentials and education`,
+    `- [English profile](${site.url}/en): experience at Luxor, Genetec, Eu Médico Residente and NSH Technologies, projects and stack`,
+    `- [Resume (PDF)](${site.url}${site.resume}): one-page resume in English`,
     "## Contact",
     `- Email: ${site.email}`,
     `- [LinkedIn](${site.linkedin})`,
     `- [GitHub](${site.github})`,
+    `- [dev.to](${site.devto})`,
+    "## Optional",
+    ...locales
+      .filter((l) => l !== "en")
+      .map((l) => `- [${localeNames[l]}](${site.url}/${l}): the same profile in ${localeNames[l]}`),
+    `Last updated: ${site.updated}`,
   ].join("\n\n")
 }
 
@@ -49,6 +54,7 @@ export function llmsFull(t: Dictionary, now = new Date()) {
     `## ${t.spec.education}`,
     t.spec.degrees.map((d, i) => `- ${d}, ${t.spec.school}, ${educationYears[i]}`).join("\n"),
     `## ${t.nav.contact}`,
-    `- Email: ${site.email}\n- LinkedIn: ${site.linkedin}\n- GitHub: ${site.github}\n- ${t.hero.resume}: ${site.url}${site.resume}`,
+    `- Email: ${site.email}\n- LinkedIn: ${site.linkedin}\n- GitHub: ${site.github}\n- dev.to: ${site.devto}\n- ${t.hero.resume}: ${site.url}${site.resume}`,
+    `${t.footer.updated}: ${site.updated}`,
   ].join("\n\n")
 }

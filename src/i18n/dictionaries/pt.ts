@@ -2,14 +2,15 @@ import type { Dictionary } from "./en"
 
 export const pt: Dictionary = {
   meta: {
-    title: "Diego Câmara | Engenheiro de Software Full-Stack",
+    title: "Diego Câmara | Engenheiro de Software Full-Stack em São Paulo",
     description:
       "Engenheiro de software full-stack com mais de 5 anos entregando produtos em TypeScript, React, Next.js e Node.js. Atualmente na Luxor.",
   },
   profile: {
     about: "Sobre",
     summary:
-      "Sou Diego Câmara, engenheiro de software full-stack em São Paulo, Brasil, com mais de 5 anos de experiência construindo produtos em TypeScript, React, Next.js e Node.js. Trabalho remoto na Luxor, empresa de infraestrutura para mineração de bitcoin, onde construo automação de frotas com Temporal e dashboards em tempo real sobre ClickHouse e PostgreSQL. Antes disso, construí um assistente RAG de documentação com Azure OpenAI na Genetec. Falo português, inglês, francês e espanhol.",
+      "Sou Diego Câmara (Diego Dos Santos Câmara), engenheiro de software full-stack em São Paulo, Brasil, com mais de 5 anos de experiência construindo produtos em TypeScript, React, Next.js e Node.js. Trabalho remoto na Luxor Technology (Luxor), empresa de infraestrutura para mineração de bitcoin, onde construo automação de frotas com Temporal e dashboards em tempo real sobre ClickHouse e PostgreSQL. Antes disso, construí um assistente RAG com Azure OpenAI na Genetec, para uma documentação usada por mais de 53.000 pessoas. Por fora, estou construindo o AdPilotPro, um SaaS de automação de Amazon PPC. Falo português, inglês, francês e espanhol.",
+    jobTitle: "Engenheiro de Software Full-Stack",
   },
   nav: {
     experience: "Experiência",
@@ -23,11 +24,7 @@ export const pt: Dictionary = {
     roleAt: "Engenheiro de Software na",
     remote: "São Paulo, trabalhando remoto",
     portrait: "Retrato de Diego Câmara",
-    pitch: [
-      "Construo software que mantém ",
-      "operações reais funcionando",
-      ", de frotas de mineração a documentação usada por milhares de pessoas.",
-    ],
+    pitch: ["Construo software que mantém ", "operações reais funcionando", ": frotas de mineração de bitcoin na Luxor e documentação usada por mais de 53.000 pessoas na Genetec."],
     email: "Enviar e-mail",
     resume: "Currículo",
   },
@@ -43,15 +40,15 @@ export const pt: Dictionary = {
   },
   highlights: [
     { value: "Centenas de mineradoras", label: "gerenciadas em uma única operação" },
-    { value: "53.000+", label: "usuários atendidos por um assistente RAG" },
+    { value: "53.000+", label: "usuários da documentação atendidos pelo meu assistente RAG" },
     { value: "10+", label: "serviços em um único monorepo" },
     { value: "5+ anos", label: "entregando em produção" },
   ],
   experience: {
     title: "Experiência",
-    sub: "Quatro execuções, uma ainda em andamento. Todas com times remotos, de Seattle a Montreal e Recife.",
+    sub: "Quatro cargos de engenharia de software desde julho de 2021, todos remotos: Luxor (atual), Genetec, Eu Médico Residente e NSH Technologies.",
     jobTitle: "Engenheiro de Software",
-    team: "time de {hq}",
+    team: "remoto, time sediado em {hq}",
     running: "Em execução",
     completed: "Concluído",
     present: "Atual",
@@ -93,9 +90,9 @@ export const pt: Dictionary = {
       techdoc: "Portal multilíngue de conteúdo técnico da Genetec, onde vive o assistente RAG.",
       medclub: "Plataforma de ensino para residentes de medicina com vídeo adaptativo.",
       tambasa: "E-commerce B2B entregue antes do prazo de um IPO.",
-      armazem: "E-commerce de varejo com um checkout mais rápido.",
+      armazem: "E-commerce de varejo da Armazém Paraíba, rede varejista brasileira.",
       sinsa: "E-commerce responsivo para um varejista da Nicarágua.",
-      rider: "E-commerce de calçados com um checkout simplificado.",
+      rider: "E-commerce de calçados da Rider, marca brasileira de sandálias.",
     },
     adpilot: {
       summary:
@@ -120,6 +117,7 @@ export const pt: Dictionary = {
     school: "Universidade Cruzeiro do Sul",
     degrees: ["Bacharelado em Engenharia de Software", "Tecnólogo em Análise e Desenvolvimento de Sistemas"],
   },
+  footer: { updated: "Última atualização" },
   contact: {
     title: "Construindo algo que precisa funcionar?",
     titleMuted: "Vamos conversar.",

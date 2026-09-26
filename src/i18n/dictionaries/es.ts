@@ -2,14 +2,15 @@ import type { Dictionary } from "./en"
 
 export const es: Dictionary = {
   meta: {
-    title: "Diego Câmara | Ingeniero de Software Full-Stack",
+    title: "Diego Câmara | Ingeniero de Software Full-Stack en São Paulo",
     description:
       "Ingeniero de software full-stack con más de 5 años entregando productos en TypeScript, React, Next.js y Node.js. Actualmente en Luxor.",
   },
   profile: {
     about: "Sobre mí",
     summary:
-      "Soy Diego Câmara, ingeniero de software full-stack en São Paulo, Brasil, con más de 5 años de experiencia construyendo productos en TypeScript, React, Next.js y Node.js. Trabajo en remoto en Luxor, una empresa de infraestructura para minería de bitcoin, donde construyo automatización de flotas con Temporal y dashboards en tiempo real sobre ClickHouse y PostgreSQL. Antes, construí un asistente RAG de documentación con Azure OpenAI en Genetec. Hablo portugués, inglés, francés y español.",
+      "Soy Diego Câmara (Diego Dos Santos Câmara), ingeniero de software full-stack en São Paulo, Brasil, con más de 5 años de experiencia construyendo productos en TypeScript, React, Next.js y Node.js. Trabajo en remoto en Luxor Technology (Luxor), una empresa de infraestructura para minería de bitcoin, donde construyo automatización de flotas con Temporal y dashboards en tiempo real sobre ClickHouse y PostgreSQL. Antes, construí un asistente RAG con Azure OpenAI en Genetec, para una documentación que usan más de 53.000 personas. Por mi cuenta, estoy construyendo AdPilotPro, un SaaS de automatización de Amazon PPC. Hablo portugués, inglés, francés y español.",
+    jobTitle: "Ingeniero de Software Full-Stack",
   },
   nav: {
     experience: "Experiencia",
@@ -23,11 +24,7 @@ export const es: Dictionary = {
     roleAt: "Ingeniero de Software en",
     remote: "São Paulo, trabajando en remoto",
     portrait: "Retrato de Diego Câmara",
-    pitch: [
-      "Construyo software que mantiene ",
-      "operaciones reales en marcha",
-      ", desde flotas de minería hasta documentación que usan miles de personas.",
-    ],
+    pitch: ["Construyo software que mantiene ", "operaciones reales en marcha", ": flotas de minería de bitcoin en Luxor y documentación que usan más de 53.000 personas en Genetec."],
     email: "Escríbeme",
     resume: "Currículum",
   },
@@ -43,15 +40,15 @@ export const es: Dictionary = {
   },
   highlights: [
     { value: "Cientos de mineros", label: "gestionados en una sola operación" },
-    { value: "53.000+", label: "usuarios atendidos por un asistente RAG" },
+    { value: "53.000+", label: "usuarios de la documentación atendidos por mi asistente RAG" },
     { value: "10+", label: "servicios en un solo monorepo" },
     { value: "5+ años", label: "entregando a producción" },
   ],
   experience: {
     title: "Experiencia",
-    sub: "Cuatro ejecuciones, una todavía en curso. Todos equipos remotos, de Seattle a Montreal y Recife.",
+    sub: "Cuatro puestos de ingeniería de software desde julio de 2021, todos en remoto: Luxor (actual), Genetec, Eu Médico Residente y NSH Technologies.",
     jobTitle: "Ingeniero de Software",
-    team: "equipo de {hq}",
+    team: "en remoto, equipo con sede en {hq}",
     running: "En curso",
     completed: "Completado",
     present: "Actual",
@@ -93,9 +90,9 @@ export const es: Dictionary = {
       techdoc: "Portal multilingüe de contenido técnico de Genetec, donde vive el asistente RAG.",
       medclub: "Plataforma de aprendizaje para residentes de medicina con video adaptativo.",
       tambasa: "Tienda en línea B2B entregada antes del plazo de una salida a bolsa.",
-      armazem: "Tienda en línea minorista con un checkout más rápido.",
+      armazem: "Tienda en línea de Armazém Paraíba, una cadena minorista brasileña.",
       sinsa: "Tienda en línea responsive para un minorista nicaragüense.",
-      rider: "Tienda en línea de calzado con un checkout simplificado.",
+      rider: "Tienda en línea de Rider, una marca brasileña de sandalias.",
     },
     adpilot: {
       summary:
@@ -120,6 +117,7 @@ export const es: Dictionary = {
     school: "Universidad Cruzeiro do Sul",
     degrees: ["Licenciatura en Ingeniería de Software", "Técnico en Análisis y Desarrollo de Sistemas"],
   },
+  footer: { updated: "Última actualización" },
   contact: {
     title: "¿Construyes algo que tiene que funcionar?",
     titleMuted: "Hablemos.",

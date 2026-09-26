@@ -26,3 +26,12 @@ export function pickLocale(header: string | null): Locale {
     .sort((a, b) => b.weight - a.weight)
   return ranked.map((l) => l.lang).find(hasLocale) ?? defaultLocale
 }
+
+// "/" is negotiated per visitor (307 + Vary). Any other locale-less path is a leftover URL
+// (e.g. the old blog's /about, /posts/...), so it moves permanently to the profile.
+export function redirectFor(pathname: string, acceptLanguage: string | null) {
+  const first = pathname.split("/")[1] ?? ""
+  if (hasLocale(first)) return null
+  const to = `/${pickLocale(acceptLanguage)}`
+  return { to, status: pathname === "/" ? 307 : 308 } as const
+}

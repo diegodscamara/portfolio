@@ -83,7 +83,8 @@ export function FleetRollout({ t }: { t: Dictionary["fleet"] }) {
   }, [run])
 
   return (
-    <figure className="w-full">
+    // Illustration only: keep its counters out of search snippets and AI extracts.
+    <figure className="w-full" data-nosnippet>
       <div className="rounded-lg border bg-card/70 shadow-[0_40px_80px_-40px_oklch(0.2_0.02_60/0.5)] backdrop-blur">
         <div className="flex items-center justify-between gap-3 border-b px-4 py-3">
           <p className="font-mono text-xs text-muted-foreground">
@@ -103,7 +104,7 @@ export function FleetRollout({ t }: { t: Dictionary["fleet"] }) {
             <span key={i} className="fleet-tile aspect-square rounded-[2px]" data-state="idle" />
           ))}
         </div>
-        <dl className="grid grid-cols-3 border-t font-mono text-xs">
+        <dl aria-hidden className="grid grid-cols-3 border-t font-mono text-xs">
           {[
             [t.batch, batch, `0/${plan.batches}`],
             [t.updated, done, `0/${TILES}`],

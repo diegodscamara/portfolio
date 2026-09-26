@@ -57,7 +57,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
         <Spec lang={lang} t={t} />
         <Contact t={t} />
       </main>
-      <Footer />
+      <Footer t={t} />
     </>
   )
 }
@@ -211,8 +211,8 @@ function Metrics({ t }: { t: Dictionary }) {
               i > 0 && "lg:pl-6",
             )}
           >
-            <dt className="order-2 mt-1 text-sm text-muted-foreground">{h.label}</dt>
-            <dd className="text-2xl font-semibold tracking-tighter text-balance md:text-3xl">{h.value}</dd>
+            <dt className="text-2xl font-semibold tracking-tighter text-balance md:text-3xl">{h.value}</dt>
+            <dd className="mt-1 text-sm text-muted-foreground">{h.label}</dd>
           </div>
         ))}
       </dl>
@@ -245,15 +245,15 @@ function Experience({ lang, t }: { lang: Locale; t: Dictionary }) {
                   />
                 </span>
                 <div className="font-mono text-xs text-muted-foreground tabular-nums md:pt-5 md:pr-4 md:text-right">
-                  {month(r.start)}
+                  <time dateTime={r.start}>{month(r.start)}</time>
                   <br className="hidden md:block" />
                   <span className="md:hidden"> - </span>
-                  {r.end ? month(r.end) : e.present}
+                  {r.end ? <time dateTime={r.end}>{month(r.end)}</time> : e.present}
                 </div>
                 <details open={i === 0} className="group rounded-lg border bg-background md:ml-4">
                   <summary className="flex cursor-pointer list-none flex-wrap items-center gap-x-5 gap-y-2 p-5 [&::-webkit-details-marker]:hidden">
                     <span className="min-w-0 flex-1 basis-56">
-                      <span className="block text-lg font-semibold tracking-tight">{r.company}</span>
+                      <h3 className="text-lg font-semibold tracking-tight">{r.company}</h3>
                       <span className="block text-sm text-muted-foreground">
                         {e.jobTitle}, {e.team.replace("{hq}", r.hq)}
                       </span>
@@ -390,7 +390,7 @@ function Earlier({ items, t }: { items: Project[]; t: Dictionary }) {
           <li key={p.id}>
             <a href={p.url} {...ext} className="group relative flex items-center gap-4 py-4 md:gap-6">
               <span className="relative aspect-[16/10] w-20 shrink-0 overflow-hidden rounded-md border lg:hidden">
-                <Image src={p.image} alt="" fill sizes="80px" className="object-cover object-top" />
+                <Image src={p.image} alt={`${p.name} homepage`} fill sizes="80px" className="object-cover object-top" />
               </span>
               <span className="min-w-0 flex-1 md:grid md:grid-cols-[14rem_1fr] md:items-baseline md:gap-6 lg:pr-80">
                 <span className="block font-medium tracking-tight transition group-hover:text-brand-ink">{p.name}</span>
@@ -401,8 +401,8 @@ function Earlier({ items, t }: { items: Project[]; t: Dictionary }) {
               </span>
               <ArrowUpRight className="size-4 shrink-0 text-muted-foreground transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               {/* Hover preview for pointer devices; small inline thumbnails cover touch screens. */}
-              <span className="pointer-events-none absolute top-1/2 right-16 z-10 hidden aspect-[16/10] w-72 -translate-y-1/2 scale-95 overflow-hidden rounded-lg border bg-card opacity-0 shadow-2xl transition duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-100 group-hover:opacity-100 lg:block">
-                <Image src={p.image} alt="" fill sizes="288px" className="object-cover object-top" />
+              <span aria-hidden className="pointer-events-none absolute top-1/2 right-16 z-10 hidden aspect-[16/10] w-72 -translate-y-1/2 scale-95 overflow-hidden rounded-lg border bg-card opacity-0 shadow-2xl transition duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-100 group-hover:opacity-100 lg:block">
+                <Image src={p.image} alt={`${p.name} homepage preview`} fill sizes="288px" className="object-cover object-top" />
               </span>
             </a>
           </li>
@@ -513,12 +513,14 @@ function Contact({ t }: { t: Dictionary }) {
   )
 }
 
-function Footer() {
+function Footer({ t }: { t: Dictionary }) {
   return (
     <footer className="border-t">
       <div className={cn(container, "flex flex-wrap items-center justify-between gap-4 py-8 text-sm text-muted-foreground")}>
         <p>
-          © {new Date().getFullYear()} {site.name}
+          © {site.updated.slice(0, 4)} {site.name}
+          <span className="mx-2">·</span>
+          {t.footer.updated} <time dateTime={site.updated}>{site.updated}</time>
         </p>
         <nav aria-label="Elsewhere" className="flex gap-5">
           <a href={site.linkedin} {...ext} className="hover:text-foreground">
@@ -526,6 +528,9 @@ function Footer() {
           </a>
           <a href={site.github} {...ext} className="hover:text-foreground">
             GitHub
+          </a>
+          <a href={site.devto} {...ext} className="hover:text-foreground">
+            dev.to
           </a>
           <a href={site.resume} {...ext} className="hover:text-foreground">
             CV
