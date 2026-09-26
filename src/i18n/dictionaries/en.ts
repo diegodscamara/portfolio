@@ -1,8 +1,13 @@
 export const en = {
   meta: {
-    title: "Diego Câmara, Software Engineer",
+    title: "Diego Câmara | Full-Stack Software Engineer",
     description:
       "Full-stack software engineer with 5+ years shipping TypeScript, React, Next.js and Node.js products. Currently at Luxor.",
+  },
+  profile: {
+    about: "About",
+    summary:
+      "I am Diego Câmara, a full-stack software engineer based in São Paulo, Brazil, with 5+ years of experience building TypeScript, React, Next.js and Node.js products. I work remotely at Luxor, a bitcoin mining infrastructure company, where I build fleet automation with Temporal and real-time dashboards on ClickHouse and PostgreSQL. Before that, I built a RAG documentation assistant on Azure OpenAI at Genetec. I speak Portuguese, English, French and Spanish.",
   },
   nav: {
     experience: "Experience",

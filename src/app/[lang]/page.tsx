@@ -17,13 +17,11 @@ import {
   stack,
   type Project,
 } from "@/lib/data"
-import { formatDuration } from "@/lib/duration"
+import { formatDuration, formatMonth } from "@/lib/duration"
 import { cn } from "@/lib/utils"
 
 // Rebuild daily so the "Running" role duration stays current.
 export const revalidate = 86400
-
-const intlLocale: Record<Locale, string> = { en: "en-US", pt: "pt-BR", fr: "fr-FR", es: "es-ES" }
 
 const pill =
   "inline-flex h-11 items-center gap-2 rounded-full px-5 text-sm font-medium whitespace-nowrap transition active:scale-[0.98]"
@@ -224,8 +222,7 @@ function Metrics({ t }: { t: Dictionary }) {
 
 function Experience({ lang, t }: { lang: Locale; t: Dictionary }) {
   const e = t.experience
-  const month = (ym: string) =>
-    new Date(`${ym}-01T00:00:00Z`).toLocaleString(intlLocale[lang], { month: "short", year: "numeric", timeZone: "UTC" })
+  const month = (ym: string) => formatMonth(ym, lang)
   return (
     <section id="experience" className="bg-card/40">
       <div className={cn(container, "py-20 md:py-28")}>
@@ -430,6 +427,9 @@ function Spec({ lang, t }: { lang: Locale; t: Dictionary }) {
     <section id="spec" className="bg-card/40">
       <div className={cn(container, "py-20 md:py-28")}>
         <h2 className={cn(h2, "mb-10")}>{s.title}</h2>
+        <SpecRow id="about" label={t.profile.about}>
+          <p className="max-w-[65ch] text-lg leading-relaxed text-pretty">{t.profile.summary}</p>
+        </SpecRow>
         <SpecRow id="stack" label={s.stack}>
           <div className="grid gap-8 sm:grid-cols-2">
             {stack.map((items, i) => (

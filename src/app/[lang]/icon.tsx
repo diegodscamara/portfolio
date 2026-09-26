@@ -1,7 +1,9 @@
 import { ImageResponse } from "next/og"
+import { locales } from "@/i18n/config"
 
 export const size = { width: 64, height: 64 }
 export const contentType = "image/png"
+export const generateStaticParams = () => locales.map((lang) => ({ lang }))
 
 // Same 3x3 tile mark as the nav: eight idle tiles, one running.
 export default function Icon() {

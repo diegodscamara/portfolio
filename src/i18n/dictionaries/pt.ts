@@ -2,9 +2,14 @@ import type { Dictionary } from "./en"
 
 export const pt: Dictionary = {
   meta: {
-    title: "Diego Câmara, Engenheiro de Software",
+    title: "Diego Câmara | Engenheiro de Software Full-Stack",
     description:
       "Engenheiro de software full-stack com mais de 5 anos entregando produtos em TypeScript, React, Next.js e Node.js. Atualmente na Luxor.",
+  },
+  profile: {
+    about: "Sobre",
+    summary:
+      "Sou Diego Câmara, engenheiro de software full-stack em São Paulo, Brasil, com mais de 5 anos de experiência construindo produtos em TypeScript, React, Next.js e Node.js. Trabalho remoto na Luxor, empresa de infraestrutura para mineração de bitcoin, onde construo automação de frotas com Temporal e dashboards em tempo real sobre ClickHouse e PostgreSQL. Antes disso, construí um assistente RAG de documentação com Azure OpenAI na Genetec. Falo português, inglês, francês e espanhol.",
   },
   nav: {
     experience: "Experiência",

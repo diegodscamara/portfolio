@@ -4,7 +4,7 @@ import { notFound } from "next/navigation"
 import { ThemeProvider } from "next-themes"
 import { hasLocale, locales } from "@/i18n/config"
 import { getDictionary } from "@/i18n/dictionaries"
-import { site } from "@/lib/data"
+import { credentials, site, stack } from "@/lib/data"
 import "../globals.css"
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] })
@@ -42,17 +42,37 @@ export const viewport: Viewport = {
 export default async function RootLayout({ children, params }: LayoutProps<"/[lang]">) {
   const { lang } = await params
   if (!hasLocale(lang)) notFound()
-  const personLd = {
+  const t = getDictionary(lang)
+  const personId = `${site.url}/#person`
+  const profileLd = {
     "@context": "https://schema.org",
-    "@type": "Person",
-    name: site.name,
-    jobTitle: getDictionary(lang).experience.jobTitle,
-    url: site.url,
-    email: `mailto:${site.email}`,
-    knowsLanguage: ["pt", "en", "fr", "es"],
-    worksFor: { "@type": "Organization", name: "Luxor", url: "https://luxor.tech" },
-    address: { "@type": "PostalAddress", addressLocality: "São Paulo", addressCountry: "BR" },
-    sameAs: [site.linkedin, site.github],
+    "@type": "ProfilePage",
+    url: `${site.url}/${lang}`,
+    inLanguage: lang,
+    dateModified: new Date().toISOString().slice(0, 10),
+    mainEntity: {
+      "@type": "Person",
+      "@id": personId,
+      name: site.name,
+      alternateName: "Diego Dos Santos Câmara",
+      jobTitle: t.experience.jobTitle,
+      description: t.profile.summary,
+      url: site.url,
+      image: `${site.url}/profile.jpeg`,
+      email: `mailto:${site.email}`,
+      knowsLanguage: ["pt-BR", "en", "fr", "es"],
+      knowsAbout: stack.flat(),
+      worksFor: { "@type": "Organization", name: "Luxor Technology", url: "https://luxor.tech" },
+      alumniOf: { "@type": "CollegeOrUniversity", name: "Universidade Cruzeiro do Sul" },
+      homeLocation: { "@type": "Place", name: "São Paulo, Brazil" },
+      hasCredential: credentials.map((c) => ({
+        "@type": "EducationalOccupationalCredential",
+        name: c.name,
+        recognizedBy: { "@type": "Organization", name: c.issuer },
+        dateCreated: c.year,
+      })),
+      sameAs: [site.linkedin, site.github],
+    },
   }
   return (
     <html lang={lang} suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
@@ -60,7 +80,7 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           {children}
         </ThemeProvider>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(profileLd).replace(/</g, "\\u003c") }} />
       </body>
     </html>
   )

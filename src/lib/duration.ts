@@ -21,3 +21,12 @@ export function formatDuration(start: string, end: string | null, now = new Date
   const m = months % 12
   return [y && plural(y, units.yr), m && plural(m, units.mo)].filter(Boolean).join(" ")
 }
+
+const intlLocale: Record<string, string> = { en: "en-US", pt: "pt-BR", fr: "fr-FR", es: "es-ES" }
+
+export const formatMonth = (ym: string, lang = "en") =>
+  new Date(`${ym}-01T00:00:00Z`).toLocaleString(intlLocale[lang] ?? lang, {
+    month: "short",
+    year: "numeric",
+    timeZone: "UTC",
+  })
