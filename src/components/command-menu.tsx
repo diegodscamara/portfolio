@@ -3,6 +3,8 @@
 import * as React from "react"
 import dynamic from "next/dynamic"
 import { Search } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Kbd } from "@/components/ui/kbd"
 import type { PaletteProps } from "./command-palette"
 
 // cmdk and the dialog only download once someone opens the palette.
@@ -30,20 +32,20 @@ export function CommandMenu(props: PaletteProps) {
 
   return (
     <>
-      <button
-        type="button"
+      <Button
+        variant="outline"
         onClick={() => toggle(true)}
         // Warm the chunk on hover/focus so the first open feels instant.
         onPointerEnter={() => void import("./command-palette")}
         onFocus={() => void import("./command-palette")}
-        className="inline-flex size-9 items-center justify-center gap-2 rounded-full border bg-card/60 text-sm text-muted-foreground transition hover:text-foreground active:scale-[0.98] sm:w-auto sm:pr-1.5 sm:pl-3"
+        className="size-9 gap-2 rounded-full font-normal text-muted-foreground sm:w-auto sm:pr-1.5 sm:pl-3"
         aria-keyshortcuts="Meta+K Control+K"
         title={props.t.open}
       >
         <Search className="size-4" aria-hidden />
         <span className="sr-only sm:not-sr-only">{props.t.search}</span>
-        <kbd className="hidden rounded-full border bg-background px-2 py-0.5 font-mono text-[11px] sm:inline">⌘K</kbd>
-      </button>
+        <Kbd className="hidden rounded-full px-2 font-mono sm:inline-flex">⌘K</Kbd>
+      </Button>
       {loaded && <CommandPalette {...props} open={open} setOpen={setOpen} />}
     </>
   )

@@ -30,6 +30,9 @@ const buttonVariants = cva(
         "icon-sm":
           "size-7 rounded-[min(var(--radius-md),12px)] in-data-[slot=button-group]:rounded-lg",
         "icon-lg": "size-9",
+        // Site-specific: the portfolio uses full pills for every call to action.
+        pill: "h-11 gap-2 rounded-full px-5 active:scale-[0.98]",
+        "icon-pill": "size-9 rounded-full active:scale-[0.96]",
       },
     },
     defaultVariants: {

@@ -2,12 +2,16 @@
 
 import { Check, Globe } from "lucide-react"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import { buttonVariants } from "@/components/ui/button"
 import { localeNames, locales, type Locale } from "@/i18n/config"
+import { cn } from "@/lib/utils"
 
 export function LangSwitch({ lang, label }: { lang: Locale; label: string }) {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="flex h-9 cursor-pointer items-center gap-1.5 rounded-full border bg-card/60 px-3 font-mono text-xs text-muted-foreground transition outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring active:scale-[0.98] data-popup-open:text-foreground">
+      <DropdownMenuTrigger
+        className={cn(buttonVariants({ variant: "outline" }), "h-9 gap-1.5 rounded-full px-3 font-mono text-xs font-normal text-muted-foreground")}
+      >
         <Globe className="size-3.5" aria-hidden />
         <span className="sr-only">{label}: </span>
         {lang.toUpperCase()}
