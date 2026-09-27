@@ -1,0 +1,20 @@
+name: IndexNow
+
+# Vercel reports each deployment back to GitHub; ping IndexNow once production is live.
+on: deployment_status
+
+permissions:
+  contents: read
+
+jobs:
+  ping:
+    if: github.event.deployment_status.state == 'success' && github.event.deployment.environment == 'Production'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version-file: package.json
+      - name: Notify IndexNow (Bing, Yandex, Seznam, Naver...)
+        run: bun run indexnow

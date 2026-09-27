@@ -7,7 +7,8 @@ Next.js 16 (App Router), Tailwind CSS v4, shadcn/ui, bun.
 ```bash
 bun install
 bun dev        # http://localhost:3000
-bun test       # unit tests
+bun run test   # unit tests
+bun run e2e    # Playwright end-to-end (after bun run build)
 bun run build
 ```
 
