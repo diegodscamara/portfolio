@@ -4,7 +4,8 @@ import * as React from "react"
 import { flushSync } from "react-dom"
 import { useTheme } from "next-themes"
 import { Check, Copy, MoonStar, Sun } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { buttonVariants } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
 import { copyText } from "@/lib/clipboard"
 
 // Theme switch as a circular reveal from the click point (View Transitions API).
@@ -42,19 +43,18 @@ export function useThemeSwitch() {
 export function ThemeToggle({ toLight, toDark }: { toLight: string; toDark: string }) {
   const { next, toggle } = useThemeSwitch()
   return (
-    <Button
-      variant="outline"
-      size="icon-pill"
+    <button
+      type="button"
       onClick={(e) => {
         const b = e.currentTarget.getBoundingClientRect()
         toggle({ x: b.left + b.width / 2, y: b.top + b.height / 2 })
       }}
       aria-label={next === "light" ? toLight : toDark}
-      className="relative overflow-hidden text-muted-foreground"
+      className={cn(buttonVariants({ variant: "outline", size: "icon-pill" }), "relative overflow-hidden text-muted-foreground")}
     >
       <Sun className="absolute size-4 scale-0 -rotate-90 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] dark:scale-100 dark:rotate-0" />
       <MoonStar className="absolute size-4 scale-100 rotate-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] dark:scale-0 dark:rotate-90" />
-    </Button>
+    </button>
   )
 }
 
@@ -67,11 +67,11 @@ export function CopyEmail({ email, t }: { email: string; t: CopyLabels }) {
     setTimeout(() => setState("idle"), 1800)
   }
   return (
-    <Button variant="outline" size="pill" onClick={onClick}>
+    <button type="button" onClick={onClick} className={cn(buttonVariants({ variant: "outline", size: "pill" }))}>
       {state === "copied" ? <Check className="size-4 text-brand-ink" /> : <Copy className="size-4" />}
       <span aria-live="polite">
         {state === "copied" ? t.copied : state === "failed" ? t.copyFailed : t.copy}
       </span>
-    </Button>
+    </button>
   )
 }

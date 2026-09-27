@@ -1,34 +1,54 @@
 "use client"
 
-import { Check, Globe } from "lucide-react"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import * as React from "react"
+import dynamic from "next/dynamic"
+import { Globe } from "lucide-react"
 import { buttonVariants } from "@/components/ui/button"
-import { localeNames, locales, type Locale } from "@/i18n/config"
+import type { Locale } from "@/i18n/config"
 import { cn } from "@/lib/utils"
 
-export function LangSwitch({ lang, label }: { lang: Locale; label: string }) {
+export type LangProps = { lang: Locale; label: string }
+
+export const langTriggerClass = cn(
+  buttonVariants({ variant: "outline" }),
+  "h-9 gap-1.5 rounded-full px-3 font-mono text-xs font-normal text-muted-foreground",
+)
+
+function StaticTrigger({ lang, label, ...props }: LangProps & React.ComponentProps<"button">) {
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger
-        className={cn(buttonVariants({ variant: "outline" }), "h-9 gap-1.5 rounded-full px-3 font-mono text-xs font-normal text-muted-foreground")}
-      >
-        <Globe className="size-3.5" aria-hidden />
-        <span className="sr-only">{label}: </span>
-        {lang.toUpperCase()}
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" sideOffset={8} className="w-40 rounded-lg border p-1 shadow-xl ring-0">
-        {locales.map((l) => (
-          <DropdownMenuItem
-            key={l}
-            // Real links, so each choice is a normal navigation (and middle-click still works).
-            render={<a href={`/${l}`} hrefLang={l} lang={l} aria-current={l === lang ? "page" : undefined} />}
-            className="flex cursor-pointer justify-between rounded-md px-3 py-2 text-sm"
-          >
-            {localeNames[l]}
-            {l === lang && <Check className="size-3.5 text-brand-ink" aria-hidden />}
-          </DropdownMenuItem>
-        ))}
-      </DropdownMenuContent>
-    </DropdownMenu>
+    <button type="button" aria-haspopup="menu" className={langTriggerClass} {...props}>
+      <Globe className="size-3.5" aria-hidden />
+      <span className="sr-only">{label}: </span>
+      {lang.toUpperCase()}
+    </button>
+  )
+}
+
+const LangMenu = dynamic(() => import("./lang-menu"), {
+  ssr: false,
+  loading: () => null,
+})
+
+// Renders a look-alike button until the visitor reaches for it, then swaps in the real shadcn menu.
+export function LangSwitch(props: LangProps) {
+  const [state, setState] = React.useState<"idle" | "warm" | "open">("idle")
+  const [ready, setReady] = React.useState(false)
+  const [focused, setFocused] = React.useState(false)
+  React.useEffect(() => {
+    if (state !== "idle") void import("./lang-menu").then(() => setReady(true))
+  }, [state])
+
+  if (ready) return <LangMenu {...props} defaultOpen={state === "open"} focus={focused} />
+  return (
+    <StaticTrigger
+      {...props}
+      onPointerEnter={() => setState((s) => (s === "idle" ? "warm" : s))}
+      onFocus={() => {
+        setFocused(true)
+        setState((s) => (s === "idle" ? "warm" : s))
+      }}
+      onBlur={() => setFocused(false)}
+      onClick={() => setState("open")}
+    />
   )
 }

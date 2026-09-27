@@ -3,7 +3,8 @@
 import * as React from "react"
 import dynamic from "next/dynamic"
 import { Search } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { buttonVariants } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
 import { Kbd } from "@/components/ui/kbd"
 import type { PaletteProps } from "./command-palette"
 
@@ -32,20 +33,23 @@ export function CommandMenu(props: PaletteProps) {
 
   return (
     <>
-      <Button
-        variant="outline"
+      <button
+        type="button"
         onClick={() => toggle(true)}
         // Warm the chunk on hover/focus so the first open feels instant.
         onPointerEnter={() => void import("./command-palette")}
         onFocus={() => void import("./command-palette")}
-        className="size-9 gap-2 rounded-full font-normal text-muted-foreground sm:w-auto sm:pr-1.5 sm:pl-3"
+        className={cn(
+          buttonVariants({ variant: "outline" }),
+          "size-9 gap-2 rounded-full font-normal text-muted-foreground sm:w-auto sm:pr-1.5 sm:pl-3",
+        )}
         aria-keyshortcuts="Meta+K Control+K"
         title={props.t.open}
       >
         <Search className="size-4" aria-hidden />
         <span className="sr-only sm:not-sr-only">{props.t.search}</span>
         <Kbd className="hidden rounded-full px-2 font-mono sm:inline-flex">⌘K</Kbd>
-      </Button>
+      </button>
       {loaded && <CommandPalette {...props} open={open} setOpen={setOpen} />}
     </>
   )
