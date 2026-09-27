@@ -36,7 +36,7 @@ export function CommandMenu(props: PaletteProps) {
         // Warm the chunk on hover/focus so the first open feels instant.
         onPointerEnter={() => void import("./command-palette")}
         onFocus={() => void import("./command-palette")}
-        className="inline-flex h-9 items-center gap-2 rounded-full border bg-card/60 pr-1.5 pl-3 text-sm text-muted-foreground transition hover:text-foreground active:scale-[0.98]"
+        className="inline-flex size-9 items-center justify-center gap-2 rounded-full border bg-card/60 text-sm text-muted-foreground transition hover:text-foreground active:scale-[0.98] sm:w-auto sm:pr-1.5 sm:pl-3"
         aria-keyshortcuts="Meta+K Control+K"
         title={props.t.open}
       >
