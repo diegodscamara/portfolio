@@ -1,10 +1,14 @@
 import Image from "next/image"
 import { notFound } from "next/navigation"
-import { ArrowUpRight, CheckCircle2, ChevronDown, FileText, Mail } from "lucide-react"
+import { ArrowUpRight, CheckCircle2, FileText, Mail } from "lucide-react"
 import { CommandMenu } from "@/components/command-menu"
 import { CopyEmail, ThemeToggle } from "@/components/client-bits"
 import { FleetRollout } from "@/components/fleet-rollout"
 import { LangSwitch } from "@/components/lang-switch"
+import { Reveal } from "@/components/reveal"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { Badge } from "@/components/ui/badge"
+import { buttonVariants } from "@/components/ui/button"
 import { hasLocale, locales, type Locale } from "@/i18n/config"
 import { getDictionary, type Dictionary } from "@/i18n/dictionaries"
 import {
@@ -24,11 +28,11 @@ import { cn } from "@/lib/utils"
 // Rebuild daily so the "Running" role duration stays current.
 export const revalidate = 86400
 
-const pill =
-  "inline-flex h-11 items-center gap-2 rounded-full px-5 text-sm font-medium whitespace-nowrap transition active:scale-[0.98]"
-const primaryPill = cn(pill, "bg-primary text-primary-foreground hover:opacity-90")
-const outlinePill = cn(pill, "border hover:bg-muted")
-const chip = "rounded-full border px-2.5 py-1 font-mono text-xs text-muted-foreground"
+// cn() merges conflicting classes (base border-transparent vs outline border), as shadcn's <Button> does.
+const primaryPill = cn(buttonVariants({ size: "pill" }))
+const outlinePill = cn(buttonVariants({ variant: "outline", size: "pill" }))
+// Tech tags: shadcn Badge, tuned to the site's mono pill style.
+const tagClass = "h-auto rounded-full px-2.5 py-1 font-mono font-normal text-muted-foreground"
 const container = "mx-auto w-full max-w-6xl px-4 sm:px-6"
 const h2 = "text-3xl font-semibold tracking-tighter md:text-4xl"
 const ext = { target: "_blank", rel: "noopener noreferrer" } as const
@@ -46,11 +50,11 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
         <Metrics t={t} />
         <Experience lang={lang} t={t} />
         <section id="work" className={cn(container, "py-20 md:py-28")}>
-          <h2 className={h2}>{t.work.title}</h2>
-          <p className="mt-3 max-w-2xl leading-relaxed text-muted-foreground">{t.work.sub}</p>
+          <h2 data-reveal className={h2}>{t.work.title}</h2>
+          <p data-reveal style={{ "--i": 1 } as React.CSSProperties} className="mt-3 max-w-2xl leading-relaxed text-muted-foreground">{t.work.sub}</p>
           <div className="mt-12 grid gap-x-6 gap-y-10 lg:grid-cols-12">
             <Featured p={commander} t={t} className="lg:col-span-7" />
-            <Featured p={energy} t={t} className="lg:col-span-5" />
+            <Featured p={energy} t={t} i={1} className="lg:col-span-5" />
           </div>
           <SideProject t={t} />
           <Earlier items={earlier} t={t} />
@@ -59,6 +63,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
         <Contact t={t} />
       </main>
       <Footer t={t} />
+      <Reveal />
     </>
   )
 }
@@ -97,7 +102,7 @@ function Nav({ lang, t }: { lang: Locale; t: Dictionary }) {
             <a
               key={href}
               href={href}
-              className="rounded-full px-3 py-1.5 text-sm text-muted-foreground transition hover:bg-muted hover:text-foreground"
+              className={cn(buttonVariants({ variant: "ghost", size: "sm" }), "rounded-full px-3 text-muted-foreground")}
             >
               {label}
             </a>
@@ -175,6 +180,8 @@ function Metrics({ t }: { t: Dictionary }) {
         {t.highlights.map((h, i) => (
           <div
             key={h.value}
+            data-reveal
+            style={{ "--i": i } as React.CSSProperties}
             className={cn(
               "flex flex-col py-8 pr-4",
               i % 2 === 1 && "border-l pl-4 sm:pl-6",
@@ -198,13 +205,27 @@ function Experience({ lang, t }: { lang: Locale; t: Dictionary }) {
   return (
     <section id="experience" className="bg-card/40">
       <div className={cn(container, "py-20 md:py-28")}>
-        <h2 className={h2}>{e.title}</h2>
-        <p className="mt-3 max-w-2xl leading-relaxed text-muted-foreground">{e.sub}</p>
-        <ol className="relative mt-12 space-y-4 before:absolute before:top-2 before:bottom-2 before:left-[7px] before:w-px before:bg-border md:before:left-[9.5rem]">
+        <h2 data-reveal className={h2}>{e.title}</h2>
+        <p data-reveal style={{ "--i": 1 } as React.CSSProperties} className="mt-3 max-w-2xl leading-relaxed text-muted-foreground">{e.sub}</p>
+        {/* hiddenUntilFound keeps closed entries in the HTML (crawlable, and Ctrl+F opens them). */}
+        <Accordion
+          multiple
+          hiddenUntilFound
+          defaultValue={[experience[0].id]}
+          render={<ol />}
+          className="relative mt-12 gap-4 before:absolute before:top-2 before:bottom-2 before:left-[7px] before:w-px before:bg-border md:before:left-[9.5rem]"
+        >
           {experience.map((r, i) => {
             const running = r.end === null
             return (
-              <li key={r.id} className="relative grid gap-3 pl-8 md:grid-cols-[8.5rem_1fr] md:gap-10 md:pl-0">
+              <AccordionItem
+                key={r.id}
+                value={r.id}
+                render={<li />}
+                data-reveal
+                style={{ "--i": i } as React.CSSProperties}
+                className="relative grid gap-3 pl-8 not-last:border-b-0 md:grid-cols-[8.5rem_1fr] md:gap-10 md:pl-0"
+              >
                 <span
                   aria-hidden
                   className={cn(
@@ -222,17 +243,17 @@ function Experience({ lang, t }: { lang: Locale; t: Dictionary }) {
                   <span className="md:hidden"> - </span>
                   {r.end ? <time dateTime={r.end}>{month(r.end)}</time> : e.present}
                 </div>
-                <details open={i === 0} className="group rounded-lg border bg-background md:ml-4">
-                  <summary className="flex cursor-pointer list-none flex-wrap items-center gap-x-5 gap-y-2 p-5 [&::-webkit-details-marker]:hidden">
+                <div className="rounded-lg border bg-background md:ml-4">
+                  <AccordionTrigger className="flex-wrap items-center gap-x-5 gap-y-2 rounded-lg p-5 hover:no-underline **:data-[slot=accordion-trigger-icon]:ml-0">
                     <span className="min-w-0 flex-1 basis-56">
-                      <h3 className="text-lg font-semibold tracking-tight">{r.company}</h3>
-                      <span className="block text-sm text-muted-foreground">
+                      <span className="block text-lg font-semibold tracking-tight">{r.company}</span>
+                      <span className="block text-sm font-normal text-muted-foreground">
                         {e.jobTitle}, {e.team.replace("{hq}", r.hq)}
                       </span>
                     </span>
                     <span
                       className={cn(
-                        "inline-flex items-center gap-2 font-mono text-xs",
+                        "inline-flex items-center gap-2 font-mono text-xs font-normal",
                         running ? "text-brand-ink" : "text-muted-foreground",
                       )}
                     >
@@ -244,52 +265,53 @@ function Experience({ lang, t }: { lang: Locale; t: Dictionary }) {
                           {e.completed}
                         </>
                       )}
-                      <span className="rounded-full bg-muted px-2 py-0.5 text-foreground">
+                      <Badge variant="secondary" className="font-mono font-normal">
                         {formatDuration(r.start, r.end, undefined, e.units)}
-                      </span>
+                      </Badge>
                     </span>
-                    <ChevronDown className="size-4 text-muted-foreground transition group-open:rotate-180" />
-                  </summary>
-                  <div className="grid gap-6 border-t p-5 md:grid-cols-[1fr_14rem]">
-                    <ul className="space-y-2.5 text-sm leading-relaxed text-muted-foreground">
-                      {e.roles[r.id].map((p) => (
-                        <li key={p} className="flex gap-3">
-                          <span className="mt-2.5 h-px w-3 shrink-0 bg-brand" />
-                          {p}
-                        </li>
-                      ))}
-                    </ul>
-                    <div className="flex flex-wrap content-start gap-1.5">
-                      {r.stack.map((s) => (
-                        <span key={s} className={chip}>
-                          {s}
-                        </span>
-                      ))}
-                      {r.url && (
-                        <a
-                          href={r.url}
-                          {...ext}
-                          className="mt-2 inline-flex w-full items-center gap-1 text-sm underline decoration-brand underline-offset-4"
-                        >
-                          {r.url.replace(/^https:\/\/(www\.)?/, "")}
-                          <ArrowUpRight className="size-3.5" />
-                        </a>
-                      )}
+                  </AccordionTrigger>
+                  <AccordionContent className="p-0">
+                    <div className="grid gap-6 border-t p-5 md:grid-cols-[1fr_14rem]">
+                      <ul className="space-y-2.5 text-sm leading-relaxed text-muted-foreground">
+                        {e.roles[r.id].map((p) => (
+                          <li key={p} className="flex gap-3">
+                            <span className="mt-2.5 h-px w-3 shrink-0 bg-brand" />
+                            {p}
+                          </li>
+                        ))}
+                      </ul>
+                      <div className="flex flex-wrap content-start gap-1.5">
+                        {r.stack.map((s) => (
+                          <Badge key={s} variant="outline" className={tagClass}>
+                            {s}
+                          </Badge>
+                        ))}
+                        {r.url && (
+                          <a
+                            href={r.url}
+                            {...ext}
+                            className="mt-2 inline-flex w-full items-center gap-1 text-sm text-foreground underline decoration-brand underline-offset-4"
+                          >
+                            {r.url.replace(/^https:\/\/(www\.)?/, "")}
+                            <ArrowUpRight className="size-3.5" />
+                          </a>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                </details>
-              </li>
+                  </AccordionContent>
+                </div>
+              </AccordionItem>
             )
           })}
-        </ol>
+        </Accordion>
       </div>
     </section>
   )
 }
 
-function Featured({ p, t, className }: { p: Project; t: Dictionary; className?: string }) {
+function Featured({ p, t, i = 0, className }: { p: Project; t: Dictionary; i?: number; className?: string }) {
   return (
-    <a href={p.url} {...ext} className={cn("group block", className)}>
+    <a href={p.url} {...ext} data-reveal style={{ "--i": i } as React.CSSProperties} className={cn("group block", className)}>
       <div className="relative aspect-[4/3] overflow-hidden rounded-lg border bg-[oklch(0.12_0.005_286)]">
         <Image
           src={p.image}
@@ -308,9 +330,9 @@ function Featured({ p, t, className }: { p: Project; t: Dictionary; className?: 
       </div>
       <div className="mt-3 flex flex-wrap gap-1.5">
         {p.tags.map((tag) => (
-          <span key={tag} className={chip}>
+          <Badge key={tag} variant="outline" className={tagClass}>
             {tag}
-          </span>
+          </Badge>
         ))}
       </div>
     </a>
@@ -321,7 +343,7 @@ function SideProject({ t }: { t: Dictionary }) {
   const s = sideProject
   const a = t.work.adpilot
   return (
-    <article className="mt-20 grid overflow-hidden rounded-lg border bg-card lg:grid-cols-12">
+    <article data-reveal className="mt-20 grid overflow-hidden rounded-lg border bg-card lg:grid-cols-12">
       <div className="flex flex-col p-7 md:p-9 lg:col-span-5">
         <p className="text-sm text-brand-ink">{t.work.sideProject}</p>
         <h3 className="mt-2 text-3xl font-semibold tracking-tighter">{s.name}</h3>
@@ -336,9 +358,9 @@ function SideProject({ t }: { t: Dictionary }) {
         </ul>
         <div className="mt-6 flex flex-wrap gap-1.5">
           {s.stack.map((tag) => (
-            <span key={tag} className={chip}>
+            <Badge key={tag} variant="outline" className={tagClass}>
               {tag}
-            </span>
+            </Badge>
           ))}
         </div>
         <a href={s.url} {...ext} className={cn(outlinePill, "mt-8 self-start")}>
@@ -358,8 +380,8 @@ function Earlier({ items, t }: { items: Project[]; t: Dictionary }) {
     <div className="mt-20">
       <h3 className="text-xl font-semibold tracking-tight">{t.work.earlier}</h3>
       <ul className="mt-6 divide-y border-y">
-        {items.map((p) => (
-          <li key={p.id}>
+        {items.map((p, i) => (
+          <li key={p.id} data-reveal style={{ "--i": i } as React.CSSProperties}>
             <a href={p.url} {...ext} className="group relative flex items-center gap-4 py-4 md:gap-6">
               <span className="relative aspect-[16/10] w-20 shrink-0 overflow-hidden rounded-md border lg:hidden">
                 <Image src={p.image} alt={`${p.name} homepage`} fill sizes="80px" className="object-cover object-top" />
@@ -386,7 +408,7 @@ function Earlier({ items, t }: { items: Project[]; t: Dictionary }) {
 
 function SpecRow({ id, label, children }: { id?: string; label: string; children: React.ReactNode }) {
   return (
-    <div id={id} className="grid gap-4 border-t py-10 md:grid-cols-12">
+    <div id={id} data-reveal className="grid gap-4 border-t py-10 md:grid-cols-12">
       <h3 className="text-sm text-muted-foreground md:col-span-3">{label}</h3>
       <div className="md:col-span-9">{children}</div>
     </div>
@@ -398,7 +420,7 @@ function Spec({ t }: { t: Dictionary }) {
   return (
     <section id="spec" className="bg-card/40">
       <div className={cn(container, "py-20 md:py-28")}>
-        <h2 className={cn(h2, "mb-10")}>{s.title}</h2>
+        <h2 data-reveal className={cn(h2, "mb-10")}>{s.title}</h2>
         <SpecRow id="about" label={t.profile.about}>
           <p className="max-w-[65ch] text-lg leading-relaxed text-pretty">{t.profile.summary}</p>
         </SpecRow>
@@ -409,8 +431,10 @@ function Spec({ t }: { t: Dictionary }) {
                 <p className="font-medium">{s.groups[i]}</p>
                 <ul className="mt-3 flex flex-wrap gap-2">
                   {items.map((it) => (
-                    <li key={it} className="rounded-full border bg-background px-3 py-1.5 text-sm">
-                      {it}
+                    <li key={it}>
+                      <Badge variant="outline" className="h-auto rounded-full bg-background px-3 py-1.5 text-sm font-normal">
+                        {it}
+                      </Badge>
                     </li>
                   ))}
                 </ul>
@@ -462,7 +486,7 @@ function Contact({ t }: { t: Dictionary }) {
   const c = t.contact
   return (
     <section id="contact" className={cn(container, "py-24 md:py-36")}>
-      <div className="max-w-4xl">
+      <div data-reveal className="max-w-4xl">
         <h2 className="text-5xl font-semibold tracking-tighter text-balance md:text-7xl">
           {c.title} <span className="text-muted-foreground">{c.titleMuted}</span>
         </h2>

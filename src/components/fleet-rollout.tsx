@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import { RotateCcw } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import type { Dictionary } from "@/i18n/dictionaries"
 import { planRollout, statusAt } from "@/lib/rollout"
 
@@ -90,14 +91,15 @@ export function FleetRollout({ t }: { t: Dictionary["fleet"] }) {
           <p className="font-mono text-xs text-muted-foreground">
             {t.workflow} <span className="text-foreground">firmware-rollout</span>
           </p>
-          <button
-            type="button"
+          <Button
+            variant="outline"
+            size="xs"
             onClick={() => setRun((r) => r + 1)}
-            className="inline-flex items-center gap-1.5 rounded-full border px-3 py-1 font-mono text-xs text-muted-foreground transition hover:text-foreground active:scale-[0.97]"
+            className="gap-1.5 rounded-full px-3 font-mono font-normal text-muted-foreground"
           >
             <RotateCcw className="size-3" />
             {t.replay}
-          </button>
+          </Button>
         </div>
         <div ref={grid} aria-hidden className="grid grid-cols-[repeat(24,minmax(0,1fr))] gap-[3px] p-4">
           {Array.from({ length: TILES }, (_, i) => (
