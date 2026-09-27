@@ -26,6 +26,7 @@ import {
   CommandSeparator,
   CommandShortcut,
 } from "@/components/ui/command"
+import { useThemeSwitch } from "@/components/client-bits"
 import { copyText } from "@/lib/clipboard"
 import { localeNames, locales, type Locale } from "@/i18n/config"
 import type { Dictionary } from "@/i18n/dictionaries"
@@ -49,7 +50,8 @@ export default function CommandPalette({
     { id: "contact", label: nav.contact, icon: Mail },
   ]
   const [copied, setCopied] = React.useState(false)
-  const { resolvedTheme, setTheme } = useTheme()
+  const { resolvedTheme } = useTheme()
+  const { toggle: switchTheme } = useThemeSwitch()
 
   const run = (fn: () => void) => {
     setOpen(false)
@@ -109,7 +111,7 @@ export default function CommandPalette({
                 CV
                 <CommandShortcut>PDF</CommandShortcut>
               </CommandItem>
-              <CommandItem onSelect={() => run(() => setTheme(resolvedTheme === "dark" ? "light" : "dark"))}>
+              <CommandItem onSelect={() => run(() => switchTheme())}>
                 {resolvedTheme === "dark" ? <Sun /> : <MoonStar />}
                 {resolvedTheme === "dark" ? t.toLight : t.toDark}
               </CommandItem>

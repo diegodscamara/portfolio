@@ -1,10 +1,11 @@
 import Image from "next/image"
 import { notFound } from "next/navigation"
-import { ArrowUpRight, Check, CheckCircle2, ChevronDown, FileText, Globe, Mail } from "lucide-react"
+import { ArrowUpRight, CheckCircle2, ChevronDown, FileText, Mail } from "lucide-react"
 import { CommandMenu } from "@/components/command-menu"
 import { CopyEmail, ThemeToggle } from "@/components/client-bits"
 import { FleetRollout } from "@/components/fleet-rollout"
-import { hasLocale, localeNames, locales, type Locale } from "@/i18n/config"
+import { LangSwitch } from "@/components/lang-switch"
+import { hasLocale, locales, type Locale } from "@/i18n/config"
 import { getDictionary, type Dictionary } from "@/i18n/dictionaries"
 import {
   credentials,
@@ -70,36 +71,6 @@ function Mark() {
         <span key={i} style={{ "--d": (i % 3) + Math.floor(i / 3) } as React.CSSProperties} />
       ))}
     </span>
-  )
-}
-
-function LangSwitch({ lang, label }: { lang: Locale; label: string }) {
-  return (
-    <details className="group/lang relative">
-      <summary
-        className="flex h-9 cursor-pointer list-none items-center gap-1.5 rounded-full border bg-card/60 px-3 font-mono text-xs text-muted-foreground transition hover:text-foreground [&::-webkit-details-marker]:hidden"
-      >
-        <Globe className="size-3.5" aria-hidden />
-        <span className="sr-only">{label}: </span>
-        {lang.toUpperCase()}
-      </summary>
-      <ul className="absolute right-0 z-50 mt-2 w-40 rounded-lg border bg-popover p-1 shadow-xl">
-        {locales.map((l) => (
-          <li key={l}>
-            <a
-              href={`/${l}`}
-              hrefLang={l}
-              lang={l}
-              aria-current={l === lang ? "page" : undefined}
-              className="flex items-center justify-between rounded-md px-3 py-2 text-sm transition hover:bg-muted"
-            >
-              {localeNames[l]}
-              {l === lang && <Check className="size-3.5 text-brand-ink" />}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </details>
   )
 }
 
@@ -522,6 +493,13 @@ function Footer({ t }: { t: Dictionary }) {
           <span className="mx-2">·</span>
           {t.footer.updated} <time dateTime={site.updated}>{site.updated}</time>
         </p>
+        <nav aria-label={t.nav.language} className="flex gap-4">
+          {locales.map((l) => (
+            <a key={l} href={`/${l}`} hrefLang={l} lang={l} className="font-mono text-xs uppercase hover:text-foreground">
+              {l}
+            </a>
+          ))}
+        </nav>
         <nav aria-label="Elsewhere" className="flex gap-5">
           <a href={site.linkedin} {...ext} className="hover:text-foreground">
             LinkedIn

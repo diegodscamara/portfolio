@@ -181,3 +181,10 @@
     transform: scale(0.8);
   }
 }
+
+/* Theme switch: the new snapshot is revealed by a clip-path circle (see useThemeSwitch). */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
