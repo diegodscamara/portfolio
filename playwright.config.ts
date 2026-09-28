@@ -16,7 +16,8 @@ export default defineConfig({
   projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],
   // Runs against the production build (`bun run build` first), like the deployed site.
   webServer: {
-    command: `bun run start -- -p ${port}`,
+    // Inline PORT: webServer.env would replace the whole environment (PATH included).
+    command: `PORT=${port} bun run start`,
     url: `http://localhost:${port}/en`,
     reuseExistingServer: !process.env.CI,
     timeout: 60_000,

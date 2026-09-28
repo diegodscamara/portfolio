@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "indexnow": "bun scripts/indexnow.ts",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "next typegen && tsc --noEmit",
     "test": "bun test src",
     "e2e": "playwright test"
   },
