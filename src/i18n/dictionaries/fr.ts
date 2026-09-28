@@ -118,6 +118,7 @@ export const fr: Dictionary = {
     school: "Université Cruzeiro do Sul",
     degrees: ["Licence en génie logiciel", "Diplôme en analyse et développement de systèmes"],
   },
+  notFound: { title: "Page introuvable", body: "Cette page n\u2019existe pas ou a été déplacée. Tout sur Diego se trouve sur la page d\u2019accueil.", home: "Retour à l\u2019accueil" },
   footer: { updated: "Dernière mise à jour" },
   contact: {
     title: "Vous construisez quelque chose qui doit fonctionner\u00a0?",

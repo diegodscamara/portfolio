@@ -30,7 +30,7 @@ import { useThemeSwitch } from "@/components/client-bits"
 import { copyText } from "@/lib/clipboard"
 import { localeNames, locales, type Locale } from "@/i18n/config"
 import type { Dictionary } from "@/i18n/dictionaries"
-import { projects, sideProject, site } from "@/lib/data"
+import { projects, resumeFor, sideProject, site } from "@/lib/data"
 
 export type PaletteProps = { lang: Locale; t: Dictionary["command"]; nav: Dictionary["nav"]; stackLabel: string }
 
@@ -106,7 +106,7 @@ export default function CommandPalette({
                 <Mail />
                 {site.email}
               </CommandItem>
-              <CommandItem onSelect={() => go(site.resume, true)}>
+              <CommandItem onSelect={() => go(resumeFor(lang), true)}>
                 <FileText />
                 CV
                 <CommandShortcut>PDF</CommandShortcut>

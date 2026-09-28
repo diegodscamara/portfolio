@@ -1,6 +1,6 @@
 import { locales, localeNames } from "@/i18n/config"
 import type { Dictionary } from "@/i18n/dictionaries"
-import { credentials, educationYears, experience, languages, projects, sideProject, site, stack } from "./data"
+import { credentials, educationYears, experience, languages, projects, resumeFor, sideProject, site, stack } from "./data"
 import { formatDuration, formatMonth } from "./duration"
 
 // https://llmstxt.org: an H1, a one-paragraph summary as a blockquote, then linked sections.
@@ -11,7 +11,7 @@ export function llmsIndex(t: Dictionary) {
     "## Profile",
     `- [Full profile as plain text](${site.url}/llms-full.txt): every role with dates, projects, stack, languages, credentials and education`,
     `- [English profile](${site.url}/en): experience at Luxor, Genetec, Eu Médico Residente and NSH Technologies, projects and stack`,
-    `- [Resume (PDF)](${site.url}${site.resume}): one-page resume in English`,
+    `- [Resume (PDF)](${site.url}${resumeFor("en")}): resume in English`,
     "## Contact",
     `- Email: ${site.email}`,
     `- [LinkedIn](${site.linkedin})`,
@@ -20,7 +20,10 @@ export function llmsIndex(t: Dictionary) {
     "## Optional",
     ...locales
       .filter((l) => l !== "en")
-      .map((l) => `- [${localeNames[l]}](${site.url}/${l}): the same profile in ${localeNames[l]}`),
+      .flatMap((l) => [
+        `- [${localeNames[l]}](${site.url}/${l}): the same profile in ${localeNames[l]}`,
+        `- [Resume, ${localeNames[l]} (PDF)](${site.url}${resumeFor(l)})`,
+      ]),
     `Last updated: ${site.updated}`,
   ].join("\n\n")
 }

@@ -1,5 +1,5 @@
 import { expect, test } from "bun:test"
-import { pickLocale, redirectFor } from "./config"
+import { localeFor404, pickLocale, redirectFor } from "./config"
 
 test("picks the highest-weighted supported language", () => {
   expect(pickLocale("fr-CA,fr;q=0.9,en;q=0.8")).toBe("fr")
@@ -34,4 +34,12 @@ test("unknown locale-less paths are real 404s, not soft-404 redirects", () => {
 
 test("ignores languages the browser marked q=0", () => {
   expect(pickLocale("pt;q=0,es;q=0.2")).toBe("es")
+})
+
+test("404 language: path prefix wins, then the browser, then English", () => {
+  expect(localeFor404("/pt/nada", "fr")).toBe("pt")
+  expect(localeFor404("/es/", null)).toBe("es")
+  expect(localeFor404("/foo", "fr-CA,fr;q=0.9")).toBe("fr")
+  expect(localeFor404("/xx/bar", "de")).toBe("en")
+  expect(localeFor404(null, null)).toBe("en")
 })
