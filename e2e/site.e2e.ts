@@ -166,3 +166,23 @@ test.describe("resume", () => {
     })
   }
 })
+
+test.describe("analytics", () => {
+  test("never loads or sends outside production, even after interaction", async ({ page }) => {
+    const ingest: string[] = []
+    page.on("request", (r) => {
+      if (r.url().includes("/ingest/") || r.url().includes("posthog")) ingest.push(r.url())
+    })
+    await page.goto("/en")
+    await page.mouse.wheel(0, 600)
+    await page.locator('main a[href$=".pdf"]').first().click({ modifiers: ["Meta"] })
+    await page.waitForTimeout(1500)
+    expect(ingest).toEqual([])
+  })
+
+  test("trailing slashes redirect to the canonical URL", async ({ request }) => {
+    const res = await request.get("/en/", { maxRedirects: 0 })
+    expect(res.status()).toBe(308)
+    expect(res.headers().location).toMatch(/\/en$/)
+  })
+})

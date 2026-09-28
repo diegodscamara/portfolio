@@ -9,12 +9,14 @@ export function proxy(request: NextRequest) {
     headers.set("x-pathname", request.nextUrl.pathname)
     return NextResponse.next({ request: { headers } })
   }
-  const res = NextResponse.redirect(new URL(r.to, request.url), r.status)
+  const to = new URL(r.to, request.url)
+  to.search = request.nextUrl.search // keep UTM tags through / -> /en and legacy redirects
+  const res = NextResponse.redirect(to, r.status)
   res.headers.set("Vary", "Accept-Language")
   return res
 }
 
 export const config = {
   // Skip Next internals, metadata images and anything with a file extension (public assets, robots, sitemap, llms).
-  matcher: ["/((?!_next|.*\\.).*)"],
+  matcher: ["/((?!_next|ingest|.*\\.).*)"],
 }

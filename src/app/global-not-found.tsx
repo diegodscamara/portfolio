@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google"
 import { headers } from "next/headers"
 import { localeFor404 } from "@/i18n/config"
 import { getDictionary } from "@/i18n/dictionaries"
+import { Analytics } from "@/components/analytics"
 import { buttonVariants } from "@/components/ui/button"
 import { site } from "@/lib/data"
 import { cn } from "@/lib/utils"
@@ -46,6 +47,7 @@ export default async function GlobalNotFound() {
             {t.home}
           </a>
         </main>
+        <Analytics notFound />
       </body>
     </html>
   )
