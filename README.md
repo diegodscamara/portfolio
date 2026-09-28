@@ -9,6 +9,7 @@ bun install
 bun dev        # http://localhost:3000
 bun run test   # unit tests
 bun run e2e    # Playwright end-to-end (after bun run build)
+bun run lighthouse  # Lighthouse budgets, same as CI (after bun run build)
 bun run build
 ```
 

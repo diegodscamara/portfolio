@@ -13,7 +13,8 @@ export default defineConfig({
     baseURL: `http://localhost:${port}`,
     trace: "retain-on-failure",
   },
-  projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],
+  // CI uses the runner's preinstalled Google Chrome, so there's no browser download or apt step.
+  projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"], channel: process.env.CI ? "chrome" : undefined } }],
   // Runs against the production build (`bun run build` first), like the deployed site.
   webServer: {
     // Inline PORT: webServer.env would replace the whole environment (PATH included).
