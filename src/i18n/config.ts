@@ -33,6 +33,9 @@ const LEGACY = /^\/(about|projects|posts|blog|contact|tags)(\/.*)?$/
 // "/" is negotiated per visitor (307 + Vary). Known legacy paths move permanently to the profile.
 // Anything else locale-less falls through to a real 404 instead of a soft-404 redirect.
 export function redirectFor(pathname: string, acceptLanguage: string | null) {
+  // Next's own trailing-slash redirect is off (skipTrailingSlashRedirect, for the PostHog proxy), so do it here.
+  if (pathname.length > 1 && pathname.endsWith("/") && !LEGACY.test(pathname))
+    return { to: pathname.replace(/\/+$/, ""), status: 308 } as const
   const first = pathname.split("/")[1] ?? ""
   if (hasLocale(first)) return null
   const to = `/${pickLocale(acceptLanguage)}`

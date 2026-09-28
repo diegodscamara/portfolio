@@ -19,6 +19,14 @@ const nextConfig: NextConfig = {
   // One small stylesheet: inlining it removes the only render-blocking request.
   // globalNotFound: the root layout lives under [lang], so unmatched URLs need their own 404 page.
   experimental: { inlineCss: true, globalNotFound: true },
+  // PostHog through our own origin: ad-blockers leave it alone and CSP stays 'self'.
+  skipTrailingSlashRedirect: true,
+  async rewrites() {
+    return [
+      { source: "/ingest/static/:path*", destination: "https://us-assets.i.posthog.com/static/:path*" },
+      { source: "/ingest/:path*", destination: "https://us.i.posthog.com/:path*" },
+    ]
+  },
   async redirects() {
     // Old resume URLs (Vite site's .docx, the blog's /resume) point at the current PDF.
     return ["/resume", "/documents/resume.docx", "/cv"].map((source) => ({

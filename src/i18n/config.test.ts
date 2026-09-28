@@ -43,3 +43,9 @@ test("404 language: path prefix wins, then the browser, then English", () => {
   expect(localeFor404("/xx/bar", "de")).toBe("en")
   expect(localeFor404(null, null)).toBe("en")
 })
+
+test("trailing slashes redirect permanently to the slash-less URL", () => {
+  expect(redirectFor("/en/", null)).toEqual({ to: "/en", status: 308 })
+  expect(redirectFor("/pt/nada/", null)).toEqual({ to: "/pt/nada", status: 308 })
+  expect(redirectFor("/about/", "fr")).toEqual({ to: "/fr", status: 308 })
+})

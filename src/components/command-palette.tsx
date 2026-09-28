@@ -30,6 +30,7 @@ import { useThemeSwitch } from "@/components/client-bits"
 import { copyText } from "@/lib/clipboard"
 import { localeNames, locales, type Locale } from "@/i18n/config"
 import type { Dictionary } from "@/i18n/dictionaries"
+import { classify, track } from "@/lib/analytics"
 import { projects, resumeFor, sideProject, site } from "@/lib/data"
 
 export type PaletteProps = { lang: Locale; t: Dictionary["command"]; nav: Dictionary["nav"]; stackLabel: string }
@@ -58,7 +59,15 @@ export default function CommandPalette({
     fn()
   }
   const go = (href: string, external = false) =>
-    run(() => (external ? window.open(href, "_blank", "noopener,noreferrer") : (location.href = href)))
+    run(() => {
+      track(classify(href, new URL(location.href)), { source: "command_menu" })
+      if (external) window.open(href, "_blank", "noopener,noreferrer")
+      else location.href = href
+    })
+
+  React.useEffect(() => {
+    if (open) track({ event: "command_menu_opened", props: {} })
+  }, [open])
 
   return (
     <>

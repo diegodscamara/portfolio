@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import { notFound } from "next/navigation"
 import { ThemeProvider } from "next-themes"
+import { Analytics } from "@/components/analytics"
 import { hasLocale, locales } from "@/i18n/config"
 import { getDictionary } from "@/i18n/dictionaries"
 import { credentials, educationYears, experience, site, stack } from "@/lib/data"
@@ -149,6 +150,7 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           {children}
         </ThemeProvider>
+        <Analytics />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(graphLd).replace(/</g, "\\u003c") }} />
       </body>
     </html>
