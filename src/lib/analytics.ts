@@ -12,7 +12,6 @@ const norm = (u: string) => new URL(u).href
 const contacts = new Map([
   [norm(site.linkedin), "linkedin"],
   [norm(site.github), "github"],
-  [norm(site.devto), "devto"],
 ])
 const projectIds = new Map<string, string>([
   ...projects.map((p) => [norm(p.url), p.id] as [string, string]),

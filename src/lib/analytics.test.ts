@@ -13,7 +13,7 @@ test("email and profiles are contact clicks", () => {
   expect(classify(`mailto:${site.email}`, here)).toEqual({ event: "contact_clicked", props: { channel: "email" } })
   expect(classify(site.linkedin, here)).toEqual({ event: "contact_clicked", props: { channel: "linkedin" } })
   expect(classify(site.github, here)).toEqual({ event: "contact_clicked", props: { channel: "github" } })
-  expect(classify(site.devto, here)).toEqual({ event: "contact_clicked", props: { channel: "devto" } })
+  expect(classify("https://dev.to/diegodscamara", here)).toEqual({ event: "outbound_clicked", props: { host: "dev.to" } })
 })
 
 test("project and side-project links are project opens, by id", () => {

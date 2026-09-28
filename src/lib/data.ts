@@ -8,7 +8,6 @@ export const site = {
   resume: "/diego-camara-resume.pdf",
   linkedin: "https://www.linkedin.com/in/diegodscamara/",
   github: "https://github.com/diegodscamara",
-  devto: "https://dev.to/diegodscamara",
   // Bump when the content changes; drives sitemap lastmod, schema dateModified and the footer.
   updated: "2026-09-26",
 }

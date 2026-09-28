@@ -16,7 +16,6 @@ export function llmsIndex(t: Dictionary) {
     `- Email: ${site.email}`,
     `- [LinkedIn](${site.linkedin})`,
     `- [GitHub](${site.github})`,
-    `- [dev.to](${site.devto})`,
     "## Optional",
     ...locales
       .filter((l) => l !== "en")
@@ -59,7 +58,7 @@ export function llmsFull(t: Dictionary, now = new Date()) {
     `## ${t.spec.education}`,
     t.spec.degrees.map((d, i) => `- ${d}, ${t.spec.school}, ${educationYears[i]}`).join("\n"),
     `## ${t.nav.contact}`,
-    `- Email: ${site.email}\n- LinkedIn: ${site.linkedin}\n- GitHub: ${site.github}\n- dev.to: ${site.devto}\n- ${t.hero.resume}: ${site.url}${site.resume}`,
+    `- Email: ${site.email}\n- LinkedIn: ${site.linkedin}\n- GitHub: ${site.github}\n- ${t.hero.resume}: ${site.url}${site.resume}`,
     `${t.footer.updated}: ${site.updated}`,
   ].join("\n\n")
 }

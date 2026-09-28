@@ -532,9 +532,6 @@ function Footer({ lang, t }: { lang: Locale; t: Dictionary }) {
           <a href={site.github} {...ext} className="hover:text-foreground">
             GitHub
           </a>
-          <a href={site.devto} {...ext} className="hover:text-foreground">
-            dev.to
-          </a>
           <a href={resumeFor(lang)} hrefLang={lang} {...ext} className="hover:text-foreground">
             CV
           </a>
