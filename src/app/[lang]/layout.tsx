@@ -140,7 +140,7 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
             dateCreated: c.year,
           })),
         ],
-        sameAs: [site.linkedin, site.github, site.devto],
+        sameAs: [site.linkedin, site.github],
       },
     ],
   }
