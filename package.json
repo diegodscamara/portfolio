@@ -10,7 +10,8 @@
     "indexnow": "bun scripts/indexnow.ts",
     "typecheck": "next typegen && tsc --noEmit",
     "test": "bun test src",
-    "e2e": "playwright test"
+    "e2e": "playwright test",
+    "resume": "bun scripts/resume-pdf.ts"
   },
   "dependencies": {
     "@base-ui/react": "^1.8.0",

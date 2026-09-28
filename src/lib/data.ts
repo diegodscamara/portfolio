@@ -12,6 +12,9 @@ export const site = {
   updated: "2026-09-26",
 }
 
+// Generated per language by `bun run resume` (scripts/resume-pdf.ts); English keeps the legacy URL.
+export const resumeFor = (lang: string) => (lang === "en" ? "/diego-camara-resume.pdf" : `/diego-camara-resume-${lang}.pdf`)
+
 export const roleIds = ["luxor", "genetec", "emr", "nsh"] as const
 export type RoleId = (typeof roleIds)[number]
 

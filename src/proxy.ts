@@ -3,7 +3,12 @@ import { redirectFor } from "@/i18n/config"
 
 export function proxy(request: NextRequest) {
   const r = redirectFor(request.nextUrl.pathname, request.headers.get("accept-language"))
-  if (!r) return
+  if (!r) {
+    // global-not-found receives no props; hand it the path so a 404 can speak the URL's language.
+    const headers = new Headers(request.headers)
+    headers.set("x-pathname", request.nextUrl.pathname)
+    return NextResponse.next({ request: { headers } })
+  }
   const res = NextResponse.redirect(new URL(r.to, request.url), r.status)
   res.headers.set("Vary", "Accept-Language")
   return res

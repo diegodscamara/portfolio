@@ -116,6 +116,7 @@ export const en = {
     school: "Cruzeiro do Sul University",
     degrees: ["B.Sc. Software Engineering", "Associate, Systems Analysis and Development"],
   },
+  notFound: { title: "Page not found", body: "This page does not exist or has moved. Everything about Diego is on the homepage.", home: "Back to the homepage" },
   footer: { updated: "Last updated" },
   contact: {
     title: "Building something that has to work?",

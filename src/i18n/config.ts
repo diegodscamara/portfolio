@@ -40,3 +40,9 @@ export function redirectFor(pathname: string, acceptLanguage: string | null) {
   if (LEGACY.test(pathname)) return { to, status: 308 } as const
   return null
 }
+
+// Language for a 404: the URL's own locale prefix if it has one, else the browser's preference.
+export function localeFor404(pathname: string | null, acceptLanguage: string | null): Locale {
+  const first = pathname?.split("/")[1] ?? ""
+  return hasLocale(first) ? first : pickLocale(acceptLanguage)
+}

@@ -118,6 +118,7 @@ export const es: Dictionary = {
     school: "Universidad Cruzeiro do Sul",
     degrees: ["Licenciatura en Ingeniería de Software", "Técnico en Análisis y Desarrollo de Sistemas"],
   },
+  notFound: { title: "Página no encontrada", body: "Esta página no existe o se ha movido. Todo sobre Diego está en la página de inicio.", home: "Volver a la página de inicio" },
   footer: { updated: "Última actualización" },
   contact: {
     title: "¿Construyes algo que tiene que funcionar?",

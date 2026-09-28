@@ -128,3 +128,41 @@ test.describe("command menu", () => {
     await expect(page).toHaveURL(/#experience$/)
   })
 })
+
+test.describe("404", () => {
+  for (const [path, header, lang, heading] of [
+    ["/en/nope", "", "en", "Page not found"],
+    ["/pt/nada", "", "pt", "Página não encontrada"],
+    ["/foo", "fr-CA", "fr", "Page introuvable"],
+  ]) {
+    test(`${path} [${header || "default locale"}] is a ${lang} 404 with a way home`, async ({ browser }) => {
+      // Chromium derives Accept-Language from the context locale and ignores an extra header for it.
+      const page = await browser.newPage(header ? { locale: header } : {})
+      const res = await page.goto(path)
+      expect(res?.status()).toBe(404)
+      await expect(page.locator("html")).toHaveAttribute("lang", lang)
+      await expect(page.getByRole("heading", { level: 1 })).toHaveText(heading)
+      await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /noindex/)
+      await page.getByRole("link", { name: /./ }).first().click()
+      await expect(page).toHaveURL(new RegExp(`/${lang}$`))
+    })
+  }
+})
+
+test.describe("resume", () => {
+  for (const [lang, pdf] of [
+    ["en", "/diego-camara-resume.pdf"],
+    ["pt", "/diego-camara-resume-pt.pdf"],
+    ["fr", "/diego-camara-resume-fr.pdf"],
+    ["es", "/diego-camara-resume-es.pdf"],
+  ]) {
+    test(`/${lang} links its own PDF, and it is served`, async ({ page, request }) => {
+      await page.goto(`/${lang}`)
+      await expect(page.locator(`main a[href="${pdf}"]`)).toHaveCount(1)
+      await expect(page.locator(`footer a[href="${pdf}"]`)).toHaveCount(1)
+      const res = await request.get(pdf)
+      expect(res.status()).toBe(200)
+      expect(res.headers()["content-type"]).toContain("application/pdf")
+    })
+  }
+})
