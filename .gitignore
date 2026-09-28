@@ -42,3 +42,8 @@ next-env.d.ts
 
 # local Claude Code plugin state
 .claude/autoharness/
+
+# Playwright
+/test-results/
+/playwright-report/
+/.lighthouseci/

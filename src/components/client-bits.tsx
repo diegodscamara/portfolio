@@ -40,8 +40,14 @@ export function useThemeSwitch() {
   return { next, toggle }
 }
 
+const noop = () => () => {}
+
 export function ThemeToggle({ toLight, toDark }: { toLight: string; toDark: string }) {
   const { next, toggle } = useThemeSwitch()
+  // The server can't know the stored theme and React keeps server attributes on hydration,
+  // so render the default theme's (dark) label first and switch to the real one once mounted.
+  const mounted = React.useSyncExternalStore(noop, () => true, () => false)
+  const label = !mounted || next === "light" ? toLight : toDark
   return (
     <button
       type="button"
@@ -49,7 +55,7 @@ export function ThemeToggle({ toLight, toDark }: { toLight: string; toDark: stri
         const b = e.currentTarget.getBoundingClientRect()
         toggle({ x: b.left + b.width / 2, y: b.top + b.height / 2 })
       }}
-      aria-label={next === "light" ? toLight : toDark}
+      aria-label={label}
       className={cn(buttonVariants({ variant: "outline", size: "icon-pill" }), "relative overflow-hidden text-muted-foreground")}
     >
       <Sun className="absolute size-4 scale-0 -rotate-90 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] dark:scale-100 dark:rotate-0" />
