@@ -17,6 +17,7 @@ import {
   experience,
   languages,
   projects,
+  resumeFor,
   sideProject,
   site,
   stack,
@@ -46,7 +47,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
     <>
       <Nav lang={lang} t={t} />
       <main>
-        <Hero t={t} />
+        <Hero lang={lang} t={t} />
         <Metrics t={t} />
         <Experience lang={lang} t={t} />
         <section id="work" className={cn(container, "py-20 md:py-28")}>
@@ -62,7 +63,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
         <Spec t={t} />
         <Contact t={t} />
       </main>
-      <Footer t={t} />
+      <Footer lang={lang} t={t} />
       <Reveal />
     </>
   )
@@ -118,7 +119,7 @@ function Nav({ lang, t }: { lang: Locale; t: Dictionary }) {
   )
 }
 
-function Hero({ t }: { t: Dictionary }) {
+function Hero({ lang, t }: { lang: Locale; t: Dictionary }) {
   const [before, highlight, after] = t.hero.pitch
   return (
     <section id="top" className="relative overflow-hidden">
@@ -159,7 +160,7 @@ function Hero({ t }: { t: Dictionary }) {
               <Mail className="size-4" />
               {t.hero.email}
             </a>
-            <a href={site.resume} {...ext} className={outlinePill}>
+            <a href={resumeFor(lang)} {...ext} className={outlinePill}>
               <FileText className="size-4" />
               {t.hero.resume}
             </a>
@@ -508,7 +509,7 @@ function Contact({ t }: { t: Dictionary }) {
   )
 }
 
-function Footer({ t }: { t: Dictionary }) {
+function Footer({ lang, t }: { lang: Locale; t: Dictionary }) {
   return (
     <footer className="border-t">
       <div className={cn(container, "flex flex-wrap items-center justify-between gap-4 py-8 text-sm text-muted-foreground")}>
@@ -534,7 +535,7 @@ function Footer({ t }: { t: Dictionary }) {
           <a href={site.devto} {...ext} className="hover:text-foreground">
             dev.to
           </a>
-          <a href={site.resume} {...ext} className="hover:text-foreground">
+          <a href={resumeFor(lang)} hrefLang={lang} {...ext} className="hover:text-foreground">
             CV
           </a>
         </nav>

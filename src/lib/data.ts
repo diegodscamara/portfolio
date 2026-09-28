@@ -4,6 +4,7 @@ export const site = {
   url: "https://www.diegocamara.com",
   name: "Diego Câmara",
   email: "diegodscamara@gmail.com",
+  phone: "+55 11 98214-5891",
   resume: "/diego-camara-resume.pdf",
   linkedin: "https://www.linkedin.com/in/diegodscamara/",
   github: "https://github.com/diegodscamara",
@@ -11,6 +12,9 @@ export const site = {
   // Bump when the content changes; drives sitemap lastmod, schema dateModified and the footer.
   updated: "2026-09-26",
 }
+
+// Generated per language by `bun run resume` (scripts/resume-pdf.ts); English keeps the legacy URL.
+export const resumeFor = (lang: string) => (lang === "en" ? "/diego-camara-resume.pdf" : `/diego-camara-resume-${lang}.pdf`)
 
 export const roleIds = ["luxor", "genetec", "emr", "nsh"] as const
 export type RoleId = (typeof roleIds)[number]

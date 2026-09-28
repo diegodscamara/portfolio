@@ -17,7 +17,8 @@ const csp = [
 
 const nextConfig: NextConfig = {
   // One small stylesheet: inlining it removes the only render-blocking request.
-  experimental: { inlineCss: true },
+  // globalNotFound: the root layout lives under [lang], so unmatched URLs need their own 404 page.
+  experimental: { inlineCss: true, globalNotFound: true },
   async redirects() {
     // Old resume URLs (Vite site's .docx, the blog's /resume) point at the current PDF.
     return ["/resume", "/documents/resume.docx", "/cv"].map((source) => ({
