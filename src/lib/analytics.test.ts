@@ -1,5 +1,5 @@
 import { expect, test } from "bun:test"
-import { classify } from "./analytics"
+import { classify, isInternal } from "./analytics"
 import { projects, sideProject, site } from "./data"
 
 const here = new URL("https://www.diegocamara.com/pt")
@@ -33,4 +33,19 @@ test("other external links are outbound clicks by host; in-page and junk links a
   expect(classify("/pt#work", here)).toBeNull()
   expect(classify("", here)).toBeNull()
   expect(classify("http://[bad", here)).toBeNull()
+})
+
+test("?internal marks this browser as the owner's until ?internal=off; bad storage never throws", () => {
+  const store = new Map<string, string>()
+  const storage = {
+    getItem: (k: string) => store.get(k) ?? null,
+    setItem: (k: string, v: string) => void store.set(k, v),
+    removeItem: (k: string) => void store.delete(k),
+  }
+  expect(isInternal("", () => storage)).toBe(false)
+  expect(isInternal("?internal", () => storage)).toBe(true)
+  expect(isInternal("?utm_source=x", () => storage)).toBe(true)
+  expect(isInternal("?internal=off", () => storage)).toBe(false)
+  expect(isInternal("", () => storage)).toBe(false)
+  expect(isInternal("?internal", () => { throw new DOMException("blocked", "SecurityError") })).toBe(false)
 })

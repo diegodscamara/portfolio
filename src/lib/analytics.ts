@@ -45,10 +45,26 @@ export function classify(href: string, here: URL): Tracked | null {
 
 let client: Promise<PostHog | null> | undefined
 
+type Store = Pick<Storage, "getItem" | "setItem" | "removeItem">
+const INTERNAL = "ph_internal"
+
+// The owner visits /?internal once per browser to stop counting their own visits; /?internal=off undoes it.
+export function isInternal(search: string, getStorage: () => Store) {
+  try {
+    const storage = getStorage() // reading localStorage itself throws when storage is blocked
+    const flag = new URLSearchParams(search).get("internal")
+    if (flag === "off") storage.removeItem(INTERNAL)
+    else if (flag !== null) storage.setItem(INTERNAL, "1")
+    return storage.getItem(INTERNAL) === "1"
+  } catch {
+    return false
+  }
+}
+
 // Production only, so local runs, previews and Lighthouse CI never send (or download) anything.
 export function loadAnalytics() {
   if (client) return client
-  if (location.hostname !== PROD_HOST) return (client = Promise.resolve(null))
+  if (location.hostname !== PROD_HOST || isInternal(location.search, () => localStorage)) return (client = Promise.resolve(null))
   client = import("posthog-js")
     .then(({ default: posthog }) => {
       posthog.init(KEY, {

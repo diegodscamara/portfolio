@@ -59,7 +59,7 @@ export function resumeHtml(lang: Locale, now = new Date()) {
 <body>
   <h1>${esc(site.name)}</h1>
   <p class="role">${esc(t.profile.jobTitle)}</p>
-  <p class="contact"><span>${esc(t.hero.remote)}</span><span><a href="mailto:${esc(site.email)}">${esc(site.email)}</a></span><span><a href="tel:${esc(site.phone.replace(/[^\d+]/g, ""))}">${esc(site.phone)}</a></span><span>${link(site.url)}</span><span>${link(site.linkedin)}</span><span>${link(site.github)}</span></p>
+  <p class="contact"><span>${esc(t.hero.remote)}</span><span><a href="mailto:${esc(site.email)}">${esc(site.email)}</a></span><span><a href="tel:${esc(site.phone.replace(/[^\d+]/g, ""))}">${esc(site.phone)}</a></span><span><a href="${esc(`${site.url}/${lang}?utm_source=resume&utm_medium=pdf`)}">${esc(bare(site.url))}</a></span><span>${link(site.linkedin)}</span><span>${link(site.github)}</span></p>
 
   <h2>${esc(t.profile.about)}</h2>
   <p>${esc(t.profile.summary)}</p>

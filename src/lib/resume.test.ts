@@ -39,3 +39,11 @@ test("each locale has its own PDF path; English keeps the legacy URL", () => {
   expect(resumeFor("pt")).toBe("/diego-camara-resume-pt.pdf")
   expect(new Set(locales.map(resumeFor)).size).toBe(4)
 })
+
+test("the site link in each PDF is tagged, so resume clicks don't count as direct traffic", () => {
+  for (const lang of locales) {
+    const html = resumeHtml(lang, now)
+    expect(html).toContain(`href="${site.url}/${lang}?utm_source=resume&amp;utm_medium=pdf"`)
+    expect(html).toContain(">diegocamara.com</a>")
+  }
+})
