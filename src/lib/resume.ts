@@ -7,7 +7,7 @@ const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replac
 const bare = (url: string) => url.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "")
 const link = (url: string) => `<a href="${esc(url)}">${esc(bare(url))}</a>`
 
-// A print-ready A4 resume built from the same dictionaries as the site. No phone number by design.
+// A print-ready A4 resume built from the same dictionaries as the site.
 export function resumeHtml(lang: Locale, now = new Date()) {
   const t = getDictionary(lang)
   const e = t.experience
@@ -59,7 +59,7 @@ export function resumeHtml(lang: Locale, now = new Date()) {
 <body>
   <h1>${esc(site.name)}</h1>
   <p class="role">${esc(t.profile.jobTitle)}</p>
-  <p class="contact"><span>${esc(t.hero.remote)}</span><span><a href="mailto:${esc(site.email)}">${esc(site.email)}</a></span><span>${link(site.url)}</span><span>${link(site.linkedin)}</span><span>${link(site.github)}</span></p>
+  <p class="contact"><span>${esc(t.hero.remote)}</span><span><a href="mailto:${esc(site.email)}">${esc(site.email)}</a></span><span><a href="tel:${esc(site.phone.replace(/[^\d+]/g, ""))}">${esc(site.phone)}</a></span><span>${link(site.url)}</span><span>${link(site.linkedin)}</span><span>${link(site.github)}</span></p>
 
   <h2>${esc(t.profile.about)}</h2>
   <p>${esc(t.profile.summary)}</p>

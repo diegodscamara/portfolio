@@ -22,12 +22,11 @@ test("every locale's resume carries the full profile in its own language", () =>
   }
 })
 
-test("no phone number, in any format", () => {
+test("every locale's contact line carries a dialable phone number", () => {
   for (const lang of locales) {
-    const text = resumeHtml(lang, now).replace(/<[^>]+>/g, " ")
-    expect(text).not.toMatch(/\+55|98214|5891|tel:/)
-    // No run of 8+ digits (with optional separators) that could be a phone number; years and ids are shorter.
-    expect(text).not.toMatch(/\d[\d\s().-]{8,}\d/)
+    const html = resumeHtml(lang, now)
+    expect(html).toContain(site.phone)
+    expect(html).toContain(`href="tel:${site.phone.replace(/[^\d+]/g, "")}"`)
   }
 })
 

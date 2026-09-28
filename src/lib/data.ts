@@ -4,6 +4,7 @@ export const site = {
   url: "https://www.diegocamara.com",
   name: "Diego Câmara",
   email: "diegodscamara@gmail.com",
+  phone: "+55 11 98214-5891",
   resume: "/diego-camara-resume.pdf",
   linkedin: "https://www.linkedin.com/in/diegodscamara/",
   github: "https://github.com/diegodscamara",

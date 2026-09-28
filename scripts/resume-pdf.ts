@@ -17,4 +17,4 @@ try {
 } finally {
   await browser.close()
 }
-console.log(`Done. Contact line: ${site.email} (no phone).`)
+console.log(`Done. Contact line: ${site.email}, ${site.phone}.`)
