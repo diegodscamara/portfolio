@@ -6,6 +6,7 @@ import { Analytics } from "@/components/analytics"
 import { hasLocale, locales } from "@/i18n/config"
 import { getDictionary } from "@/i18n/dictionaries"
 import { credentials, educationYears, experience, site, stack } from "@/lib/data"
+import { faqPage } from "@/lib/llms"
 import "../globals.css"
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] })
@@ -27,6 +28,7 @@ export async function generateMetadata({ params }: LayoutProps<"/[lang]">): Prom
     alternates: {
       canonical: `/${lang}`,
       languages: { ...Object.fromEntries(locales.map((l) => [l, `/${l}`])), "x-default": "/en" },
+      types: { "text/markdown": `/${lang}.md` },
     },
     openGraph: {
       title,
@@ -142,6 +144,7 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
         ],
         sameAs: [site.linkedin, site.github],
       },
+      faqPage(t, lang),
     ],
   }
   return (

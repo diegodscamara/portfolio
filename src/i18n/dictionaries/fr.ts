@@ -119,6 +119,16 @@ export const fr: Dictionary = {
     degrees: ["Licence en génie logiciel", "Diplôme en analyse et développement de systèmes"],
   },
   notFound: { title: "Page introuvable", body: "Cette page n\u2019existe pas ou a été déplacée. Tout sur Diego se trouve sur la page d\u2019accueil.", home: "Retour à l\u2019accueil" },
+  faq: {
+    title: "Questions fréquentes",
+    items: [
+      { q: "Que fait Diego Câmara ?", a: "Diego est ingénieur logiciel full-stack et développe des produits en TypeScript, React, Next.js et Node.js. Chez Luxor, il automatise des flottes de minage de bitcoin avec Temporal et construit des tableaux de bord temps réel sur ClickHouse et PostgreSQL." },
+      { q: "Où vit-il, et travaille-t-il à distance ?", a: "Il vit à São Paulo, au Brésil (UTC-3), et travaille à distance. Il a travaillé à distance pour des équipes basées à Seattle, Montréal, Recife et São Paulo." },
+      { q: "Quelle est son expérience ?", a: "Plus de 5 ans à livrer des logiciels en production chez Luxor, Genetec, Eu Médico Residente et NSH Technologies. Chez Genetec, il a construit un assistant RAG sur Azure OpenAI pour une documentation utilisée par plus de 53\u00a0000 personnes." },
+      { q: "Quelles langues parle-t-il ?", a: "Portugais (langue maternelle), anglais (C1), français (B2) et espagnol (A2)." },
+      { q: "Comment le contacter ?", a: "Écrivez à {email} ou envoyez-lui un message sur LinkedIn. Son CV existe en PDF en français, anglais, portugais et espagnol." },
+    ],
+  },
   footer: { updated: "Dernière mise à jour" },
   contact: {
     title: "Vous construisez quelque chose qui doit fonctionner\u00a0?",

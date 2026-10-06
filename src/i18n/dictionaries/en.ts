@@ -117,6 +117,16 @@ export const en = {
     degrees: ["B.Sc. Software Engineering", "Associate, Systems Analysis and Development"],
   },
   notFound: { title: "Page not found", body: "This page does not exist or has moved. Everything about Diego is on the homepage.", home: "Back to the homepage" },
+  faq: {
+    title: "Questions",
+    items: [
+      { q: "What does Diego Câmara do?", a: "Diego is a full-stack software engineer building TypeScript, React, Next.js and Node.js products. At Luxor he builds fleet automation for bitcoin mining with Temporal, plus real-time dashboards on ClickHouse and PostgreSQL." },
+      { q: "Where is he based, and does he work remotely?", a: "He lives in São Paulo, Brazil (UTC-3) and works remotely. He has worked remotely for teams headquartered in Seattle, Montreal, Recife and São Paulo." },
+      { q: "How much experience does he have?", a: "5+ years shipping production software at Luxor, Genetec, Eu Médico Residente and NSH Technologies. At Genetec he built a RAG documentation assistant on Azure OpenAI for documentation used by 53,000+ people." },
+      { q: "Which languages does he speak?", a: "Portuguese (native), English (C1), French (B2) and Spanish (A2)." },
+      { q: "How can I contact him?", a: "Email {email} or message him on LinkedIn. His resume comes as a PDF in English, Portuguese, French and Spanish." },
+    ],
+  },
   footer: { updated: "Last updated" },
   contact: {
     title: "Building something that has to work?",
