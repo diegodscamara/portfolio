@@ -25,6 +25,8 @@ const nextConfig: NextConfig = {
     return [
       { source: "/ingest/static/:path*", destination: "https://us-assets.i.posthog.com/static/:path*" },
       { source: "/ingest/:path*", destination: "https://us.i.posthog.com/:path*" },
+      // Markdown twin of each page for agents: /en.md, /pt.md, ...
+      { source: "/:lang(en|pt|fr|es).md", destination: "/md/:lang" },
     ]
   },
   async redirects() {

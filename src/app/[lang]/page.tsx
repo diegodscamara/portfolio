@@ -24,6 +24,7 @@ import {
   type Project,
 } from "@/lib/data"
 import { formatDuration, formatMonth } from "@/lib/duration"
+import { faqAnswer } from "@/lib/llms"
 import { cn } from "@/lib/utils"
 
 // Rebuild daily so the "Running" role duration stays current.
@@ -61,6 +62,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
           <Earlier items={earlier} t={t} />
         </section>
         <Spec t={t} />
+        <Faq t={t} />
         <Contact t={t} />
       </main>
       <Footer lang={lang} t={t} />
@@ -479,6 +481,22 @@ function Spec({ t }: { t: Dictionary }) {
           </ul>
         </SpecRow>
       </div>
+    </section>
+  )
+}
+
+function Faq({ t }: { t: Dictionary }) {
+  return (
+    <section id="faq" className={cn(container, "py-20 md:py-28")}>
+      <h2 data-reveal className={cn(h2, "mb-10")}>{t.faq.title}</h2>
+      <dl>
+        {t.faq.items.map(({ q, a }) => (
+          <div key={q} data-reveal className="grid gap-3 border-t py-8 md:grid-cols-12 md:gap-6">
+            <dt className="font-medium text-pretty md:col-span-5">{q}</dt>
+            <dd className="max-w-[65ch] leading-relaxed text-pretty text-muted-foreground md:col-span-7">{faqAnswer(a)}</dd>
+          </div>
+        ))}
+      </dl>
     </section>
   )
 }

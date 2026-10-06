@@ -186,3 +186,35 @@ test.describe("analytics", () => {
     expect(res.headers().location).toMatch(/\/en$/)
   })
 })
+
+test.describe("agent-readable", () => {
+  for (const [lang, faq] of [
+    ["en", "Questions"],
+    ["pt", "Perguntas frequentes"],
+    ["fr", "Questions fréquentes"],
+    ["es", "Preguntas frecuentes"],
+  ]) {
+    test(`/${lang} shows its FAQ, marks it up, and links its markdown twin`, async ({ page, request }) => {
+      await page.goto(`/${lang}`)
+      await expect(page.getByRole("heading", { level: 2, name: faq })).toBeVisible()
+      await expect(page.locator("#faq dt")).toHaveCount(5)
+      const graph = JSON.parse((await page.locator('script[type="application/ld+json"]').textContent()) ?? "{}")["@graph"]
+      const faqLd = graph.find((n: { "@type": string }) => n["@type"] === "FAQPage")
+      expect(faqLd.mainEntity).toHaveLength(5)
+      await expect(page.locator('link[rel="alternate"][type="text/markdown"]')).toHaveAttribute("href", new RegExp(`/${lang}\\.md$`))
+
+      const md = await request.get(`/${lang}.md`)
+      expect(md.status()).toBe(200)
+      expect(md.headers()["content-type"]).toContain("text/markdown")
+      expect(md.headers().link).toContain(`/${lang}>; rel="canonical"`)
+      expect(await md.text()).toContain(`## ${faq}`)
+    })
+  }
+
+  test("/AGENTS.md is served as markdown", async ({ request }) => {
+    const res = await request.get("/AGENTS.md")
+    expect(res.status()).toBe(200)
+    expect(res.headers()["content-type"]).toContain("text/markdown")
+    expect(await res.text()).toContain("# AGENTS.md for Diego Câmara")
+  })
+})
