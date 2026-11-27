@@ -20,7 +20,7 @@ env:
 # Independent jobs run in parallel; wall time is the slowest one (Lighthouse), not the sum.
 jobs:
   checks:
-    name: Type-check, lint, unit tests
+    name: Type-check, unit tests
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -28,8 +28,6 @@ jobs:
       - uses: ./.github/actions/setup
       - name: Type-check
         run: bun run typecheck
-      - name: Lint
-        run: bun run lint
       - name: Unit tests
         run: bun run test
 

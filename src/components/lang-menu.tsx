@@ -1,5 +1,3 @@
-"use client"
-
 import * as React from "react"
 import { Check, Globe } from "lucide-react"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"

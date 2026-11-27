@@ -1,0 +1,74 @@
+---
+import { Font } from "astro:assets"
+import { locales, type Locale } from "@/i18n/config"
+import { site } from "@/lib/data"
+import { themeScript } from "@/lib/theme"
+import "@/styles/globals.css"
+
+interface Props {
+  lang: Locale
+  title: string
+  description: string
+  // The profile page carries canonical/hreflang/OG; 404 pages don't.
+  page?: boolean
+  notFound?: boolean
+  bodyClass?: string
+}
+
+const { lang, title, description, page = false, notFound = false, bodyClass = "min-h-dvh" } = Astro.props
+const ogLocale = { en: "en_US", pt: "pt_BR", fr: "fr_FR", es: "es_ES" } as const
+const url = (path: string) => `${site.url}${path}`
+const og = { src: url(`/${lang}/opengraph-image`), alt: title }
+---
+
+<html lang={lang} class="dark antialiased">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script is:inline set:html={themeScript} />
+    <Font cssVariable="--font-geist-sans" preload />
+    <Font cssVariable="--font-geist-mono" preload />
+    <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#131316" media="(prefers-color-scheme: dark)" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {notFound && <meta name="robots" content="noindex" />}
+    <link rel="manifest" href="/manifest.webmanifest" />
+    {
+      page && (
+        <>
+          <link rel="canonical" href={url(`/${lang}`)} />
+          {locales.map((l) => <link rel="alternate" hreflang={l} href={url(`/${l}`)} />)}
+          <link rel="alternate" hreflang="x-default" href={url("/en")} />
+          <link rel="alternate" type="text/markdown" href={url(`/${lang}.md`)} />
+          <meta property="og:title" content={title} />
+          <meta property="og:description" content={description} />
+          <meta property="og:url" content={url(`/${lang}`)} />
+          <meta property="og:site_name" content={site.name} />
+          <meta property="og:locale" content={ogLocale[lang]} />
+          <meta property="og:image" content={og.src} />
+          <meta property="og:image:type" content="image/png" />
+          <meta property="og:image:width" content="1200" />
+          <meta property="og:image:height" content="630" />
+          <meta property="og:image:alt" content={og.alt} />
+          {locales.filter((l) => l !== lang).map((l) => <meta property="og:locale:alternate" content={ogLocale[l]} />)}
+          <meta property="og:type" content="profile" />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content={title} />
+          <meta name="twitter:description" content={description} />
+          <meta name="twitter:image" content={og.src} />
+          <meta name="twitter:image:alt" content={og.alt} />
+        </>
+      )
+    }
+    <link rel="icon" href={`/${lang}/icon`} type="image/png" sizes="64x64" />
+    <link rel="apple-touch-icon" href={`/${lang}/apple-icon`} type="image/png" sizes="180x180" />
+    <slot name="head" />
+  </head>
+  <body class={bodyClass} data-not-found={notFound ? "true" : undefined}>
+    <slot />
+    <script>
+      import "@/scripts/analytics"
+    </script>
+  </body>
+</html>

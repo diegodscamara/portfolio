@@ -20,30 +20,35 @@ Personal site of Diego Câmara, full-stack software engineer. Four languages ([e
 
 ## Stack
 
-Next.js 16 (App Router, `proxy.ts`), React 19, TypeScript, Tailwind CSS v4, shadcn/ui on Base UI, bun, Playwright, Lighthouse CI, PostHog, Vercel.
+Astro 7 (static output, React islands), React 19, TypeScript, Tailwind CSS v4, shadcn/ui on Base UI, bun, Playwright, Lighthouse CI, PostHog. Served as static files by Caddy on a VPS; redirects, headers and locale negotiation live in `deploy/portfolio.rules`.
 
 ## Run it
 
 ```bash
 bun install
-bun dev             # http://localhost:3000
+bun dev             # http://localhost:4321 (no Caddy rules: / doesn't redirect, open /en)
 bun run test        # unit tests
-bun run build
-bun run e2e         # Playwright, against the production build
-bun run lighthouse  # Lighthouse budgets, same as CI
+bun run build       # static site in dist/
+bun run e2e         # Playwright, against dist/ behind the production Caddy rules (needs Docker)
+bun run lighthouse  # Lighthouse budgets, same as CI (needs Docker)
 bun run resume      # regenerate the four resume PDFs
+bun run deploy      # build and rsync dist/ to the VPS; `-- --edge` also pushes the Caddy config
+deploy/test-edge.sh # edge tests against the Caddy rules, on the VPS
 ```
 
 ## Where things live
 
 ```
-src/app/[lang]/               page, metadata and JSON-LD
-src/app/global-not-found.tsx  localized 404
-src/app/md/[lang]/            Markdown copy of each page, served at /{lang}.md
+src/pages/[lang].astro        the page
+src/layouts/Base.astro        metadata, fonts, theme script
+src/pages/[lang]/404.astro    localized 404s
+src/pages/[lang].md.ts        Markdown copy of each page (/{lang}.md, also /md/{lang})
+src/lib/schema.ts             JSON-LD
+src/lib/og.tsx                icons and Open Graph images (satori + sharp, at build time)
 src/i18n/                     locales, language negotiation, dictionaries
 src/lib/data.ts               facts
 src/lib/llms.ts               llms.txt, Markdown pages, AGENTS.md, FAQ JSON-LD
 src/lib/resume.ts             resume HTML behind the PDFs
 src/lib/analytics.ts          click-to-event mapping and the PostHog loader
-src/proxy.ts                  locale, trailing-slash and legacy redirects
+deploy/portfolio.rules        Caddy: headers, locale, trailing-slash and legacy redirects, PostHog proxy
 ```

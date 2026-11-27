@@ -1,7 +1,4 @@
-"use client"
-
 import * as React from "react"
-import { useTheme } from "next-themes"
 import {
   ArrowUpRight,
   Briefcase,
@@ -26,7 +23,7 @@ import {
   CommandSeparator,
   CommandShortcut,
 } from "@/components/ui/command"
-import { useThemeSwitch } from "@/components/client-bits"
+import { isDark, switchTheme } from "@/lib/theme"
 import { copyText } from "@/lib/clipboard"
 import { localeNames, locales, type Locale } from "@/i18n/config"
 import type { Dictionary } from "@/i18n/dictionaries"
@@ -51,8 +48,8 @@ export default function CommandPalette({
     { id: "contact", label: nav.contact, icon: Mail },
   ]
   const [copied, setCopied] = React.useState(false)
-  const { resolvedTheme } = useTheme()
-  const { toggle: switchTheme } = useThemeSwitch()
+  // Read on each render: the palette only renders while open, after any theme switch.
+  const dark = isDark()
 
   const run = (fn: () => void) => {
     setOpen(false)
@@ -121,8 +118,8 @@ export default function CommandPalette({
                 <CommandShortcut>PDF</CommandShortcut>
               </CommandItem>
               <CommandItem onSelect={() => run(() => switchTheme())}>
-                {resolvedTheme === "dark" ? <Sun /> : <MoonStar />}
-                {resolvedTheme === "dark" ? t.toLight : t.toDark}
+                {dark ? <Sun /> : <MoonStar />}
+                {dark ? t.toLight : t.toDark}
               </CommandItem>
             </CommandGroup>
             <CommandSeparator />

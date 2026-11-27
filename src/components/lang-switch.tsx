@@ -1,7 +1,4 @@
-"use client"
-
 import * as React from "react"
-import dynamic from "next/dynamic"
 import { Globe } from "lucide-react"
 import { buttonVariants } from "@/components/ui/button"
 import type { Locale } from "@/i18n/config"
@@ -24,10 +21,7 @@ function StaticTrigger({ lang, label, ...props }: LangProps & React.ComponentPro
   )
 }
 
-const LangMenu = dynamic(() => import("./lang-menu"), {
-  ssr: false,
-  loading: () => null,
-})
+const LangMenu = React.lazy(() => import("./lang-menu"))
 
 // Renders a look-alike button until the visitor reaches for it, then swaps in the real shadcn menu.
 export function LangSwitch(props: LangProps) {
@@ -38,7 +32,12 @@ export function LangSwitch(props: LangProps) {
     if (state !== "idle") void import("./lang-menu").then(() => setReady(true))
   }, [state])
 
-  if (ready) return <LangMenu {...props} defaultOpen={state === "open"} focus={focused} />
+  if (ready)
+    return (
+      <React.Suspense fallback={null}>
+        <LangMenu {...props} defaultOpen={state === "open"} focus={focused} />
+      </React.Suspense>
+    )
   return (
     <StaticTrigger
       {...props}

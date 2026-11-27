@@ -1,7 +1,4 @@
-"use client"
-
 import * as React from "react"
-import dynamic from "next/dynamic"
 import { Search } from "lucide-react"
 import { buttonVariants } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
@@ -9,7 +6,7 @@ import { Kbd } from "@/components/ui/kbd"
 import type { PaletteProps } from "./command-palette"
 
 // cmdk and the dialog only download once someone opens the palette.
-const CommandPalette = dynamic(() => import("./command-palette"), { ssr: false })
+const CommandPalette = React.lazy(() => import("./command-palette"))
 
 export function CommandMenu(props: PaletteProps) {
   const [open, setOpen] = React.useState(false)
@@ -50,7 +47,11 @@ export function CommandMenu(props: PaletteProps) {
         <span className="sr-only sm:not-sr-only">{props.t.search}</span>
         <Kbd className="hidden rounded-full px-2 font-mono sm:inline-flex">⌘K</Kbd>
       </button>
-      {loaded && <CommandPalette {...props} open={open} setOpen={setOpen} />}
+      {loaded && (
+        <React.Suspense fallback={null}>
+          <CommandPalette {...props} open={open} setOpen={setOpen} />
+        </React.Suspense>
+      )}
     </>
   )
 }

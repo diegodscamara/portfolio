@@ -2,7 +2,7 @@
   "ci": {
     "collect": {
       "startServerCommand": "bun run start",
-      "startServerReadyPattern": "Ready",
+      "startServerReadyPattern": "serving initial configuration",
       "url": [
         "http://localhost:3000/en",
         "http://localhost:3000/pt"

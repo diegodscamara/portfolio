@@ -1,0 +1,23 @@
+---
+import Base from "@/layouts/Base.astro"
+import { buttonVariants } from "@/components/ui/button"
+import type { Locale } from "@/i18n/config"
+import { getDictionary } from "@/i18n/dictionaries"
+import { site } from "@/lib/data"
+import { cn } from "@/lib/utils"
+
+const { lang } = Astro.props as { lang: Locale }
+const t = getDictionary(lang).notFound
+---
+
+<Base lang={lang} title={`404 | ${t.title} | ${site.name}`} description={t.body} notFound bodyClass="grid min-h-dvh place-items-center bg-background px-4 text-foreground">
+  <main class="max-w-xl py-24">
+    <span aria-hidden="true" class="grid size-[21px] grid-cols-3 gap-[3px]">
+      {Array.from({ length: 9 }, (_, i) => <span class={cn("rounded-[1.5px]", i === 8 ? "bg-brand" : "bg-foreground/25")} />)}
+    </span>
+    <p class="mt-10 font-mono text-sm text-brand-ink">404</p>
+    <h1 class="mt-3 text-5xl font-semibold tracking-tighter text-balance md:text-6xl">{t.title}</h1>
+    <p class="mt-5 max-w-[46ch] text-lg leading-relaxed text-muted-foreground">{t.body}</p>
+    <a href={`/${lang}`} class={cn(buttonVariants({ size: "pill" }), "mt-9")}>{t.home}</a>
+  </main>
+</Base>
