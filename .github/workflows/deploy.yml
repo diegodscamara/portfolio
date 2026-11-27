@@ -1,0 +1,57 @@
+name: Deploy
+
+# Publishes the static build to the VPS once CI has passed on main, and nightly so durations computed at build time
+# ("1 yr 4 mos") stay current. The SSH key can only rsync into /opt/portfolio/site (rrsync on the server): Caddy
+# config changes still go out by hand with `bun run deploy -- --edge`.
+on:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+    branches: [main]
+  schedule:
+    - cron: "17 9 * * *" # 06:17 in São Paulo
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  DEPLOY_HOST: 179.236.227.148
+
+jobs:
+  deploy:
+    # workflow_run also fires for failed CI runs and for PRs from branches named main; only ship green pushes.
+    if: github.event_name != 'workflow_run' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push')
+    runs-on: tenki-standard-small-2c-4g
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+      - uses: ./.github/actions/setup
+        with:
+          build: true
+      - name: Publish dist/ to the VPS
+        env:
+          SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+        run: |
+          test -f dist/en.html
+          command -v rsync >/dev/null || (sudo apt-get update -qq && sudo apt-get install -y -qq rsync)
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/deploy && chmod 600 ~/.ssh/deploy
+          printf '%s\n' "$KNOWN_HOSTS" > ~/.ssh/known_hosts
+          # --delay-updates/--delete-after: old chunks stay until every new file is in place, so open tabs keep working.
+          rsync -rlptz --delay-updates --delete-after --chmod=Da+rx,Fa+r --stats \
+            -e "ssh -i ~/.ssh/deploy -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes" \
+            dist/ "portfolio-deploy@${DEPLOY_HOST}:" | grep -E "^Number of (regular files transferred|deleted files)"
+          rm -f ~/.ssh/deploy
+      - name: Smoke-test production
+        run: EDGE_URL=https://www.diegocamara.com bun test deploy
+      - name: Notify IndexNow (Bing, Yandex, Seznam, Naver...)
+        if: github.event_name == 'workflow_run'
+        run: bun run indexnow

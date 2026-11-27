@@ -32,7 +32,7 @@ bun run build       # static site in dist/
 bun run e2e         # Playwright, against dist/ behind the production Caddy rules (needs Docker)
 bun run lighthouse  # Lighthouse budgets, same as CI (needs Docker)
 bun run resume      # regenerate the four resume PDFs
-bun run deploy      # build and rsync dist/ to the VPS; `-- --edge` also pushes the Caddy config
+bun run deploy      # deploy by hand (CI deploys every green push to main, and nightly); `-- --edge` also pushes the Caddy config
 deploy/test-edge.sh # edge tests against the Caddy rules, on the VPS
 ```
 
