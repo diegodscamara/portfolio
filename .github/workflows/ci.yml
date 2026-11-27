@@ -14,9 +14,6 @@ concurrency:
 permissions:
   contents: read
 
-env:
-  NEXT_TELEMETRY_DISABLED: 1
-
 # Independent jobs run in parallel; wall time is the slowest one (Lighthouse), not the sum.
 jobs:
   checks:
