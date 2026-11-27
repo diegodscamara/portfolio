@@ -106,13 +106,14 @@ test.describe("experience accordion", () => {
     expect(html).toContain("Built a RAG assistant with Azure OpenAI")
 
     await page.goto("/en#experience")
-    const triggers = page.locator('[data-slot="accordion-trigger"]')
-    await expect(triggers).toHaveCount(4)
-    await expect(triggers.nth(0)).toHaveAttribute("aria-expanded", "true")
-    await expect(triggers.nth(1)).toHaveAttribute("aria-expanded", "false")
+    // Native <details>: closed entries stay in the DOM, and find-in-page opens them.
+    const roles = page.locator("#experience details")
+    await expect(roles).toHaveCount(4)
+    await expect(roles.nth(0)).toHaveAttribute("open", "")
+    await expect(roles.nth(1)).not.toHaveAttribute("open")
 
-    await triggers.nth(1).click()
-    await expect(triggers.nth(1)).toHaveAttribute("aria-expanded", "true")
+    await roles.nth(1).locator("summary").click()
+    await expect(roles.nth(1)).toHaveAttribute("open", "")
     await expect(page.getByText("Built a RAG assistant with Azure OpenAI")).toBeVisible()
   })
 })

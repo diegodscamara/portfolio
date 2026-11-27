@@ -1,5 +1,3 @@
-"use client"
-
 import * as React from "react"
 import { RotateCcw } from "lucide-react"
 import { buttonVariants } from "@/components/ui/button"

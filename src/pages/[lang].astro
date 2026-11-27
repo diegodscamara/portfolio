@@ -1,0 +1,466 @@
+---
+import { Image } from "astro:assets"
+import { ArrowUpRight, Check, CheckCircle2, ChevronDown, Copy, FileText, Mail, MoonStar, Sun } from "lucide-react"
+import Base from "@/layouts/Base.astro"
+import { CommandMenu } from "@/components/command-menu"
+import { FleetRollout } from "@/components/fleet-rollout"
+import { LangSwitch } from "@/components/lang-switch"
+import { badgeVariants } from "@/components/ui/badge"
+import { buttonVariants } from "@/components/ui/button"
+import { locales, type Locale } from "@/i18n/config"
+import { getDictionary } from "@/i18n/dictionaries"
+import { credentials, educationYears, experience, languages, projects, resumeFor, sideProject, site, stack } from "@/lib/data"
+import { formatDuration, formatMonth } from "@/lib/duration"
+import { asset } from "@/lib/images"
+import { faqAnswer } from "@/lib/llms"
+import { profileGraph } from "@/lib/schema"
+import { cn } from "@/lib/utils"
+
+export const getStaticPaths = () => locales.map((lang) => ({ params: { lang } }))
+
+const lang = Astro.params.lang as Locale
+const t = getDictionary(lang)
+const [commander, energy, ...earlier] = projects
+const e = t.experience
+const s = t.spec
+const c = t.contact
+const a = t.work.adpilot
+const month = (ym: string) => formatMonth(ym, lang)
+
+// cn() merges conflicting classes (base border-transparent vs outline border), as shadcn's <Button> does.
+const primaryPill = cn(buttonVariants({ size: "pill" }))
+const outlinePill = cn(buttonVariants({ variant: "outline", size: "pill" }))
+// Tech tags: shadcn Badge, tuned to the site's mono pill style.
+const tag = cn(badgeVariants({ variant: "outline" }), "h-auto rounded-full px-2.5 py-1 font-mono font-normal text-muted-foreground")
+const container = "mx-auto w-full max-w-6xl px-4 sm:px-6"
+const h2 = "text-3xl font-semibold tracking-tighter md:text-4xl"
+const ext = { target: "_blank", rel: "noopener noreferrer" } as const
+const stagger = (i: number) => `--i: ${i}`
+const nav = [
+  [t.nav.experience, "#experience"],
+  [t.nav.work, "#work"],
+  [t.nav.spec, "#spec"],
+  [t.nav.contact, "#contact"],
+]
+const [before, highlight, after] = t.hero.pitch
+// Same classes the shadcn AccordionTrigger rendered (its transparent border included), so entries keep their height.
+const trigger = cn(
+  "relative flex flex-1 cursor-pointer list-none items-start justify-between rounded-lg border border-transparent py-2.5 text-left text-sm font-medium transition-all outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50",
+  "flex-wrap items-center gap-x-5 gap-y-2 rounded-lg p-5",
+)
+// Hero text widths are Geist's 34ch and 46ch written in em: ch follows whichever font is showing, so with ch the
+// fallback font wrapped Spanish onto an extra line and the fleet panel jumped when Geist arrived (CLS 0.16 on /es).
+const imgEase = "transition duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+---
+
+<Base lang={lang} title={t.meta.title} description={t.meta.description} page>
+  <header class="sticky top-0 z-40 border-b bg-background/95">
+    <div class={cn(container, "flex h-16 items-center gap-6")}>
+      <a href="#top" aria-label={`${site.name}, ${t.nav.backToTop}`} class="group flex items-center gap-3 font-medium tracking-tight">
+        {/* A 3x3 slice of the hero fleet: one tile running, the rest idle. Hover sends a rollout wave across it. */}
+        <span aria-hidden="true" class="mark grid size-[21px] grid-cols-3 gap-[3px]">
+          {Array.from({ length: 9 }, (_, i) => <span style={`--d: ${(i % 3) + Math.floor(i / 3)}`} />)}
+        </span>
+        <span class="hidden sm:inline">{site.name}</span>
+      </a>
+      <nav aria-label="Primary" class="ml-auto hidden items-center gap-1 lg:flex">
+        {
+          nav.map(([label, href]) => (
+            <a href={href} class={cn(buttonVariants({ variant: "ghost", size: "sm" }), "rounded-full px-3 text-muted-foreground")}>
+              {label}
+            </a>
+          ))
+        }
+      </nav>
+      <div class="ml-auto flex items-center gap-2 lg:ml-0">
+        {/* client:load, not idle: Cmd/Ctrl+K has to work as soon as the page shows. */}
+        <CommandMenu client:load lang={lang} t={t.command} nav={t.nav} stackLabel={t.spec.stack} />
+        <LangSwitch client:idle lang={lang} label={t.nav.language} />
+        <button
+          type="button"
+          data-theme-toggle
+          data-to-light={t.command.toLight}
+          data-to-dark={t.command.toDark}
+          aria-label={t.command.toLight}
+          class={cn(buttonVariants({ variant: "outline", size: "icon-pill" }), "relative overflow-hidden text-muted-foreground")}
+        >
+          <Sun className="absolute size-4 scale-0 -rotate-90 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] dark:scale-100 dark:rotate-0" />
+          <MoonStar className="absolute size-4 scale-100 rotate-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] dark:scale-0 dark:rotate-90" />
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="top" class="relative overflow-hidden">
+      <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(40rem_28rem_at_85%_-10%,color-mix(in_oklch,var(--brand)_12%,transparent),transparent_70%)]"></div>
+      <div class={cn(container, "relative grid items-center gap-14 pt-12 pb-16 md:pt-20 lg:grid-cols-12 lg:pb-24")}>
+        <div class="lg:col-span-6">
+          <div class="flex items-center gap-3">
+            <Image
+              src={asset("/profile.jpeg")}
+              alt={t.hero.portrait}
+              width={44}
+              height={44}
+              densities={[1, 2]}
+              loading="eager"
+              class="size-11 rounded-full object-cover outline outline-border"
+            />
+            <p class="text-sm leading-tight text-muted-foreground">
+              {t.hero.roleAt}{" "}
+              <a href="https://luxor.tech" {...ext} class="text-foreground underline decoration-brand underline-offset-4">Luxor</a>
+              <br />
+              {t.hero.remote}
+            </p>
+          </div>
+          <h1 class="mt-8 text-6xl font-semibold tracking-tighter sm:text-7xl lg:text-[5.5rem] lg:leading-[0.95]">{site.name}</h1>
+          <p class="hero-lead mt-6 max-w-[22.542em] text-xl leading-snug text-muted-foreground md:text-2xl">
+            {before}<span class="text-foreground">{highlight}</span>{after}
+          </p>
+          <p class="mt-4 max-w-[30.498em] text-sm leading-relaxed text-muted-foreground">{t.hero.facts}</p>
+          <div class="mt-9 flex flex-wrap gap-3">
+            <a href={`mailto:${site.email}`} class={primaryPill}><Mail className="size-4" />{t.hero.email}</a>
+            <a href={resumeFor(lang)} {...ext} class={outlinePill}><FileText className="size-4" />{t.hero.resume}</a>
+          </div>
+        </div>
+        <div class="lg:col-span-6">
+          <FleetRollout client:idle t={t.fleet} />
+        </div>
+      </div>
+    </section>
+
+    <section aria-label={t.work.title} class="border-y">
+      <dl class={cn(container, "grid grid-cols-2 lg:grid-cols-4")}>
+        {
+          t.highlights.map((h, i) => (
+            <div
+              data-reveal
+              style={stagger(i)}
+              class={cn(
+                "flex flex-col py-8 pr-4",
+                i % 2 === 1 && "border-l pl-4 sm:pl-6",
+                i >= 2 && "border-t lg:border-t-0",
+                i === 2 && "lg:border-l",
+                i > 0 && "lg:pl-6",
+              )}
+            >
+              <dt class="text-2xl font-semibold tracking-tighter text-balance md:text-3xl">{h.value}</dt>
+              <dd class="mt-1 text-sm text-muted-foreground">{h.label}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </section>
+
+    <section id="experience" class="bg-card/40">
+      <div class={cn(container, "py-20 md:py-28")}>
+        <h2 data-reveal class={h2}>{e.title}</h2>
+        <p data-reveal style={stagger(1)} class="mt-3 max-w-2xl leading-relaxed text-muted-foreground">{e.sub}</p>
+        <ol class="relative mt-12 flex w-full flex-col gap-4 before:absolute before:top-2 before:bottom-2 before:left-[7px] before:w-px before:bg-border md:before:left-[9.5rem]">
+          {
+            experience.map((r, i) => {
+              const running = r.end === null
+              return (
+                <li data-reveal style={stagger(i)} class="relative grid gap-3 pl-8 md:grid-cols-[8.5rem_1fr] md:gap-10 md:pl-0">
+                  <span
+                    aria-hidden="true"
+                    class={cn(
+                      "absolute top-6 left-0 grid size-[15px] place-items-center rounded-full border bg-background md:left-[calc(9.5rem-7px)]",
+                      running && "border-brand",
+                    )}
+                  >
+                    <span class={cn("size-[7px] rounded-full", running ? "pulse-ring relative bg-brand" : "bg-muted-foreground/60")} />
+                  </span>
+                  <div class="font-mono text-xs text-muted-foreground tabular-nums md:pt-5 md:pr-4 md:text-right">
+                    <time datetime={r.start}>{month(r.start)}</time>
+                    <br class="hidden md:block" />
+                    <span class="md:hidden"> - </span>
+                    {r.end ? <time datetime={r.end}>{month(r.end)}</time> : e.present}
+                  </div>
+                  <details class="entry group rounded-lg border bg-background md:ml-4" open={i === 0}>
+                    <summary class={trigger}>
+                      <span class="min-w-0 flex-1 basis-56">
+                        <span class="block text-lg font-semibold tracking-tight">{r.company}</span>
+                        <span class="block text-sm font-normal text-muted-foreground">
+                          {e.jobTitle}, {e.team.replace("{hq}", r.hq)}
+                        </span>
+                      </span>
+                      <span class={cn("inline-flex items-center gap-2 font-mono text-xs font-normal", running ? "text-brand-ink" : "text-muted-foreground")}>
+                        {running ? e.running : <><CheckCircle2 className="size-3.5" />{e.completed}</>}
+                        <span class={cn(badgeVariants({ variant: "secondary" }), "font-mono font-normal")}>
+                          {formatDuration(r.start, r.end, undefined, e.units)}
+                        </span>
+                      </span>
+                      <ChevronDown className="pointer-events-none size-4 shrink-0 text-muted-foreground transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-open:rotate-180" />
+                    </summary>
+                    <div class="grid gap-6 border-t p-5 md:grid-cols-[1fr_14rem]">
+                      <ul class="space-y-2.5 text-sm leading-relaxed text-muted-foreground">
+                        {
+                          e.roles[r.id].map((p) => (
+                            <li class="flex gap-3">
+                              <span class="mt-2.5 h-px w-3 shrink-0 bg-brand" />
+                              {p}
+                            </li>
+                          ))
+                        }
+                      </ul>
+                      <div class="flex flex-wrap content-start gap-1.5">
+                        {r.stack.map((x) => <span class={tag}>{x}</span>)}
+                        {
+                          r.url && (
+                            <a href={r.url} {...ext} class="mt-2 inline-flex w-full items-center gap-1 text-sm text-foreground underline decoration-brand underline-offset-4">
+                              {r.url.replace(/^https:\/\/(www\.)?/, "")}
+                              <ArrowUpRight className="size-3.5" />
+                            </a>
+                          )
+                        }
+                      </div>
+                    </div>
+                  </details>
+                </li>
+              )
+            })
+          }
+        </ol>
+      </div>
+    </section>
+
+    <section id="work" class={cn(container, "py-20 md:py-28")}>
+      <h2 data-reveal class={h2}>{t.work.title}</h2>
+      <p data-reveal style={stagger(1)} class="mt-3 max-w-2xl leading-relaxed text-muted-foreground">{t.work.sub}</p>
+      <div class="mt-12 grid gap-x-6 gap-y-10 lg:grid-cols-12">
+        {
+          [
+            { p: commander, span: "lg:col-span-7", sizes: "(min-width: 1024px) 55vw, 100vw" },
+            { p: energy, span: "lg:col-span-5", sizes: "(min-width: 1024px) 40vw, 100vw" },
+          ].map(({ p, span, sizes }, i) => (
+            <a href={p.url} {...ext} data-reveal style={stagger(i)} class={cn("group block", span)}>
+              <div class="relative aspect-[4/3] overflow-hidden rounded-lg border bg-[oklch(0.12_0.005_286)]">
+                <Image
+                  src={asset(p.image)}
+                  alt={t.work.dashboard.replace("{name}", p.name)}
+                  widths={[480, 768, 1080, 1440]}
+                  sizes={sizes}
+                  class={cn("absolute inset-0 size-full object-cover object-left-top group-hover:scale-[1.025]", imgEase)}
+                />
+              </div>
+              <div class="mt-4 flex items-start justify-between gap-4">
+                <div>
+                  <h3 class="text-lg font-semibold tracking-tight">{p.name}</h3>
+                  <p class="mt-1 max-w-[48ch] text-sm leading-relaxed text-muted-foreground">{t.work.summaries[p.id]}</p>
+                </div>
+                <ArrowUpRight className="mt-1 size-5 shrink-0 text-muted-foreground transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brand-ink" />
+              </div>
+              <div class="mt-3 flex flex-wrap gap-1.5">{p.tags.map((x) => <span class={tag}>{x}</span>)}</div>
+            </a>
+          ))
+        }
+      </div>
+
+      <article data-reveal class="mt-20 grid overflow-hidden rounded-lg border bg-card lg:grid-cols-12">
+        <div class="flex flex-col p-7 md:p-9 lg:col-span-5">
+          <p class="text-sm text-brand-ink">{t.work.sideProject}</p>
+          <h3 class="mt-2 text-3xl font-semibold tracking-tighter">{sideProject.name}</h3>
+          <p class="mt-4 leading-relaxed text-muted-foreground">{a.summary}</p>
+          <ul class="mt-6 space-y-2.5 text-sm leading-relaxed text-muted-foreground">
+            {
+              a.points.map((p) => (
+                <li class="flex gap-3">
+                  <span class="mt-2.5 h-px w-3 shrink-0 bg-brand" />
+                  {p}
+                </li>
+              ))
+            }
+          </ul>
+          <div class="mt-6 flex flex-wrap gap-1.5">{sideProject.stack.map((x) => <span class={tag}>{x}</span>)}</div>
+          <a href={sideProject.url} {...ext} class={cn(outlinePill, "mt-8 self-start")}>adpilotpro.com<ArrowUpRight className="size-4" /></a>
+        </div>
+        <div class="relative min-h-72 border-t bg-[oklch(0.12_0.005_286)] lg:col-span-7 lg:border-t-0 lg:border-l">
+          <Image
+            src={asset(sideProject.image)}
+            alt={a.alt}
+            widths={[480, 768, 1080, 1440]}
+            sizes="(min-width: 1024px) 58vw, 100vw"
+            class="absolute inset-0 size-full object-cover object-left-top"
+          />
+        </div>
+      </article>
+
+      <div class="mt-20">
+        <h3 class="text-xl font-semibold tracking-tight">{t.work.earlier}</h3>
+        <ul class="mt-6 divide-y border-y">
+          {
+            earlier.map((p, i) => (
+              <li data-reveal style={stagger(i)}>
+                <a href={p.url} {...ext} class="group relative flex items-center gap-4 py-4 md:gap-6">
+                  <span class="relative aspect-[16/10] w-20 shrink-0 overflow-hidden rounded-md border lg:hidden">
+                    <Image src={asset(p.image)} alt={`${p.name} homepage`} width={80} densities={[1, 2]} class="absolute inset-0 size-full object-cover object-top" />
+                  </span>
+                  <span class="min-w-0 flex-1 md:grid md:grid-cols-[14rem_1fr] md:items-baseline md:gap-6 lg:pr-80">
+                    <span class="block font-medium tracking-tight transition group-hover:text-brand-ink">{p.name}</span>
+                    <span class="block text-sm text-muted-foreground">
+                      {p.org}
+                      <span class="hidden md:inline">. {t.work.summaries[p.id]}</span>
+                    </span>
+                  </span>
+                  <ArrowUpRight className="size-4 shrink-0 text-muted-foreground transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  {/* Hover preview for pointer devices; small inline thumbnails cover touch screens. */}
+                  <span
+                    aria-hidden="true"
+                    class="pointer-events-none absolute top-1/2 right-16 z-10 hidden aspect-[16/10] w-72 -translate-y-1/2 scale-95 overflow-hidden rounded-lg border bg-card opacity-0 shadow-2xl transition duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-100 group-hover:opacity-100 lg:block"
+                  >
+                    <Image src={asset(p.image)} alt={`${p.name} homepage preview`} width={288} densities={[1, 2]} class="absolute inset-0 size-full object-cover object-top" />
+                  </span>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+
+    <section id="spec" class="bg-card/40">
+      <div class={cn(container, "py-20 md:py-28")}>
+        <h2 data-reveal class={cn(h2, "mb-10")}>{s.title}</h2>
+        <div id="about" data-reveal class="grid gap-4 border-t py-10 md:grid-cols-12">
+          <h3 class="text-sm text-muted-foreground md:col-span-3">{t.profile.about}</h3>
+          <div class="md:col-span-9"><p class="max-w-[65ch] text-lg leading-relaxed text-pretty">{t.profile.summary}</p></div>
+        </div>
+        <div id="stack" data-reveal class="grid gap-4 border-t py-10 md:grid-cols-12">
+          <h3 class="text-sm text-muted-foreground md:col-span-3">{s.stack}</h3>
+          <div class="md:col-span-9">
+            <div class="grid gap-8 sm:grid-cols-2">
+              {
+                stack.map((items, i) => (
+                  <div>
+                    <p class="font-medium">{s.groups[i]}</p>
+                    <ul class="mt-3 flex flex-wrap gap-2">
+                      {items.map((it) => (
+                        <li>
+                          <span class={cn(badgeVariants({ variant: "outline" }), "h-auto rounded-full bg-background px-3 py-1.5 text-sm font-normal")}>{it}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+        <div data-reveal class="grid gap-4 border-t py-10 md:grid-cols-12">
+          <h3 class="text-sm text-muted-foreground md:col-span-3">{s.languages}</h3>
+          <div class="md:col-span-9">
+            <ul class="grid grid-cols-2 gap-6 sm:grid-cols-4">
+              {
+                languages.map((l) => (
+                  <li class="flex flex-col">
+                    <p class="mt-1 text-sm text-muted-foreground">{s.languageNames[l.code]}</p>
+                    {/* Name first in the DOM so extracted text keeps "English C1"; the level reads first visually. */}
+                    <p class="order-first font-mono text-3xl tracking-tight">{l.level ?? s.native}</p>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </div>
+        <div data-reveal class="grid gap-4 border-t py-10 md:grid-cols-12">
+          <h3 class="text-sm text-muted-foreground md:col-span-3">{s.credentials}</h3>
+          <div class="md:col-span-9">
+            <ul class="grid gap-x-10 gap-y-4 sm:grid-cols-2">
+              {
+                credentials.map((x) => (
+                  <li>
+                    <p class="font-medium">{x.name}</p>
+                    <p class="text-sm text-muted-foreground">{x.issuer}, {x.year}</p>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </div>
+        <div data-reveal class="grid gap-4 border-t py-10 md:grid-cols-12">
+          <h3 class="text-sm text-muted-foreground md:col-span-3">{s.education}</h3>
+          <div class="md:col-span-9">
+            <ul class="grid gap-x-10 gap-y-4 sm:grid-cols-2">
+              {
+                s.degrees.map((degree, i) => (
+                  <li>
+                    <p class="font-medium">{degree}</p>
+                    <p class="text-sm text-muted-foreground">{s.school}, {educationYears[i]}</p>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class={cn(container, "py-20 md:py-28")}>
+      <h2 data-reveal class={cn(h2, "mb-10")}>{t.faq.title}</h2>
+      <dl>
+        {
+          t.faq.items.map(({ q, a }) => (
+            <div data-reveal class="grid gap-3 border-t py-8 md:grid-cols-12 md:gap-6">
+              <dt class="font-medium text-pretty md:col-span-5">{q}</dt>
+              <dd class="max-w-[65ch] leading-relaxed text-pretty text-muted-foreground md:col-span-7">{faqAnswer(a)}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </section>
+
+    <section id="contact" class={cn(container, "py-24 md:py-36")}>
+      <div data-reveal class="max-w-4xl">
+        <h2 class="text-5xl font-semibold tracking-tighter text-balance md:text-7xl">
+          {c.title} <span class="text-muted-foreground">{c.titleMuted}</span>
+        </h2>
+        <a
+          href={`mailto:${site.email}`}
+          class="mt-10 inline-block font-mono text-lg break-all underline decoration-brand decoration-2 underline-offset-8 transition hover:text-brand-ink md:text-2xl"
+        >
+          {site.email}
+        </a>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href={`mailto:${site.email}`} class={primaryPill}><Mail className="size-4" />{c.email}</a>
+          <button
+            type="button"
+            data-copy={site.email}
+            data-label={c.copy}
+            data-copied={c.copied}
+            data-copy-failed={c.copyFailed}
+            data-state="idle"
+            class={cn(outlinePill, "group/copy")}
+          >
+            <Copy className="size-4 group-data-[state=copied]/copy:hidden" />
+            <Check className="hidden size-4 text-brand-ink group-data-[state=copied]/copy:block" />
+            <span aria-live="polite" data-copy-label>{c.copy}</span>
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t">
+    <div class={cn(container, "flex flex-wrap items-center justify-between gap-4 py-8 text-sm text-muted-foreground")}>
+      <p>
+        © {site.updated.slice(0, 4)} {site.name}
+        <span class="mx-2">·</span>
+        {t.footer.updated} <time datetime={site.updated}>{site.updated}</time>
+      </p>
+      <nav aria-label={t.nav.language} class="flex gap-4">
+        {locales.map((l) => <a href={`/${l}`} hreflang={l} lang={l} class="font-mono text-xs uppercase hover:text-foreground">{l}</a>)}
+      </nav>
+      <nav aria-label="Elsewhere" class="flex gap-5">
+        <a href={site.linkedin} {...ext} class="hover:text-foreground">LinkedIn</a>
+        <a href={site.github} {...ext} class="hover:text-foreground">GitHub</a>
+        <a href={resumeFor(lang)} hreflang={lang} {...ext} class="hover:text-foreground">CV</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script type="application/ld+json" set:html={JSON.stringify(profileGraph(lang)).replace(/</g, "\\u003c")} />
+  <script>
+    import "@/scripts/page"
+  </script>
+</Base>

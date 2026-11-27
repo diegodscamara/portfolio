@@ -1,0 +1,75 @@
+# Shared by the live site (portfolio.caddy) and the throwaway test server (edge.test.ts). Mirrors what next.config.ts
+# headers/redirects/rewrites and src/proxy.ts did on Vercel.
+root * /srv/portfolio
+encode zstd gzip
+
+import /etc/caddy/sites/portfolio.headers
+
+# First supported language in the header's list order. Unlike pickLocale() it ignores q-values, which browsers already
+# send in descending order.
+map {header.Accept-Language} {pref_lang} {
+	~^(?:[^,]*,)*?\s*(en|pt|fr|es)(?:[-;,\s].*)?$ "${1}"
+	default en
+}
+# 404 language: the URL's locale prefix, else the browser's preference (as localeFor404() did).
+map {path} {err_lang} {
+	~^/(en|pt|fr|es)(?:/.*)?$ "${1}"
+	default {pref_lang}
+}
+map {query} {qs} {
+	"" ""
+	default "?{query}"
+}
+
+# Like the old proxy.ts matcher, paths with a file extension (e.g. /projects/x.jpg) are never redirected.
+@legacy path_regexp ^/(about|projects|posts|blog|contact|tags)(/[^.]*)?$
+@trailing {
+	path_regexp trailing ^(/.*?[^/])/+$
+	not path_regexp ^/(about|projects|posts|blog|contact|tags)(/.*)?$
+	not path /_next/* /ingest/*
+}
+@twin path_regexp twin ^/(en|pt|fr|es)\.md$
+
+route {
+	redir /resume /diego-camara-resume.pdf 308
+	redir /cv /diego-camara-resume.pdf 308
+	redir /documents/resume.docx /diego-camara-resume.pdf 308
+
+	handle_path /ingest/static/* {
+		rewrite * /static{path}
+		reverse_proxy https://us-assets.i.posthog.com:443
+	}
+	handle_path /ingest/* {
+		reverse_proxy https://us.i.posthog.com:443
+	}
+
+	redir @trailing {re.trailing.1}{qs} 308
+	header / Vary Accept-Language
+	redir / /{pref_lang}{qs} 307
+	header @legacy Vary Accept-Language
+	redir @legacy /{pref_lang}{qs} 308
+
+	rewrite @twin /md/{re.twin.1}
+	@md path_regexp md ^/md/(en|pt|fr|es)$
+	header @md Link "<https://www.diegocamara.com/{re.md.1}>; rel=\"canonical\""
+
+	# Hashed build assets: Astro (_astro) and the Next static export (_next/static).
+	header /_astro/* Cache-Control "public, max-age=31536000, immutable"
+	header /_next/static/* Cache-Control "public, max-age=31536000, immutable"
+	header /md/* Content-Type "text/markdown; charset=utf-8"
+	header /llms.txt Content-Type "text/markdown; charset=utf-8"
+	header /llms-full.txt Content-Type "text/markdown; charset=utf-8"
+	header /AGENTS.md Content-Type "text/markdown; charset=utf-8"
+	@png path_regexp ^/(en|pt|fr|es)/(icon|apple-icon|opengraph-image)$
+	header @png Content-Type image/png
+
+	try_files {path} {path}.html
+	file_server
+}
+
+handle_errors 404 {
+	import /etc/caddy/sites/portfolio.headers
+	# Astro builds have /{lang}/404.html; the Next export only /404.html.
+	try_files /{err_lang}/404.html /404.html
+	file_server
+}

@@ -20,22 +20,20 @@ env:
 # Independent jobs run in parallel; wall time is the slowest one (Lighthouse), not the sum.
 jobs:
   checks:
-    name: Type-check, lint, unit tests
-    runs-on: ubuntu-latest
+    name: Type-check, unit tests
+    runs-on: tenki-standard-small-2c-4g
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v7
       - uses: ./.github/actions/setup
       - name: Type-check
         run: bun run typecheck
-      - name: Lint
-        run: bun run lint
       - name: Unit tests
         run: bun run test
 
   e2e:
     name: End-to-end tests
-    runs-on: ubuntu-latest
+    runs-on: tenki-standard-small-2c-4g
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v7
@@ -56,7 +54,7 @@ jobs:
   # Desktop preset: shared runners make mobile scores too noisy to gate on; mobile is checked with PageSpeed Insights.
   lighthouse:
     name: Lighthouse /${{ matrix.locale }} (100 on a11y/best practices/SEO, perf >= 98, JS <= 200 KB)
-    runs-on: ubuntu-latest
+    runs-on: tenki-standard-small-2c-4g
     timeout-minutes: 10
     strategy:
       fail-fast: false

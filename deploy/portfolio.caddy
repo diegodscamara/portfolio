@@ -1,0 +1,8 @@
+# Copy to /opt/edge/sites/; site files are rsynced to /opt/portfolio/site (mounted at /srv/portfolio).
+diegocamara.com {
+	redir https://www.diegocamara.com{uri} 308
+}
+
+www.diegocamara.com {
+	import /etc/caddy/sites/portfolio.rules
+}

@@ -1,0 +1,9 @@
+---
+import NotFound from "@/components/NotFound.astro"
+import { locales, type Locale } from "@/i18n/config"
+
+// One 404 per language; Caddy picks it from the URL's locale prefix, else Accept-Language.
+export const getStaticPaths = () => locales.map((lang) => ({ params: { lang } }))
+---
+
+<NotFound lang={Astro.params.lang as Locale} />

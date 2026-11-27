@@ -1,9 +1,9 @@
 name: Setup
-description: Install Bun and dependencies; optionally run the production build with a warm Next.js cache.
+description: Install Bun and dependencies; optionally run the production build with a warm Astro cache.
 
 inputs:
   build:
-    description: Also run `bun run build`, restoring and saving .next/cache.
+    description: Also run `bun run build`, restoring and saving Astro's cache (optimized images, downloaded fonts).
     default: "false"
 
 runs:
@@ -15,13 +15,13 @@ runs:
     - run: bun install --frozen-lockfile
       shell: bash
 
-    # Turbopack's persistent cache makes a warm build about 3x faster. Falls back to the closest older entry on a miss.
+    # Astro keeps resized images and downloaded fonts here; a warm cache skips re-encoding. Falls back to the closest older entry on a miss.
     - if: inputs.build == 'true'
       uses: actions/cache@v6
       with:
-        path: .next/cache
-        key: next-${{ runner.os }}-${{ hashFiles('bun.lock') }}-${{ hashFiles('src/**', 'public/**', '*.config.*', 'tsconfig.json') }}
-        restore-keys: next-${{ runner.os }}-${{ hashFiles('bun.lock') }}-
+        path: node_modules/.astro
+        key: astro-${{ runner.os }}-${{ hashFiles('bun.lock') }}-${{ hashFiles('src/**', 'public/**', 'astro.config.mjs', 'tsconfig.json') }}
+        restore-keys: astro-${{ runner.os }}-${{ hashFiles('bun.lock') }}-
     - if: inputs.build == 'true'
       run: bun run build
       shell: bash
