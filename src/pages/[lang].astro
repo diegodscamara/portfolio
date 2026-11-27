@@ -73,7 +73,8 @@ const imgEase = "transition duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
         }
       </nav>
       <div class="ml-auto flex items-center gap-2 lg:ml-0">
-        <CommandMenu client:idle lang={lang} t={t.command} nav={t.nav} stackLabel={t.spec.stack} />
+        {/* client:load, not idle: Cmd/Ctrl+K has to work as soon as the page shows. */}
+        <CommandMenu client:load lang={lang} t={t.command} nav={t.nav} stackLabel={t.spec.stack} />
         <LangSwitch client:idle lang={lang} label={t.nav.language} />
         <button
           type="button"
